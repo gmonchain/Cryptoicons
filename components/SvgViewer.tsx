@@ -92,18 +92,18 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   };
 
   return (
-    <div className={"container mx-auto p-4 bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen"}>      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
-      <p className="text-center text-lg text-gray-600 dark:text-gray-300 mb-6">Total Icons: {svgPaths.length}</p>
+    <div className={"container mx-auto p-2 sm:p-4 bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen"}>      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-8">Crypto Icons</h1>
+      <p className="text-center text-sm sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">Total Icons: {svgPaths.length}</p>
       <button
         onClick={() => setIsDarkMode(!isDarkMode)}
-        className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg"
+        className="mb-3 sm:mb-4 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg text-sm sm:text-base"
       >
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
       </button>
-      <div className="mb-6 relative flex items-center space-x-4">        <input
+      <div className="mb-4 sm:mb-6 relative flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">        <input
           type="text"
           placeholder="Search icons..."
-          className="flex-grow p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="flex-grow w-full sm:w-auto p-2.5 sm:p-3 pr-8 sm:pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm sm:text-base"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -121,7 +121,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
             setItemsPerPage(Number(e.target.value));
             setCurrentPage(1); // Reset to first page when items per page changes
           }}
-          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="w-full sm:w-auto p-2.5 sm:p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm sm:text-base"
         >
           <option value={25}>25 per page</option>
           <option value={50}>50 per page</option>
@@ -149,14 +149,16 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         )}
       </div>
       {totalPages > 1 && (
-        <div className="flex justify-center mt-8 space-x-2">          <button
-            onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50"          >
+        <div className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
+            onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 text-sm sm:text-base"
+          >
    Previous
           </button>
-          <span className="px-4 py-2 flex items-center justify-center text-gray-700 dark:text-gray-300">            Page {currentPage} of {totalPages}
+          <span className="px-3 py-1.5 sm:px-4 sm:py-2 flex items-center justify-center text-gray-700 dark:text-gray-300 text-sm sm:text-base">            Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50"          >
+            onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 text-sm sm:text-base"
+          >
    Next
           </button>
         </div>
@@ -165,7 +167,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-blue-600 text-white p-2.5 sm:p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
           aria-label="Scroll to top"
         >
           ↑
