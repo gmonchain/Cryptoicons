@@ -116,7 +116,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
                 <span className="text-sm text-gray-700 text-center mb-2 dark:text-gray-300">{iconName}</span>
                 <button
                   onClick={() => handleCopy(iconName || '')}
-                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-600"
+                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-500"
                 >
                   {copied === iconName ? 'Copied!' : 'Copy Name'}
                 </button>
