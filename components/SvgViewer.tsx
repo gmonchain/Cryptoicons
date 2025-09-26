@@ -9,6 +9,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(60); // Default items per page
+  const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -20,6 +21,15 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
       clearTimeout(handler);
     };
   }, [searchTerm]);
+
+  useEffect(() => {
+    if (copied) {
+      const timer = setTimeout(() => {
+        setCopied(null);
+      }, 2000); // Hide Copied! message after 2 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [copied]);
 
   const filteredSvgPaths = svgPaths.filter(path =>
     path.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
@@ -35,6 +45,11 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     if (pageNumber < 1) setCurrentPage(1);
     else if (pageNumber > totalPages) setCurrentPage(totalPages);
     else setCurrentPage(pageNumber);
+  };
+
+  const handleCopy = (iconName: string) => {
+    navigator.clipboard.writeText(iconName);
+    setCopied(iconName);
   };
 
   return (
@@ -68,11 +83,20 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         </select>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
-          currentItems.map((path, index) => (
-            <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">              <img src={path} alt={} className="w-16 h-16 object-contain mb-2" />
-              <span className="text-sm text-gray-700 text-center">{path.split('/')[path.split('/').length - 1]?.replace('.svg', \'\')}</span>
-            </div>
-          ))
+          currentItems.map((path, index) => {
+            const iconName = path.split('/').pop()?.replace('.svg', '');
+            return (
+              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white relative">                <img src={path} alt={} className="w-16 h-16 object-contain mb-2" />
+                <span className="text-sm text-gray-700 text-center mb-2">{iconName}</span>
+                <button
+                  onClick={() => handleCopy(iconName || '')}
+                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-600"
+                >
+                  {copied === iconName ? 'Copied!' : 'Copy Name'}
+                </button>
+              </div>
+            );
+          })
         ) : (
           <p className="col-span-full text-center text-gray-500">No icons found matching your search.</p>
         )}
