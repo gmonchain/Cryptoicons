@@ -146,7 +146,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           <option value={200}>200 per page</option>
         </select>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
             return (
@@ -173,9 +173,9 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         ) : (
           <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">No icons found matching your criteria.</p>
         )}
-      </div>
+      </section>
       {totalPages > 1 && (
-        <div className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
+        <nav className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
             onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 text-sm sm:text-base"
           >
    Previous
@@ -187,7 +187,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           >
    Next
           </button>
-        </div>
+        </nav>
       )}
 
       {showBackToTop && (

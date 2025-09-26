@@ -30,7 +30,9 @@ export default function RootLayout({
         <header className="bg-gray-800 dark:bg-gray-950 text-white p-4 text-center shadow-md">
           <h1 className="text-2xl font-bold">Crypto Icons Viewer</h1>
         </header>
-        {children}
+        <main>
+          {children}
+        </main>
         <footer className="bg-gray-800 dark:bg-gray-950 text-white p-4 text-center mt-8 shadow-inner">
           <p>© {new Date().getFullYear()} Crypto Icons Viewer. All rights reserved.</p>
         </footer>
