@@ -87,6 +87,23 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     setCopied(iconName);
   };
 
+  const handleDownload = async (path: string, iconName: string) => {
+    try {
+      const response = await fetch(path);
+      const svgBlob = await response.blob();
+      const url = URL.createObjectURL(svgBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${iconName}.svg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading SVG:', error);
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -136,12 +153,20 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
               <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer">
                 <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
                 <span className="text-sm text-gray-700 text-center mb-2 dark:text-gray-300">{iconName}</span>
-                <button
-                  onClick={() => handleCopy(iconName || '')}
-                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-500"
-                >
-                  {copied === iconName ? 'Copied!' : 'Copy Name'}
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleCopy(iconName || '')}
+                    className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-500"
+                  >
+                    {copied === iconName ? 'Copied!' : 'Copy Name'}
+                  </button>
+                  <button
+                    onClick={() => handleDownload(path, iconName || '')}
+                    className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full hover:bg-green-200 dark:bg-green-700 dark:text-green-200 dark:hover:bg-green-500"
+                  >
+                    Download
+                  </button>
+                </div>
               </div>
             );
           })
