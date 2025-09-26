@@ -17,6 +17,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
     return false;
   });
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -49,6 +50,21 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   }, [copied]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleScroll = () => {
+        if (window.pageYOffset > 300) { // Show button after scrolling down 300px
+          setShowBackToTop(true);
+        } else {
+          setShowBackToTop(false);
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+
   const filteredSvgPaths = svgPaths.filter(path =>
     path.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
@@ -69,6 +85,10 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const handleCopy = (iconName: string) => {
     navigator.clipboard.writeText(iconName);
     setCopied(iconName);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -140,7 +160,18 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
    Next
           </button>
         </div>
-      )}    </div>
+      )}
+
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+          aria-label="Scroll to top"
+        >
+          ↑
+        </button>
+      )}
+    </div>
   );
 };
 
