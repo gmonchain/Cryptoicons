@@ -79,7 +79,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
       >
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
       </button>
-      <div className="mb-4 relative flex items-center space-x-4">        <input
+      <div className="mb-6 relative flex items-center space-x-4">        <input
           type="text"
           placeholder="Search icons..."
           className="flex-grow p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
