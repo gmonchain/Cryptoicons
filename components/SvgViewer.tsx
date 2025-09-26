@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SvgViewerProps {
   svgPaths: string[];
@@ -6,9 +6,20 @@ interface SvgViewerProps {
 
 const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300); // 300ms debounce time
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
 
   const filteredSvgPaths = svgPaths.filter(path =>
-    path.toLowerCase().includes(searchTerm.toLowerCase())
+    path.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   return (
