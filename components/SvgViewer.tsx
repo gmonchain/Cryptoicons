@@ -89,7 +89,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         {searchTerm && (
           <button
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            onClick={() => setSearchTerm(\'\')}
+            onClick={() => setSearchTerm('')}
           >
             &times;
           </button>
@@ -130,13 +130,13 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
       {totalPages > 1 && (
         <div className="flex justify-center mt-8 space-x-2">          <button
             onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50"          >
-            Previous
+   Previous
           </button>
           <span className="px-4 py-2 flex items-center justify-center text-gray-700 dark:text-gray-300">            Page {currentPage} of {totalPages}
           </span>
           <button
             onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50"          >
-            Next
+   Next
           </button>
         </div>
       )}    </div>
