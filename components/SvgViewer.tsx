@@ -112,11 +112,11 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
             return (
-              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800">                <img src={path} alt={} className="w-16 h-16 object-contain mb-2" loading="lazy" />
+              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800">                <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
                 <span className="text-sm text-gray-700 text-center mb-2 dark:text-gray-300">{iconName}</span>
                 <button
                   onClick={() => handleCopy(iconName || '')}
-                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-600"
+                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-600"
                 >
                   {copied === iconName ? 'Copied!' : 'Copy Name'}
                 </button>
@@ -124,7 +124,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
             );
           })
         ) : (
-          <p className="col-span-full text-center text-gray-500 dark:text-gray-400">No icons found matching your search.</p>
+          <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">No icons found matching your criteria.</p>
         )}
       </div>
       {totalPages > 1 && (
