@@ -39,10 +39,10 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
 
   return (
     <div className="container mx-auto p-4">      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
-      <div className="mb-4 relative">        <input
+      <div className="mb-4 relative flex items-center space-x-4">        <input
           type="text"
           placeholder="Search icons..."
-          className="w-full p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="flex-grow p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -54,6 +54,18 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
             &times;
           </button>
         )}
+        <select
+          value={itemsPerPage}
+          onChange={(e) => {
+            setItemsPerPage(Number(e.target.value));
+            setCurrentPage(1); // Reset to first page when items per page changes
+          }}
+          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        >
+          <option value={30}>30 per page</option>
+          <option value={60}>60 per page</option>
+          <option value={120}>120 per page</option>
+        </select>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
           currentItems.map((path, index) => (
