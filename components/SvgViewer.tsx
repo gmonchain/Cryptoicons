@@ -63,6 +63,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     if (pageNumber < 1) setCurrentPage(1);
     else if (pageNumber > totalPages) setCurrentPage(totalPages);
     else setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCopy = (iconName: string) => {
