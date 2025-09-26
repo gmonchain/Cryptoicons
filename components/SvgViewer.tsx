@@ -133,7 +133,8 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
             return (
-              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800">                <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
+              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer">
+                <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
                 <span className="text-sm text-gray-700 text-center mb-2 dark:text-gray-300">{iconName}</span>
                 <button
                   onClick={() => handleCopy(iconName || '')}
