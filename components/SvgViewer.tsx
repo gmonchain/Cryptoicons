@@ -18,6 +18,15 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     return false;
   });
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+  useEffect(() => {
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Simulate 1 second loading time
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -174,6 +183,9 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">No icons found matching your criteria.</p>
         )}
       </section>
+      {isLoading && (
+        <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">Loading icons...</p>
+      )}
       {totalPages > 1 && (
         <nav className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
             onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 text-sm sm:text-base"
