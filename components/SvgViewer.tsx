@@ -18,18 +18,22 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         <input
           type="text"
           placeholder="Search icons..."
-          className="p-3 border border-gray-300 rounded-lg w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="p-3 border border-gray-300 rounded-lg w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-        {filteredSvgPaths.map((path, index) => (
-          <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">
-            <img src={path} alt={`Crypto Icon ${index}`} className="w-16 h-16 object-contain mb-2" />
-            <span className="text-sm text-gray-700 text-center">{path.split('/').pop()?.replace('.svg', '')}</span>
-          </div>
-        ))}
+        {filteredSvgPaths.length === 0 ? (
+          <p className="col-span-full text-center text-gray-500">No icons found matching your search.</p>
+        ) : (
+          filteredSvgPaths.map((path, index) => (
+            <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300">
+              <img src={path} alt={`Crypto Icon ${index}`} className="w-16 h-16 object-contain mb-2" />
+              <span className="text-sm text-gray-700 text-center truncate w-full px-1">{path.split('/').pop()?.replace('.svg', '')}</span>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
