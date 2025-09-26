@@ -1,4 +1,0 @@
-export { StorageClient } from './StorageClient';
-export * from './lib/types';
-export * from './lib/errors';
-//# sourceMappingURL=index.js.map
