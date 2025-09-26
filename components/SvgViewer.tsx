@@ -26,7 +26,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     if (copied) {
       const timer = setTimeout(() => {
         setCopied(null);
-      }, 2000); // Hide Copied! message after 2 seconds
+      }, 1500); // Hide "Copied!" message after 1.5 seconds
       return () => clearTimeout(timer);
     }
   }, [copied]);
