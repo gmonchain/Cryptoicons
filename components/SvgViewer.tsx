@@ -5,18 +5,11 @@ interface SvgViewerProps {
 }
 
 const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
-  // State for search functionality
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
-
-  // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(60); // Default items per page
-
-  // State for copy functionality
   const [copied, setCopied] = useState<string | null>(null);
-
-  // State for dark mode toggle, initialized from localStorage
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem('darkMode');
@@ -25,21 +18,6 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     return false;
   });
 
-  // State for back-to-top button visibility
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  // State for simulating loading (used for initial fetch)
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
-
-  // Simulate initial loading time for better UX
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000); // Simulate 1 second loading time
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Effect to manage dark mode state in localStorage and apply/remove 'dark' class
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
@@ -51,7 +29,6 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   }, [isDarkMode]);
 
-  // Debounce search term to prevent excessive re-renders/filters
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
@@ -63,7 +40,6 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     };
   }, [searchTerm]);
 
-  // Effect to clear "Copied!" message after a short delay
   useEffect(() => {
     if (copied) {
       const timer = setTimeout(() => {
@@ -73,23 +49,6 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   }, [copied]);
 
-  // Effect to show/hide back-to-top button based on scroll position
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const handleScroll = () => {
-        if (window.pageYOffset > 300) { // Show button after scrolling down 300px
-          setShowBackToTop(true);
-        } else {
-          setShowBackToTop(false);
-        }
-      };
-
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, []);
-
-  // Filter SVG paths based on the debounced search term
   const filteredSvgPaths = svgPaths.filter(path =>
     path.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
@@ -100,7 +59,6 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const currentItems = filteredSvgPaths.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredSvgPaths.length / itemsPerPage);
 
-  // Function to change page
   const paginate = (pageNumber: number) => {
     if (pageNumber < 1) setCurrentPage(1);
     else if (pageNumber > totalPages) setCurrentPage(totalPages);
@@ -108,62 +66,30 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handler for copying icon name to clipboard
   const handleCopy = (iconName: string) => {
     navigator.clipboard.writeText(iconName);
     setCopied(iconName);
   };
 
-  // Handler for downloading SVG file
-  const handleDownload = async (path: string, iconName: string) => {
-    try {
-      const response = await fetch(path);
-      const svgBlob = await response.blob();
-      const url = URL.createObjectURL(svgBlob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${iconName}.svg`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error downloading SVG:', error);
-    }
-  };
-
-  // Function to scroll to the top of the page
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className={"container mx-auto p-2 sm:p-4 bg-[var(--background)] text-[var(--text-light)] dark:text-[var(--text-dark)] min-h-screen"}>      {/* Main Heading */}
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-8">Crypto Icons</h1>
-      
-      {/* Total Icons Count */}
-      <p className="text-center text-sm sm:text-lg text-[var(--text-light)] dark:text-[var(--text-dark)] mb-4 sm:mb-6">Total Icons: {svgPaths.length}</p>
-      
-      {/* Dark Mode Toggle Button */}
+    <div className={"container mx-auto p-4 bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen"}>      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
       <button
         onClick={() => setIsDarkMode(!isDarkMode)}
-        className="mb-3 sm:mb-4 px-3 py-1.5 sm:px-4 sm:py-2 bg-[var(--button-bg-light)] text-[var(--button-text-light)] dark:bg-[var(--button-bg-dark)] dark:text-[var(--button-text-dark)] rounded-lg text-sm sm:text-base transition-colors"
+        className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg"
       >
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
       </button>
-      
-      {/* Search Input and Items Per Page Selector */}
-      <div className="mb-4 sm:mb-6 relative flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">        <input
+      <div className="mb-6 relative flex items-center space-x-4">        <input
           type="text"
           placeholder="Search icons..."
-          className="flex-grow w-full sm:w-auto p-2.5 sm:p-3 pr-8 sm:pr-10 border border-[var(--border-color)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition duration-200 ease-in-out bg-[var(--card-bg-light)] text-[var(--text-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] dark:text-[var(--text-dark)] text-sm sm:text-base"
+          className="flex-grow p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {searchTerm && (
           <button
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-light)] hover:text-[var(--primary-color)] dark:text-[var(--text-dark)] dark:hover:text-[var(--primary-color)]"
-            onClick={() => setSearchTerm('')}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            onClick={() => setSearchTerm(\'\')}
           >
             &times;
           </button>
@@ -174,7 +100,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
             setItemsPerPage(Number(e.target.value));
             setCurrentPage(1); // Reset to first page when items per page changes
           }}
-          className="w-full sm:w-auto p-2.5 sm:p-3 border border-[var(--border-color)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition duration-200 ease-in-out bg-[var(--card-bg-light)] text-[var(--text-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] dark:text-[var(--text-dark)] text-sm sm:text-base"
+          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
         >
           <option value={25}>25 per page</option>
           <option value={50}>50 per page</option>
@@ -182,70 +108,38 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           <option value={200}>200 per page</option>
         </select>
       </div>
-      
-      {/* Icon Grid */}
-      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
             return (
-              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-[var(--card-bg-light)] dark:bg-[var(--card-bg-dark)] transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer">
-                <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
-                <span className="text-sm text-[var(--text-light)] dark:text-[var(--text-dark)] text-center mb-2">{iconName}</span>
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleCopy(iconName || '')}
-                    className="text-xs bg-[var(--primary-color)] text-white px-2 py-1 rounded-full hover:bg-[var(--primary-color)]/80 transition-colors"
-                  >
-                    {copied === iconName ? 'Copied!' : 'Copy Name'}
-                  </button>
-                  <button
-                    onClick={() => handleDownload(path, iconName || '')}
-                    className="text-xs bg-[var(--secondary-color)] text-white px-2 py-1 rounded-full hover:bg-[var(--secondary-color)]/80 transition-colors"
-                  >
-                    Download
-                  </button>
-                </div>
+              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800">                <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
+                <span className="text-sm text-gray-700 text-center mb-2 dark:text-gray-300">{iconName}</span>
+                <button
+                  onClick={() => handleCopy(iconName || '')}
+                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-500"
+                >
+                  {copied === iconName ? 'Copied!' : 'Copy Name'}
+                </button>
               </div>
             );
           })
         ) : (
-          <p className="col-span-full text-center text-[var(--text-light)] dark:text-[var(--text-dark)] p-8">No icons found matching your criteria.</p>
+          <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">No icons found matching your criteria.</p>
         )}
-      </section>
-
-      {/* Loading State */}
-      {isLoading && (
-        <p className="col-span-full text-center text-[var(--text-light)] dark:text-[var(--text-dark)] p-8">Loading icons...</p>
-      )}
-
-      {/* Pagination Controls */}
+      </div>
       {totalPages > 1 && (
-        <nav className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
-            onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-[var(--button-bg-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] text-[var(--button-text-light)] dark:text-[var(--button-text-dark)] disabled:opacity-50 transition-colors text-sm sm:text-base"
-          >
-   Previous
+        <div className="flex justify-center mt-8 space-x-2">          <button
+            onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50"          >
+            Previous
           </button>
-          <span className="px-3 py-1.5 sm:px-4 sm:py-2 flex items-center justify-center text-[var(--text-light)] dark:text-[var(--text-dark)] text-sm sm:text-base">            Page {currentPage} of {totalPages}
+          <span className="px-4 py-2 flex items-center justify-center text-gray-700 dark:text-gray-300">            Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-[var(--button-bg-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] text-[var(--button-text-light)] dark:text-[var(--button-text-dark)] disabled:opacity-50 transition-colors text-sm sm:text-base"
-          >
-   Next
+            onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50"          >
+            Next
           </button>
-        </nav>
-      )}
-
-      {/* Back to Top Button */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-[var(--primary-color)] text-white p-2.5 sm:p-3 rounded-full shadow-lg hover:bg-[var(--primary-color)]/80 transition-colors"
-          aria-label="Scroll to top"
-        >
-          ↑
-        </button>
-      )}
-    </div>
+        </div>
+      )}    </div>
   );
 };
 
