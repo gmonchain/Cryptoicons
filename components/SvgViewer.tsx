@@ -73,6 +73,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
 
   return (
     <div className={"container mx-auto p-4 bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen"}>      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
+      <p className="text-center text-lg text-gray-600 dark:text-gray-300 mb-6">Total Icons: {svgPaths.length}</p>
       <button
         onClick={() => setIsDarkMode(!isDarkMode)}
         className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg"
