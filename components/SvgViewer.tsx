@@ -10,6 +10,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(60); // Default items per page
   const [copied, setCopied] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -53,7 +54,13 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   };
 
   return (
-    <div className="container mx-auto p-4">      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
+    <div className={"container mx-auto p-4 " + (isDarkMode ? 'dark' : '')}>      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg"
+      >
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
       <div className="mb-4 relative flex items-center space-x-4">        <input
           type="text"
           placeholder="Search icons..."
