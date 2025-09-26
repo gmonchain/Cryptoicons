@@ -72,14 +72,10 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   };
 
   return (
-    <div className={"container mx-auto p-4 bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen"}>      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
-      <button
-        onClick={() => setIsDarkMode(!isDarkMode)}
-        className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg"
-      >
-        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-      </button>
-      <div className="mb-6 relative flex items-center space-x-4">        <input
+    <div className="container mx-auto p-4">
+      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
+      <div className="mb-6 relative flex items-center space-x-4">
+        <input
           type="text"
           placeholder="Search icons..."
           className="flex-grow p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
@@ -89,26 +85,14 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         {searchTerm && (
           <button
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            onClick={() => setSearchTerm(\'\')}
+            onClick={() => setSearchTerm('')}
           >
             &times;
           </button>
         )}
-        <select
-          value={itemsPerPage}
-          onChange={(e) => {
-            setItemsPerPage(Number(e.target.value));
-            setCurrentPage(1); // Reset to first page when items per page changes
-          }}
-          className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-        >
-          <option value={25}>25 per page</option>
-          <option value={50}>50 per page</option>
-          <option value={100}>100 per page</option>
-          <option value={200}>200 per page</option>
-        </select>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        {currentItems.length > 0 ? (
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
             return (
