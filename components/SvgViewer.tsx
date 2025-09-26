@@ -118,24 +118,24 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   };
 
   return (
-    <div className={"container mx-auto p-2 sm:p-4 bg-white text-gray-800 dark:bg-gray-900 dark:text-white min-h-screen"}>      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-8">Crypto Icons</h1>
-      <p className="text-center text-sm sm:text-lg text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">Total Icons: {svgPaths.length}</p>
+    <div className={"container mx-auto p-2 sm:p-4 bg-[var(--background)] text-[var(--text-light)] dark:text-[var(--text-dark)] min-h-screen"}>      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-8">Crypto Icons</h1>
+      <p className="text-center text-sm sm:text-lg text-[var(--text-light)] dark:text-[var(--text-dark)] mb-4 sm:mb-6">Total Icons: {svgPaths.length}</p>
       <button
         onClick={() => setIsDarkMode(!isDarkMode)}
-        className="mb-3 sm:mb-4 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg text-sm sm:text-base"
+        className="mb-3 sm:mb-4 px-3 py-1.5 sm:px-4 sm:py-2 bg-[var(--button-bg-light)] text-[var(--button-text-light)] dark:bg-[var(--button-bg-dark)] dark:text-[var(--button-text-dark)] rounded-lg text-sm sm:text-base transition-colors"
       >
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
       </button>
       <div className="mb-4 sm:mb-6 relative flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">        <input
           type="text"
           placeholder="Search icons..."
-          className="flex-grow w-full sm:w-auto p-2.5 sm:p-3 pr-8 sm:pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm sm:text-base"
+          className="flex-grow w-full sm:w-auto p-2.5 sm:p-3 pr-8 sm:pr-10 border border-[var(--border-color)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition duration-200 ease-in-out bg-[var(--card-bg-light)] text-[var(--text-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] dark:text-[var(--text-dark)] text-sm sm:text-base"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {searchTerm && (
           <button
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-light)] hover:text-[var(--primary-color)] dark:text-[var(--text-dark)] dark:hover:text-[var(--primary-color)]"
             onClick={() => setSearchTerm('')}
           >
             &times;
@@ -147,7 +147,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
             setItemsPerPage(Number(e.target.value));
             setCurrentPage(1); // Reset to first page when items per page changes
           }}
-          className="w-full sm:w-auto p-2.5 sm:p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm sm:text-base"
+          className="w-full sm:w-auto p-2.5 sm:p-3 border border-[var(--border-color)] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition duration-200 ease-in-out bg-[var(--card-bg-light)] text-[var(--text-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] dark:text-[var(--text-dark)] text-sm sm:text-base"
         >
           <option value={25}>25 per page</option>
           <option value={50}>50 per page</option>
@@ -159,19 +159,19 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
             return (
-              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white dark:bg-gray-800 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer">
+              <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-[var(--card-bg-light)] dark:bg-[var(--card-bg-dark)] transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg cursor-pointer">
                 <img src={path} alt={iconName || "Crypto Icon"} className="w-16 h-16 object-contain mb-2" loading="lazy" />
-                <span className="text-sm text-gray-700 text-center mb-2 dark:text-gray-300">{iconName}</span>
+                <span className="text-sm text-[var(--text-light)] dark:text-[var(--text-dark)] text-center mb-2">{iconName}</span>
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleCopy(iconName || '')}
-                    className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full hover:bg-blue-200 dark:bg-blue-700 dark:text-blue-200 dark:hover:bg-blue-500"
+                    className="text-xs bg-[var(--primary-color)] text-white px-2 py-1 rounded-full hover:bg-[var(--primary-color)]/80 transition-colors"
                   >
                     {copied === iconName ? 'Copied!' : 'Copy Name'}
                   </button>
                   <button
                     onClick={() => handleDownload(path, iconName || '')}
-                    className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full hover:bg-green-200 dark:bg-green-700 dark:text-green-200 dark:hover:bg-green-500"
+                    className="text-xs bg-[var(--secondary-color)] text-white px-2 py-1 rounded-full hover:bg-[var(--secondary-color)]/80 transition-colors"
                   >
                     Download
                   </button>
@@ -180,22 +180,22 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
             );
           })
         ) : (
-          <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">No icons found matching your criteria.</p>
+          <p className="col-span-full text-center text-[var(--text-light)] dark:text-[var(--text-dark)] p-8">No icons found matching your criteria.</p>
         )}
       </section>
       {isLoading && (
-        <p className="col-span-full text-center text-gray-500 dark:text-gray-400 p-8">Loading icons...</p>
+        <p className="col-span-full text-center text-[var(--text-light)] dark:text-[var(--text-dark)] p-8">Loading icons...</p>
       )}
       {totalPages > 1 && (
         <nav className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
-            onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 text-sm sm:text-base"
+            onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-[var(--button-bg-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] text-[var(--button-text-light)] dark:text-[var(--button-text-dark)] disabled:opacity-50 transition-colors text-sm sm:text-base"
           >
    Previous
           </button>
-          <span className="px-3 py-1.5 sm:px-4 sm:py-2 flex items-center justify-center text-gray-700 dark:text-gray-300 text-sm sm:text-base">            Page {currentPage} of {totalPages}
+          <span className="px-3 py-1.5 sm:px-4 sm:py-2 flex items-center justify-center text-[var(--text-light)] dark:text-[var(--text-dark)] text-sm sm:text-base">            Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-white disabled:opacity-50 text-sm sm:text-base"
+            onClick={() => paginate(currentPage + 1)}            disabled={currentPage === totalPages}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-[var(--button-bg-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] text-[var(--button-text-light)] dark:text-[var(--button-text-dark)] disabled:opacity-50 transition-colors text-sm sm:text-base"
           >
    Next
           </button>
@@ -205,7 +205,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-blue-600 text-white p-2.5 sm:p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-[var(--primary-color)] text-white p-2.5 sm:p-3 rounded-full shadow-lg hover:bg-[var(--primary-color)]/80 transition-colors"
           aria-label="Scroll to top"
         >
           ↑

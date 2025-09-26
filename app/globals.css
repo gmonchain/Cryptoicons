@@ -3,6 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-color: #3B82F6; /* Blue-600 */
+  --secondary-color: #10B981; /* Green-500 */
+  --text-light: #4B5563; /* Gray-700 */
+  --text-dark: #D1D5DB; /* Gray-300 */
+  --border-color: #D1D5DB; /* Gray-300 */
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1F2937; /* Gray-800 */
+  --button-bg-light: #E5E7EB; /* Gray-200 */
+  --button-bg-dark: #374151; /* Gray-700 */
+  --button-text-light: #1F2937; /* Gray-800 */
+  --button-text-dark: #E5E7EB; /* Gray-200 */
 }
 
 @theme inline {
@@ -16,6 +27,17 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary-color: #60A5FA; /* Blue-400 */
+    --secondary-color: #34D399; /* Green-400 */
+    --text-light: #D1D5DB; /* Gray-300 */
+    --text-dark: #4B5563; /* Gray-700 */
+    --border-color: #4B5563; /* Gray-700 */
+    --card-bg-light: #1F2937; /* Gray-800 */
+    --card-bg-dark: #0a0a0a;
+    --button-bg-light: #374151; /* Gray-700 */
+    --button-bg-dark: #E5E7EB; /* Gray-200 */
+    --button-text-light: #E5E7EB; /* Gray-200 */
+    --button-text-dark: #1F2937; /* Gray-800 */
   }
 }
 
