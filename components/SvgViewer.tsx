@@ -5,11 +5,18 @@ interface SvgViewerProps {
 }
 
 const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
+  // State for search functionality
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  // State for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(60); // Default items per page
+
+  // State for copy functionality
   const [copied, setCopied] = useState<string | null>(null);
+
+  // State for dark mode toggle, initialized from localStorage
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem('darkMode');
@@ -17,17 +24,22 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
     return false;
   });
+
+  // State for back-to-top button visibility
   const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // State for simulating loading (used for initial fetch)
   const [isLoading, setIsLoading] = useState(true); // Add loading state
 
+  // Simulate initial loading time for better UX
   useEffect(() => {
-    // Simulate loading
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000); // Simulate 1 second loading time
     return () => clearTimeout(timer);
   }, []);
 
+  // Effect to manage dark mode state in localStorage and apply/remove 'dark' class
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
@@ -39,6 +51,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   }, [isDarkMode]);
 
+  // Debounce search term to prevent excessive re-renders/filters
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
@@ -50,6 +63,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     };
   }, [searchTerm]);
 
+  // Effect to clear "Copied!" message after a short delay
   useEffect(() => {
     if (copied) {
       const timer = setTimeout(() => {
@@ -59,6 +73,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   }, [copied]);
 
+  // Effect to show/hide back-to-top button based on scroll position
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const handleScroll = () => {
@@ -74,6 +89,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   }, []);
 
+  // Filter SVG paths based on the debounced search term
   const filteredSvgPaths = svgPaths.filter(path =>
     path.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
@@ -84,6 +100,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const currentItems = filteredSvgPaths.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredSvgPaths.length / itemsPerPage);
 
+  // Function to change page
   const paginate = (pageNumber: number) => {
     if (pageNumber < 1) setCurrentPage(1);
     else if (pageNumber > totalPages) setCurrentPage(totalPages);
@@ -91,11 +108,13 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Handler for copying icon name to clipboard
   const handleCopy = (iconName: string) => {
     navigator.clipboard.writeText(iconName);
     setCopied(iconName);
   };
 
+  // Handler for downloading SVG file
   const handleDownload = async (path: string, iconName: string) => {
     try {
       const response = await fetch(path);
@@ -113,19 +132,27 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     }
   };
 
+  // Function to scroll to the top of the page
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className={"container mx-auto p-2 sm:p-4 bg-[var(--background)] text-[var(--text-light)] dark:text-[var(--text-dark)] min-h-screen"}>      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-8">Crypto Icons</h1>
+    <div className={"container mx-auto p-2 sm:p-4 bg-[var(--background)] text-[var(--text-light)] dark:text-[var(--text-dark)] min-h-screen"}>      {/* Main Heading */}
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4 sm:mb-8">Crypto Icons</h1>
+      
+      {/* Total Icons Count */}
       <p className="text-center text-sm sm:text-lg text-[var(--text-light)] dark:text-[var(--text-dark)] mb-4 sm:mb-6">Total Icons: {svgPaths.length}</p>
+      
+      {/* Dark Mode Toggle Button */}
       <button
         onClick={() => setIsDarkMode(!isDarkMode)}
         className="mb-3 sm:mb-4 px-3 py-1.5 sm:px-4 sm:py-2 bg-[var(--button-bg-light)] text-[var(--button-text-light)] dark:bg-[var(--button-bg-dark)] dark:text-[var(--button-text-dark)] rounded-lg text-sm sm:text-base transition-colors"
       >
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
       </button>
+      
+      {/* Search Input and Items Per Page Selector */}
       <div className="mb-4 sm:mb-6 relative flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">        <input
           type="text"
           placeholder="Search icons..."
@@ -155,6 +182,8 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           <option value={200}>200 per page</option>
         </select>
       </div>
+      
+      {/* Icon Grid */}
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
           currentItems.map((path, index) => {
             const iconName = path.split('/').pop()?.replace('.svg', '');
@@ -183,9 +212,13 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
           <p className="col-span-full text-center text-[var(--text-light)] dark:text-[var(--text-dark)] p-8">No icons found matching your criteria.</p>
         )}
       </section>
+
+      {/* Loading State */}
       {isLoading && (
         <p className="col-span-full text-center text-[var(--text-light)] dark:text-[var(--text-dark)] p-8">Loading icons...</p>
       )}
+
+      {/* Pagination Controls */}
       {totalPages > 1 && (
         <nav className="flex flex-col sm:flex-row justify-center mt-6 sm:mt-8 space-y-2 sm:space-y-0 sm:space-x-2">          <button
             onClick={() => paginate(currentPage - 1)}            disabled={currentPage === 1}            className="px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg bg-[var(--button-bg-light)] dark:bg-[var(--button-bg-dark)] dark:border-[var(--border-color)] text-[var(--button-text-light)] dark:text-[var(--button-text-dark)] disabled:opacity-50 transition-colors text-sm sm:text-base"
@@ -202,6 +235,7 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
         </nav>
       )}
 
+      {/* Back to Top Button */}
       {showBackToTop && (
         <button
           onClick={scrollToTop}
