@@ -7,10 +7,13 @@ interface SvgViewerProps {
 const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(60); // Default items per page
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
+      setCurrentPage(1); // Reset to first page on new search
     }, 300); // 300ms debounce time
 
     return () => {
@@ -22,26 +25,30 @@ const SvgViewer: React.FC<SvgViewerProps> = ({ svgPaths }) => {
     path.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredSvgPaths.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredSvgPaths.length / itemsPerPage);
+
+  const paginate = (pageNumber: number) => {
+    if (pageNumber < 1) setCurrentPage(1);
+    else if (pageNumber > totalPages) setCurrentPage(totalPages);
+    else setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="container mx-auto p-4">      <h1 className="text-4xl font-bold text-center mb-8">Crypto Icons</h1>
-      <div className="mb-4 relative">        <input
+      <div className="mb-4">        <input
           type="text"
           placeholder="Search icons..."
-          className="w-full p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out text-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        {searchTerm && (
-          <button
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-            onClick={() => setSearchTerm(\'\')}
-          >
-            &times;
-          </button>
-        )}
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {filteredSvgPaths.length > 0 ? (
-          filteredSvgPaths.map((path, index) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">        {currentItems.length > 0 ? (
+          currentItems.map((path, index) => (
             <div key={index} className="flex flex-col items-center justify-center p-4 border rounded-lg shadow-md bg-white">              <img src={path} alt={} className="w-16 h-16 object-contain mb-2" />
               <span className="text-sm text-gray-700 text-center">{path.split('/')[path.split('/').length - 1]?.replace('.svg', \'\')}</span>
             </div>
