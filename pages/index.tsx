@@ -11,7 +11,7 @@ import { CryptoIcon } from '../types'; // TypeScript type definition for crypto 
 import { Loader2 } from 'lucide-react'; // Icon for loading indicator
 
 export default function HomePage() { // Main component for the application's home page
-  const { icons, loading, error } = useCryptoIcons();
+  const { icons, loading, error } = useCryptoIcons(); // Fetch crypto icons and their loading state/errors
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
