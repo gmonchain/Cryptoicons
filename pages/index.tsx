@@ -97,7 +97,7 @@ export default function HomePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar Component for filtering icons */}
-        <div className="max-w-2xl mx-auto mb-8">
+        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar */}
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
