@@ -44,6 +44,7 @@ export default function HomePage() {
 
   // Handles downloading an SVG icon file and showing a toast notification
   const handleDownload = (icon: CryptoIcon) => {
+    // Create a temporary anchor element to trigger the download
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
