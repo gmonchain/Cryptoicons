@@ -48,6 +48,7 @@ export default function HomePage() {
     const link = document.createElement('a');
     // Set the href to the icon's path for direct file access
     link.href = icon.path;
+    // Assign the desired file name for the downloaded icon
     link.download = icon.fileName;
     document.body.appendChild(link);
     link.click();
