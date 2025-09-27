@@ -13,6 +13,7 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 export default function HomePage() {
   // Destructure values from the useCryptoIcons hook for icon data and loading/error states
   const { icons, loading, error } = useCryptoIcons();
+  // Destructure values from the useToast hook for managing notifications
   const { toasts, addToast, removeToast } = useToast();
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
