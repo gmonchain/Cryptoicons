@@ -46,7 +46,7 @@ export default function HomePage() {
     link.href = icon.path; // Set the URL for the download link to the icon's path
     link.download = icon.fileName; // Specify the default filename for the downloaded icon
     document.body.appendChild(link); // Temporarily append the link to the document body to enable click
-    link.click();
+    link.click(); // Programmatically click the link to trigger the download
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
