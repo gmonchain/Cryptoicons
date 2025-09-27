@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 // Main page component for displaying crypto icons
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons(); // State and functions for handling crypto icon data
-  const { toasts, addToast, removeToast } = useToast();
+  const { toasts, addToast, removeToast } = useToast(); // State and functions for managing toast notifications
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
   // State to store the icon selected for preview
