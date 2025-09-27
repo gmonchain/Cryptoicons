@@ -13,7 +13,6 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 export default function HomePage() {
   // Destructure values from the useCryptoIcons hook for icon data and loading/error states
   const { icons, loading, error } = useCryptoIcons();
-  // Destructure values from the useToast hook for managing notifications
   const { toasts, addToast, removeToast } = useToast();
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,13 +35,13 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  // Asynchronously copies the provided content to the user's clipboard
+  // Handles copying SVG content to clipboard and showing a toast notification
   const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  // Initiates the download of an SVG icon by creating a temporary anchor element
+  // Handles downloading an SVG icon file and showing a toast notification
   const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
@@ -53,19 +52,19 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  // Sets the selected icon and opens the preview modal for detailed inspection
+  // Handles opening the preview modal for a selected icon
   const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  // Closes the preview modal and resets the selected icon state
+  // Handles closing the preview modal and clearing the selected icon
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  // Conditionally renders a loading spinner when icon data is being fetched
+  // Display a loading spinner while icons are being fetched
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -77,7 +76,7 @@ export default function HomePage() {
     );
   }
 
-  // Displays an error message and a warning icon if icon data fails to load
+  // Display an error message if icon data failed to load
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -97,11 +96,11 @@ export default function HomePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar Component for filtering icons */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar */}
+        <div className="max-w-2xl mx-auto mb-8">
           <SearchBar
-            value={searchQuery} // Binds the search bar's value to the searchQuery state
-            onChange={setSearchQuery} // Updates the searchQuery state as the user types
-            placeholder="Search crypto icons by name or symbol..." // Placeholder text for user guidance
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
