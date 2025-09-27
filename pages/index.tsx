@@ -1,23 +1,23 @@
-// This is the main page for the Cryptoicons application.
-import { useState, useMemo } from 'react'; // React hooks for state and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats'; // Component to display icon statistics
-import { IconCard } from '../components/IconCard'; // Component for displaying individual icons
-import { PreviewModal } from '../components/PreviewModal'; // Modal for icon preview
-import { ToastContainer } from '../components/Toast'; // Container for toast notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icons
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast messages
-import { CryptoIcon } from '../types'; // TypeScript type definition for crypto icons
-import { Loader2 } from 'lucide-react'; // Icon for loading indicator
+// This file contains the main logic for the Cryptoicons application's home page.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main component for the application's home page
-  const { icons, loading, error } = useCryptoIcons(); // Fetch crypto icons and their loading state/errors
-  const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications
-  const [searchQuery, setSearchQuery] = useState(''); // State for the search bar input
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
+export default function HomePage() {
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
+  const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
@@ -28,12 +28,12 @@ export default function HomePage() { // Main component for the application's hom
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
+  const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => { // Handles downloading an SVG icon
+  const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -43,33 +43,33 @@ export default function HomePage() { // Main component for the application's hom
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for an icon
+  const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => { // Handles closing the preview modal
+  const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  if (loading) { // Displays a loading indicator while icons are being fetched
+  if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600 text-xl">Loading crypto icons...</p>
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
   }
 
-  if (error) { // Displays an error message if icon fetching fails
+  if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-            <span className="text-red-600 text-3xl">⚠️</span>
+            <span className="text-red-600 text-2xl">⚠️</span>
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
           <p className="text-gray-600">{error}</p>
@@ -78,12 +78,12 @@ export default function HomePage() { // Main component for the application's hom
     );
   }
 
-  return ( // Main JSX structure for the home page
-    <div className="h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16"> {/* Main content area */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-10"> {/* Search bar container */}
+        <div className="max-w-2xl mx-auto mb-8">
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
@@ -92,15 +92,15 @@ export default function HomePage() { // Main component for the application's hom
         </div>
 
         {/* Stats */}
-        <Stats // Displaying statistics about the icons
+        <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Conditionally render search results information
-          <div className="mb-8"> {/* Search results information container */}
+        {searchQuery.trim() && (
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -111,9 +111,9 @@ export default function HomePage() { // Main component for the application's hom
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Conditionally render the grid of icons or a no-results message
+        {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-            {filteredIcons.map((icon) => ( // Render each icon as an IconCard
+            {filteredIcons.map((icon) => (
               <IconCard
                 key={icon.name}
                 icon={icon}
@@ -135,7 +135,7 @@ export default function HomePage() { // Main component for the application's hom
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal for displaying a larger preview of the selected icon
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -144,7 +144,7 @@ export default function HomePage() { // Main component for the application's hom
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
