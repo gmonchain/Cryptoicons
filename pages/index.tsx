@@ -11,8 +11,8 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 
 // Main page component for displaying crypto icons
 export default function HomePage() {
-  const { icons, loading, error } = useCryptoIcons(); // Fetch cryptocurrency icons and their loading/error states
-  const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications for user feedback
+  const { icons, loading, error } = useCryptoIcons(); // Destructure icons, loading, and error states from the custom hook
+  const { toasts, addToast, removeToast } = useToast();
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
   // State to store the icon selected for preview
@@ -42,24 +42,24 @@ export default function HomePage() {
 
   // Handles downloading an SVG icon file and showing a toast notification
   const handleDownload = (icon: CryptoIcon) => {
-    const link = document.createElement('a'); // Create a temporary anchor element for initiating download
-    link.href = icon.path; // Set the href attribute to the icon's file path
-    link.download = icon.fileName; // Set the download attribute to specify the file name
-    document.body.appendChild(link); // Temporarily append the link to the document body to enable click
-    link.click(); // Programmatically click the link to trigger the download
-    document.body.removeChild(link); // Clean up: remove the temporary link element
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Notify user of successful download
+    const link = document.createElement('a');
+    link.href = icon.path;
+    link.download = icon.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   // Handles opening the preview modal for a selected icon
   const handlePreview = (icon: CryptoIcon) => {
-    setSelectedIcon(icon); // Set the selected icon for modal display
-    setIsModalOpen(true); // Open the preview modal
+    setSelectedIcon(icon);
+    setIsModalOpen(true);
   };
 
   // Handles closing the preview modal and clearing the selected icon
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Close the preview modal
+    setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
