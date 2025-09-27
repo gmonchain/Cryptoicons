@@ -45,7 +45,7 @@ export default function HomePage() {
     const link = document.createElement('a'); // Create a temporary anchor element
     link.href = icon.path; // Set the URL for the download link to the icon's path
     link.download = icon.fileName; // Specify the default filename for the downloaded icon
-    document.body.appendChild(link);
+    document.body.appendChild(link); // Temporarily append the link to the document body to enable click
     link.click();
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
