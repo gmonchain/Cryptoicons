@@ -44,7 +44,7 @@ export default function HomePage() {
   const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a'); // Create a temporary anchor element
     link.href = icon.path; // Set the URL for the download link to the icon's path
-    link.download = icon.fileName;
+    link.download = icon.fileName; // Specify the default filename for the downloaded icon
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
