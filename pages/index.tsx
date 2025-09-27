@@ -10,6 +10,10 @@ import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
+/**
+ * Renders the main home page of the Cryptoicons application.
+ * This component manages icon searching, previewing, copying, and downloading.
+ */
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
