@@ -74,6 +74,7 @@ export default function HomePage() {
     );
   }
 
+  // Display an error message if icon data failed to load
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
