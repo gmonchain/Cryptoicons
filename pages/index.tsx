@@ -54,7 +54,7 @@ export default function HomePage() {
   // Handles opening the preview modal for a selected icon
   const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon); // Set the icon to be displayed in the modal
-    setIsModalOpen(true);
+    setIsModalOpen(true); // Open the preview modal to display the selected icon
   };
 
   // Handles closing the preview modal and clearing the selected icon
