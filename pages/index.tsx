@@ -21,6 +21,7 @@ export default function HomePage() {
   const { toasts, addToast, removeToast } = useToast();
   // State for the search bar input.
   const [searchQuery, setSearchQuery] = useState('');
+  // State for the currently selected icon for previewing.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
