@@ -7,7 +7,7 @@ import { ToastContainer } from '../components/Toast'; // Component for displayin
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icons
 import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
 import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icon data
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide React
 
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
