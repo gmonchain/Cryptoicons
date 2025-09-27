@@ -15,6 +15,7 @@ import { Loader2 } from 'lucide-react';
  * This component manages icon searching, previewing, copying, and downloading.
  */
 export default function HomePage() {
+  // Fetches cryptocurrency icons and their loading/error states.
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
