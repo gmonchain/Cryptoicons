@@ -92,7 +92,7 @@ export default function HomePage() { // Main component for the application's hom
         </div>
 
         {/* Stats */}
-        <Stats
+        <Stats // Displaying statistics about the icons
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
