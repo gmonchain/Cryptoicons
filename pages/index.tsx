@@ -101,7 +101,7 @@ export default function HomePage() {
           <SearchBar
             value={searchQuery} // Binds the search bar's value to the searchQuery state
             onChange={setSearchQuery} // Updates the searchQuery state as the user types
-            placeholder="Search crypto icons by name or symbol..."
+            placeholder="Search crypto icons by name or symbol..." // Placeholder text for user guidance
           />
         </div>
 
