@@ -1,20 +1,20 @@
 // This is the main page for the Cryptoicons application.
-import { useState, useMemo } from 'react'; // React hooks for state and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats'; // Component to display icon statistics
-import { IconCard } from '../components/IconCard'; // Component to display individual icon cards
-import { PreviewModal } from '../components/PreviewModal'; // Modal for icon preview
-import { ToastContainer } from '../components/Toast'; // Container for toast notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icons
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
-import { Loader2 } from 'lucide-react'; // Icon for loading state
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main component for the home page
-  const { icons, loading, error } = useCryptoIcons(); // Fetch crypto icons and their loading/error states
-  const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications
-  const [searchQuery, setSearchQuery] = useState(''); // State for the search bar input
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
+export default function HomePage() {
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredIcons = useMemo(() => {
