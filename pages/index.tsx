@@ -11,8 +11,8 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 
 // Main page component for displaying crypto icons
 export default function HomePage() {
-  const { icons, loading, error } = useCryptoIcons(); // Destructure icons, loading state, and error from the custom hook
-  const { toasts, addToast, removeToast } = useToast(); // Destructure toasts, addToast, and removeToast from the custom hook
+  const { icons, loading, error } = useCryptoIcons(); // Fetch cryptocurrency icons and their loading/error states
+  const { toasts, addToast, removeToast } = useToast();
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
   // State to store the icon selected for preview
@@ -27,7 +27,7 @@ export default function HomePage() {
     
     // Convert search query to lowercase for case-insensitive matching
     const query = searchQuery.toLowerCase();
-    return icons.filter(icon => // Filter icons based on display name, name, or symbol
+    return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
@@ -36,19 +36,19 @@ export default function HomePage() {
 
   // Handles copying SVG content to clipboard and showing a toast notification
   const handleCopy = async (content: string, name: string) => {
-      await navigator.clipboard.writeText(content); // Write SVG content to clipboard
-      addToast(`${name} SVG copied to clipboard!`, 'success'); // Show success toast notification
+      await navigator.clipboard.writeText(content);
+      addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
   // Handles downloading an SVG icon file and showing a toast notification
   const handleDownload = (icon: CryptoIcon) => {
-    const link = document.createElement('a'); // Create a temporary anchor element for downloading
-    link.href = icon.path; // Set the href to the icon's path
-    link.download = icon.fileName; // Set the download attribute to the icon's file name
-    document.body.appendChild(link); // Append the link to the document body to make it clickable
-    link.click(); // Programmatically click the link to trigger the download
-    document.body.removeChild(link); // Remove the temporary link element from the document body
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Show a success toast notification after download
+    const link = document.createElement('a');
+    link.href = icon.path;
+    link.download = icon.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   // Handles opening the preview modal for a selected icon
