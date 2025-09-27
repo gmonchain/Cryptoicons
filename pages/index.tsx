@@ -21,6 +21,7 @@ export default function HomePage() {
 
   // Memoized filtering of icons based on search query for performance
   const filteredIcons = useMemo(() => {
+    // If search query is empty, return all icons
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
