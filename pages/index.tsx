@@ -11,9 +11,7 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 
 // Main page component for displaying crypto icons
 export default function HomePage() {
-  // Destructure values from the useCryptoIcons hook for icon data and loading/error states
   const { icons, loading, error } = useCryptoIcons();
-  // Destructure values from the useToast hook for managing notifications
   const { toasts, addToast, removeToast } = useToast();
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
@@ -44,33 +42,23 @@ export default function HomePage() {
 
   // Handles downloading an SVG icon file and showing a toast notification
   const handleDownload = (icon: CryptoIcon) => {
-    // Create a temporary anchor element for downloading
     const link = document.createElement('a');
-    // Set the href to the icon's path
     link.href = icon.path;
-    // Set the download attribute to the icon's file name
     link.download = icon.fileName;
-    // Append the link to the document body to make it clickable
     document.body.appendChild(link);
-    // Programmatically click the link to trigger the download
     link.click();
-    // Remove the temporary link element from the document body
     document.body.removeChild(link);
-    // Show a success toast notification after download
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   // Handles opening the preview modal for a selected icon
   const handlePreview = (icon: CryptoIcon) => {
-    // Set the currently selected icon for the modal
     setSelectedIcon(icon);
-    // Open the modal for icon preview
     setIsModalOpen(true);
   };
 
   // Handles closing the preview modal and clearing the selected icon
   const handleCloseModal = () => {
-    // Close the preview modal
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
