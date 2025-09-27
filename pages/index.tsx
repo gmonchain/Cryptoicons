@@ -17,6 +17,7 @@ import { Loader2 } from 'lucide-react';
 export default function HomePage() {
   // Fetches cryptocurrency icons and their loading/error states.
   const { icons, loading, error } = useCryptoIcons();
+  // Manages toast notifications for user feedback.
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
