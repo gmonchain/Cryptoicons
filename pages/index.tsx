@@ -1,4 +1,4 @@
-// This is the main page for the Cryptoicons application.
+// This is the main page component for the Cryptoicons application.
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
@@ -13,14 +13,10 @@ import { Loader2 } from 'lucide-react';
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  // State to store the user's search query
   const [searchQuery, setSearchQuery] = useState('');
-  // State to store the currently selected icon for preview
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
-  // State to control the visibility of the preview modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Memoized computation of filtered icons based on search query
   const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
@@ -32,7 +28,6 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  // Handles copying the SVG content of an icon to the clipboard
   const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
