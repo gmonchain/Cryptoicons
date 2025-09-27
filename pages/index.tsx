@@ -54,6 +54,7 @@ export default function HomePage() {
     document.body.appendChild(link);
     // Programmatically click the link to trigger the download
     link.click();
+    // Remove the temporary link element from the document body
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
