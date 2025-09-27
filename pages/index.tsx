@@ -59,7 +59,7 @@ export default function HomePage() {
 
   // Handles closing the preview modal and clearing the selected icon
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Close the preview modal
     setSelectedIcon(null);
   };
 
