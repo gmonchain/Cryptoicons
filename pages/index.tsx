@@ -109,7 +109,7 @@ export default function HomePage() {
           isFiltered={!!searchQuery.trim()}
         />
 
-        {/* Results Info */}
+        {/* Conditional display for search results information */}
         {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
