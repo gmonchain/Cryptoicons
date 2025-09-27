@@ -50,6 +50,7 @@ export default function HomePage() {
     link.href = icon.path;
     // Set the download attribute to the icon's file name
     link.download = icon.fileName;
+    // Append the link to the document body to make it clickable
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
