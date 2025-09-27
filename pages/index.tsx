@@ -54,6 +54,7 @@ export default function HomePage() {
     document.body.appendChild(link);
     // Simulate a click on the anchor element to initiate the download
     link.click();
+    // Remove the temporary anchor element from the document body
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
