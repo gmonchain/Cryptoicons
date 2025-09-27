@@ -1,4 +1,3 @@
-// This file contains the main logic for the Cryptoicons application's home page.
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
@@ -10,21 +9,17 @@ import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
-/**
- * Renders the main home page of the Cryptoicons application.
- * This component manages icon searching, previewing, copying, and downloading.
- */
 export default function HomePage() {
-  // Fetches cryptocurrency icons and their loading/error states.
   const { icons, loading, error } = useCryptoIcons();
-  // Manages toast notifications for user feedback.
   const { toasts, addToast, removeToast } = useToast();
-  // State for the search bar input.
+  // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
-  // State for the currently selected icon for previewing.
+  // State to store the icon selected for preview
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  // State to control the visibility of the preview modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Memoized filtering of icons based on search query for performance
   const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
