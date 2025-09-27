@@ -56,6 +56,7 @@ export default function HomePage() {
     link.click();
     // Remove the temporary anchor element from the document body
     document.body.removeChild(link);
+    // Display a success toast notification to the user upon download completion
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
