@@ -99,7 +99,7 @@ export default function HomePage() {
         {/* Search Bar Component for filtering icons */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar */}
           <SearchBar
-            value={searchQuery}
+            value={searchQuery} // Binds the search bar's value to the searchQuery state
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
           />
