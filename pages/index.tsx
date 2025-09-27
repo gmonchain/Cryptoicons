@@ -17,6 +17,7 @@ export default function HomePage() {
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Memoize filtered icons to prevent unnecessary re-renders
   const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
