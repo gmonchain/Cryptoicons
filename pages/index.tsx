@@ -93,7 +93,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Search Bar */}
+        {/* Search Bar Component for filtering icons */}
         <div className="max-w-2xl mx-auto mb-8">
           <SearchBar
             value={searchQuery}
