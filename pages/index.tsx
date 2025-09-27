@@ -1,4 +1,4 @@
-// This page displays a grid of cryptocurrency icons, with search, preview, copy, and download functionalities.
+// This is the main page for the Cryptoicons application.
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
@@ -17,7 +17,6 @@ export default function HomePage() {
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Memoize filtered icons to prevent unnecessary re-renders
   const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
