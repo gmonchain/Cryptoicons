@@ -48,7 +48,7 @@ export default function HomePage() {
     document.body.appendChild(link); // Temporarily append the link to the document body to enable click
     link.click(); // Programmatically click the link to trigger the download
     document.body.removeChild(link); // Clean up: remove the temporary link element
-    addToast(`${icon.displayName} downloaded!`, 'success');
+    addToast(`${icon.displayName} downloaded!`, 'success'); // Notify user of successful download
   };
 
   // Handles opening the preview modal for a selected icon
