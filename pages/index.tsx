@@ -11,8 +11,8 @@ import { Loader2 } from 'lucide-react'; // Loading spinner component from Lucide
 
 // Main page component for displaying crypto icons
 export default function HomePage() {
-  const { icons, loading, error } = useCryptoIcons(); // Destructure icons, loading, and error states from the custom hook
-  const { toasts, addToast, removeToast } = useToast(); // Destructure toast-related functions and state from the custom toast hook
+  const { icons, loading, error } = useCryptoIcons(); // Fetch cryptocurrency icons and their loading/error states
+  const { toasts, addToast, removeToast } = useToast();
   // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
   // State to store the icon selected for preview
@@ -36,33 +36,23 @@ export default function HomePage() {
 
   // Handles copying SVG content to clipboard and showing a toast notification
   const handleCopy = async (content: string, name: string) => {
-      // Write the provided content to the clipboard asynchronously
       await navigator.clipboard.writeText(content);
-      // Display a success toast notification to the user
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
   // Handles downloading an SVG icon file and showing a toast notification
   const handleDownload = (icon: CryptoIcon) => {
-    // Create a temporary anchor element to trigger the download
     const link = document.createElement('a');
-    // Set the href to the icon's path for direct file access
     link.href = icon.path;
-    // Assign the desired file name for the downloaded icon
     link.download = icon.fileName;
-    // Temporarily attach the link to the document body to make it clickable
     document.body.appendChild(link);
-    // Simulate a click on the anchor element to initiate the download
     link.click();
-    // Remove the temporary anchor element from the document body
     document.body.removeChild(link);
-    // Display a success toast notification to the user upon download completion
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   // Handles opening the preview modal for a selected icon
   const handlePreview = (icon: CryptoIcon) => {
-    // Set the currently selected icon to be displayed in the modal
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
