@@ -1,5 +1,5 @@
 // This file defines the main home page for the Cryptoicons application.
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // Import React hooks for managing state and memoization.
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
