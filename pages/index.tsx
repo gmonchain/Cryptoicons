@@ -10,7 +10,7 @@ import { useToast } from '../hooks/useToast'; // Custom hook for managing toast 
 import { CryptoIcon } from '../types'; // TypeScript type definition for a crypto icon.
 import { Loader2 } from 'lucide-react'; // Icon component for loading states.
 
-export default function HomePage() {
+export default function HomePage() { // Main component for the home page of the application.
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
