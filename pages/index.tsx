@@ -5,14 +5,14 @@ import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Fetch cryptocurrency icons and their loading/error states.
-import { useToast } from '../hooks/useToast';
+import { useToast } from '../hooks/useToast'; // Manage toast notifications for user feedback.
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main component for the home page.
   const { icons, loading, error } = useCryptoIcons(); // Fetch cryptocurrency icons and their loading/error states.
-  const { toasts, addToast, removeToast } = useToast();
+  const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications for user feedback.
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
