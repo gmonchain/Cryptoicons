@@ -4,7 +4,7 @@ import { SearchBar } from '../components/SearchBar'; // Component for searching 
 import { Stats } from '../components/Stats'; // Component to display icon statistics.
 import { IconCard } from '../components/IconCard'; // Component to display individual icon details.
 import { PreviewModal } from '../components/PreviewModal'; // Modal for displaying a larger icon preview.
-import { ToastContainer } from '../components/Toast';
+import { ToastContainer } from '../components/Toast'; // Container for toast notifications.
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
