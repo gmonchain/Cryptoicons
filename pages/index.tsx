@@ -29,6 +29,7 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
+  // Handles copying the SVG content to the clipboard and shows a toast notification.
   const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
