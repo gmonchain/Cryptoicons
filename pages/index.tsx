@@ -1,23 +1,23 @@
+// This is the main page for the Cryptoicons application.
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Fetch cryptocurrency icons and their loading/error states.
-import { useToast } from '../hooks/useToast'; // Manage toast notifications for user feedback.
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  // This is the main component for the home page.
-  const { icons, loading, error } = useCryptoIcons(); // Fetch cryptocurrency icons and their loading/error states.
-  const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications for user feedback.
-  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to store the icon selected for preview.
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal.
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredIcons = useMemo(() => { // Memoized function to filter icons based on the search query.
+  const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
