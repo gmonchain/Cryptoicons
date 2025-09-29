@@ -10,9 +10,9 @@ import { useToast } from '../hooks/useToast'; // Hook for managing toast notific
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
-export default function HomePage() {
-  const { icons, loading, error } = useCryptoIcons();
-  const { toasts, addToast, removeToast } = useToast();
+export default function HomePage() { // Main component for the home page, displaying crypto icons and search functionality
+  const { icons, loading, error } = useCryptoIcons(); // Custom hook to fetch cryptocurrency icons
+  const { toasts, addToast, removeToast } = useToast(); // Hook for managing toast notifications
   const [searchQuery, setSearchQuery] = useState(''); // State for storing the user's search input
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
