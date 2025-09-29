@@ -39,7 +39,7 @@ export default function HomePage() { // Main component for the home page of the 
     link.download = icon.fileName; // Sets the suggested file name for the download.
     document.body.appendChild(link); // Appends the link to the document body to make it clickable.
     link.click(); // Programmatically clicks the link to trigger the download.
-    document.body.removeChild(link);
+    document.body.removeChild(link); // Removes the temporary link from the document body.
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
