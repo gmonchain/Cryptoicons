@@ -29,7 +29,7 @@ export default function HomePage() { // Main component for the home page of the 
   }, [icons, searchQuery]);
 
   const handleCopy = async (content: string, name: string) => { // Handles copying icon SVG to clipboard.
-      await navigator.clipboard.writeText(content);
+      await navigator.clipboard.writeText(content); // Writes the provided content to the clipboard.
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
