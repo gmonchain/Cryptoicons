@@ -21,7 +21,7 @@ export default function HomePage() { // Main component for the home page of the 
     if (!searchQuery.trim()) return icons; // If search query is empty, return all icons.
     
     const query = searchQuery.toLowerCase(); // Convert search query to lowercase for case-insensitive matching.
-    return icons.filter(icon =>
+    return icons.filter(icon => // Filter icons based on display name, name, or symbol.
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
