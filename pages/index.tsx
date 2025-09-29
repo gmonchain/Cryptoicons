@@ -17,7 +17,6 @@ export default function HomePage() {
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Memoize filtered icons to prevent unnecessary re-renders
   const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
@@ -29,13 +28,11 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  // Handles copying the SVG content to the clipboard and shows a toast notification.
   const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  // Handles downloading an icon as an SVG file and shows a toast notification.
   const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
@@ -46,19 +43,16 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  // Handles opening the preview modal for a selected icon.
   const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  // Handles closing the preview modal and resetting the selected icon.
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  // Displays a loading spinner while icons are being fetched.
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -70,7 +64,6 @@ export default function HomePage() {
     );
   }
 
-  // Displays an error message if icon fetching fails.
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -85,14 +78,12 @@ export default function HomePage() {
     );
   }
 
-  // Main component rendering for the home page.
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
-          {/* Component for searching crypto icons */}
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
@@ -101,7 +92,6 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        {/* Component for displaying icon statistics */}
         <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
@@ -109,7 +99,6 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
-        {/* Displays information about the search results */}
         {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
@@ -122,11 +111,9 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {/* Renders the grid of filtered icons */}
         {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              {/* Individual icon card component */}
               <IconCard
                 key={icon.name}
                 icon={icon}
