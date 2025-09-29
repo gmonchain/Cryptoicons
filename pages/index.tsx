@@ -43,7 +43,7 @@ export default function HomePage() { // Main component for the home page of the 
     addToast(`${icon.displayName} downloaded!`, 'success'); // Displays a success toast notification after download.
   };
 
-  const handlePreview = (icon: CryptoIcon) => {
+  const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
