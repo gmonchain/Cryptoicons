@@ -35,8 +35,8 @@ export default function HomePage() { // Main component for the home page of the 
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading an icon as an SVG file.
     const link = document.createElement('a'); // Creates a temporary anchor element for downloading.
-    link.href = icon.path;
-    link.download = icon.fileName;
+    link.href = icon.path; // Sets the SVG file path as the download link.
+    link.download = icon.fileName; // Sets the suggested file name for the download.
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
