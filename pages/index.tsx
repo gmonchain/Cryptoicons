@@ -53,7 +53,7 @@ export default function HomePage() { // Main component for the home page of the 
     setSelectedIcon(null); // Clears the currently selected icon.
   };
 
-  if (loading) {
+  if (loading) { // Displays a loading spinner while crypto icons are being fetched.
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
