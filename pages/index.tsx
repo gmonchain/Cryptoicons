@@ -1,3 +1,4 @@
+// This file contains the main page component for the Cryptoicons application.
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
@@ -12,11 +13,8 @@ import { Loader2 } from 'lucide-react';
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  // State to manage the user's search input
   const [searchQuery, setSearchQuery] = useState('');
-  // State to store the icon selected for preview
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
-  // State to control the visibility of the preview modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredIcons = useMemo(() => {
