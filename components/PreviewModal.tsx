@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Download, Copy, ExternalLink } from 'lucide-react';
 import { CryptoIcon } from '../types';
 
@@ -17,6 +17,52 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({
   onCopy,
   onDownload
 }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement; // Store the element that opened the modal
+
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+          onClose();
+        } else if (event.key === 'Tab') {
+          // Focus trapping
+          const focusableElements = modalRef.current?.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusableElements && focusableElements.length > 0) {
+            const firstElement = focusableElements[0] as HTMLElement;
+            const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+            if (event.shiftKey) { // Shift + Tab
+              if (document.activeElement === firstElement) {
+                lastElement.focus();
+                event.preventDefault();
+              }
+            } else { // Tab
+              if (document.activeElement === lastElement) {
+                firstElement.focus();
+                event.preventDefault();
+              }
+            }
+          }
+        }
+      };
+
+      document.addEventListener('keydown', handleKeyDown);
+      modalRef.current?.focus(); // Set focus to the modal itself on open
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+        if (triggerRef.current) {
+          triggerRef.current.focus(); // Return focus to the element that opened the modal
+        }
+      };
+    }
+  }, [isOpen, onClose]);
+
   if (!isOpen || !icon) return null;
 
   const handleCopyClick = async () => {
@@ -35,11 +81,15 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+      <div 
+        ref={modalRef}
+        tabIndex={-1} // Make the modal focusable
+        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+      >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <div>
-            <h2 className="text-xl font-bold text-gray-900">{icon.displayName}</h2>
+            <h2 id="modal-title" className="text-xl font-bold text-gray-900">{icon.displayName}</h2>
             {icon.symbol && (
               <p className="text-sm text-gray-500 mt-1">{icon.symbol}</p>
             )}
