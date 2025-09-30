@@ -39,8 +39,8 @@ export default function HomePage() {
     link.download = icon.fileName; // Edit 16
     document.body.appendChild(link); // Edit 17
     link.click(); // Edit 18
-    document.body.removeChild(link); // Edit 19
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
+    document.body.removeChild(link);
+    addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - Edit 21
