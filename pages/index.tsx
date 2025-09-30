@@ -40,10 +40,10 @@ export default function HomePage() {
     document.body.appendChild(link); // Appended link to body
     link.click(); // Initiated link click
     document.body.removeChild(link); // Removed link from body after click
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
+    addToast(`${icon.displayName} downloaded!`, 'success'); // Displayed download success toast
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - Edit 21
+  const handlePreview = (icon: CryptoIcon) => { // Handled opening the preview modal for a selected icon
     setSelectedIcon(icon); // Edit 22
     setIsModalOpen(true); // Edit 23
   };
