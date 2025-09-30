@@ -30,7 +30,6 @@ export const IconCard: React.FC<IconCardProps> = ({
   return (
     <div 
       className="group relative bg-white/70 backdrop-blur-sm rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-      itemScope itemType="https://schema.org/ImageObject"
     >
       <div className="p-6">
         {/* Icon Display */}
@@ -38,9 +37,7 @@ export const IconCard: React.FC<IconCardProps> = ({
           {!imageError ? (
             <img
               src={icon.path}
-              itemProp="contentUrl"
               alt={icon.displayName}
-              itemProp="description"
               className="w-16 h-16 object-contain transition-transform duration-200 group-hover:scale-110"
               onError={() => setImageError(true)}
             />
@@ -53,7 +50,7 @@ export const IconCard: React.FC<IconCardProps> = ({
 
         {/* Icon Info */}
         <div className="text-center mb-4">
-          <h3 className="font-semibold text-gray-900 truncate" title={icon.displayName} itemProp="name">
+          <h3 className="font-semibold text-gray-900 truncate" title={icon.displayName}>
             {icon.displayName}
           </h3>
           {icon.symbol && (
@@ -67,7 +64,6 @@ export const IconCard: React.FC<IconCardProps> = ({
             onClick={() => onPreview(icon)}
             className="flex items-center justify-center p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md"
             title="Preview"
-            aria-label={`Preview ${icon.displayName} icon`}
           >
             <Eye className="w-4 h-4" />
           </button>
@@ -75,7 +71,6 @@ export const IconCard: React.FC<IconCardProps> = ({
             onClick={handleCopyClick}
             className="flex items-center justify-center p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md"
             title="Copy SVG"
-            aria-label={`Copy ${icon.displayName} SVG`}
           >
             <Copy className="w-4 h-4" />
           </button>
@@ -83,7 +78,6 @@ export const IconCard: React.FC<IconCardProps> = ({
             onClick={() => onDownload(icon)}
             className="flex items-center justify-center p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md"
             title="Download"
-            aria-label={`Download ${icon.displayName} icon`}
           >
             <Download className="w-4 h-4" />
           </button>
