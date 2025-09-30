@@ -87,14 +87,14 @@ export default function HomePage() {
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search crypto icons by name or symbol..." // Edit 36
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
-        {/* Stats */} {/* Edit 37 */}
-        <Stats // Component for displaying icon statistics - Edit 38
-          totalIcons={icons.length} // Edit 39
-          filteredIcons={filteredIcons.length} // Edit 40
+        {/* Stats */}
+        <Stats // Component for displaying icon statistics
+          totalIcons={icons.length}
+          filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
 
