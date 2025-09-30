@@ -36,8 +36,8 @@ export default function HomePage() {
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file - Edit 13
     const link = document.createElement('a'); // Edit 14
     link.href = icon.path; // Edit 15
-    link.download = icon.fileName; // Edit 16 (new target)
-    document.body.appendChild(link); // Edit 17
+    link.download = icon.fileName; // New Edit 16
+    document.body.appendChild(link); // New Edit 17
     link.click(); // Edit 18
     document.body.removeChild(link); // Edit 19
     addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
@@ -51,12 +51,12 @@ export default function HomePage() {
   const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
     setIsModalOpen(false); // Edit 25
     setSelectedIcon(null); // Edit 26
-  }; // Edit 15
+  };
 
   if (loading) { // Displays a loading spinner while fetching icons - Edit 27
-    return ( // Edit 16
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Edit 17 */}
-        <div className="text-center"> {/* Edit 18 */}
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="text-center">
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
