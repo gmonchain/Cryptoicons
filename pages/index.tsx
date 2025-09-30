@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'; // React hooks for state and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for search input
-import { Stats } from '../components/Stats'; // Component for displaying statistics
-import { IconCard } from '../components/IconCard'; // Component for individual icon display
-import { PreviewModal } from '../components/PreviewModal'; // Modal for icon preview
-import { ToastContainer } from '../components/Toast'; // Container for toast notifications
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
