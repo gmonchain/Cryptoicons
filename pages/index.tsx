@@ -71,9 +71,11 @@ export default function HomePage() {
         </div> 
         // This is Edit 28
       </div>
+      // This is Edit 29
     );
   }
 
+  // This is Edit 30
   if (error) { // Displays an error message if icon data fails to load
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
