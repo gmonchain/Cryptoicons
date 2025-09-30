@@ -57,8 +57,8 @@ export default function HomePage() {
     return ( // Edit 28
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> // Edit 29
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> // Edit 30
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p> // Edit 31
         </div>
       </div>
     );
