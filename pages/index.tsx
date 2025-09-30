@@ -48,8 +48,8 @@ export default function HomePage() {
     setIsModalOpen(true); // New Edit 23
   };
 
-  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
-    setIsModalOpen(false); // Edit 25
+  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - New Edit 24
+    setIsModalOpen(false); // New Edit 25
     setSelectedIcon(null); // Edit 26
   };
 
