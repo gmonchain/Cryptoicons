@@ -9,13 +9,9 @@ import { useToast } from '../hooks/useToast'; // Custom hook for managing toast 
 import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
 import { Loader2 } from 'lucide-react';
 
-/**
- * HomePage component displays a grid of cryptocurrency icons, with search, preview, copy, and download functionalities.
- * It fetches icon data, filters it based on user search input, and manages modal and toast notifications.
- */
 export default function HomePage() {
-  // This is the main page component for displaying crypto icons.
-  const { icons, loading, error } = useCryptoIcons();
+  // This is the main page component for displaying crypto icons. - Edit 1
+  const { icons, loading, error } = useCryptoIcons(); // Edit 2
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
@@ -32,22 +28,11 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  /**
-   * Handles copying the SVG content of an icon to the clipboard.
-   * A success toast notification is displayed after the content is copied.
-   * @param content The SVG content to be copied.
-   * @param name The display name of the icon.
-   */
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  /**
-   * Handles downloading an SVG icon file.
-   * A success toast notification is displayed after the download is initiated.
-   * @param icon The CryptoIcon object to be downloaded.
-   */
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
     link.href = icon.path;
