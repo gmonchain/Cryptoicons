@@ -83,8 +83,8 @@ export default function HomePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */} {/* Edit 30 */}
         {/* Search Bar */} {/* Edit 31 */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <SearchBar // Component for searching icons
+        <div className="max-w-2xl mx-auto mb-8"> {/* Edit 32 */}
+          <SearchBar // Component for searching icons {/* Edit 33 */}
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
