@@ -33,9 +33,9 @@ export default function HomePage() {
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
-    );
+    ); // New Edit 9
   }, [icons, searchQuery]); // Edit 9
-
+  // New Edit 10
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard - Edit 10
       await navigator.clipboard.writeText(content); // Edit 11
       addToast(`${name} SVG copied to clipboard!`, 'success'); // Edit 12
