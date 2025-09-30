@@ -89,11 +89,13 @@ export default function HomePage() {
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> 
           // This is Edit 34
           <p className="text-gray-600">{error}</p>
+          // This is Edit 35
         </div>
       </div>
     );
   }
 
+  // This is Edit 36
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
