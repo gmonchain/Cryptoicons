@@ -71,8 +71,8 @@ export default function HomePage() {
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Error icon container */} 
             <span className="text-red-600 text-2xl">⚠️</span> {/* Error icon */} 
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
-          <p className="text-gray-600">{error}</p>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Error title */} 
+          <p className="text-gray-600">{error}</p> {/* Error message */} 
         </div>
       </div>
     );
