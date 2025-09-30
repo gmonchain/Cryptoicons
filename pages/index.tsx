@@ -115,7 +115,7 @@ export default function HomePage() {
           {filteredIcons.map(icon => (
             <IconCard
               key={icon.name} // Unique key for each icon card
-              icon={icon}
+              icon={icon} // Icon data object
               onCopy={handleCopy}
               onDownload={handleDownload}
               onPreview={handlePreview}
