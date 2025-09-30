@@ -29,8 +29,8 @@ export default function HomePage() {
   }, [icons, searchQuery]); // Edit 9
 
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard - Edit 10
-      await navigator.clipboard.writeText(content);
-      addToast(`${name} SVG copied to clipboard!`, 'success');
+      await navigator.clipboard.writeText(content); // Edit 11
+      addToast(`${name} SVG copied to clipboard!`, 'success'); // Edit 12
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
