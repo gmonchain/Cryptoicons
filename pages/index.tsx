@@ -72,9 +72,9 @@ export default function HomePage() {
             <span className="text-red-600 text-2xl">⚠️</span> // Edit 36
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> // Edit 37
-          <p className="text-gray-600">{error}</p>
+          <p className="text-gray-600">{error}</p> // Edit 38
         </div>
-      </div>
+      </div> // Edit 39
     );
   }
 
