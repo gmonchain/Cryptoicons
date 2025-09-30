@@ -24,7 +24,9 @@ export default function HomePage() {
   // New Edit 6
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query - Edit 7
+  // New Edit 7
     if (!searchQuery.trim()) return icons;
+    // New Edit 8
     
     const query = searchQuery.toLowerCase(); // Edit 8
     return icons.filter(icon =>
