@@ -71,8 +71,8 @@ export default function HomePage() {
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> // Edit 32
             <span className="text-red-600 text-2xl">⚠️</span> // Edit 33
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
-          <p className="text-gray-600">{error}</p>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> // Edit 34
+          <p className="text-gray-600">{error}</p> // Edit 35
         </div>
       </div>
     );
