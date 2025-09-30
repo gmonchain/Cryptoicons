@@ -43,6 +43,11 @@ export default function HomePage() {
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
+  /**
+   * Handles downloading an SVG icon file.
+   * A success toast notification is displayed after the download is initiated.
+   * @param icon The CryptoIcon object to be downloaded.
+   */
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
     link.href = icon.path;
