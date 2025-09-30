@@ -50,10 +50,10 @@ export default function HomePage() {
 
   const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
     setIsModalOpen(false); // Edit 25
-    setSelectedIcon(null);
+    setSelectedIcon(null); // Edit 26
   };
 
-  if (loading) { // Displays a loading spinner while fetching icons
+  if (loading) { // Displays a loading spinner while fetching icons - Edit 27
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
