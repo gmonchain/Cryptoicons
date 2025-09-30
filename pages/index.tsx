@@ -15,7 +15,9 @@ export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons(); // Edit 2
   // New Edit 2
   const { toasts, addToast, removeToast } = useToast(); // Edit 3
+  // New Edit 3
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query - Edit 4
+  // New Edit 4
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview - Edit 5
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal - Edit 6
 
