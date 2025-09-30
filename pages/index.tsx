@@ -101,7 +101,7 @@ export default function HomePage() {
 
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
-          <div className="mb-6">
+          <div className="mb-6" aria-live="polite">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
