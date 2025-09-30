@@ -72,13 +72,13 @@ export default function HomePage() {
             <span className="text-red-600 text-2xl">⚠️</span> {/* Edit 36 */}
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Edit 37 */}
-          <p className="text-gray-600">{error}</p>
+          <p className="text-gray-600">{error}</p> {/* Edit 38 */}
         </div>
       </div>
     );
   }
 
-  return (
+  return ( // Edit 39
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
