@@ -32,6 +32,12 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
+  /**
+   * Handles copying the SVG content of an icon to the clipboard.
+   * A success toast notification is displayed after the content is copied.
+   * @param content The SVG content to be copied.
+   * @param name The display name of the icon.
+   */
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
