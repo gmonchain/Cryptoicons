@@ -38,8 +38,8 @@ export default function HomePage() {
     link.href = icon.path; // Edit 15
     link.download = icon.fileName; // Added comment to download file name
     document.body.appendChild(link); // Appended link to body
-    link.click(); // Edit 18
-    document.body.removeChild(link); // Edit 19
+    link.click(); // Initiated link click
+    document.body.removeChild(link); // Removed link from body after click
     addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
   };
 
