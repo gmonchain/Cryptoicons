@@ -14,8 +14,8 @@ export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons(); // Edit 2
   const { toasts, addToast, removeToast } = useToast(); // Edit 3
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query - Edit 4
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview - Edit 5
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal - Edit 6
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
