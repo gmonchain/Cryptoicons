@@ -80,7 +80,9 @@ export default function HomePage() {
             {/* Edit 33 */}
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
+          {/* Edit 34 */}
           <p className="text-gray-600">{error}</p>
+          {/* Edit 35 */}
         </div>
       </div>
     );
