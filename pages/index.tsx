@@ -9,6 +9,10 @@ import { useToast } from '../hooks/useToast'; // Custom hook for managing toast 
 import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
 import { Loader2 } from 'lucide-react';
 
+/**
+ * HomePage component displays a grid of cryptocurrency icons, with search, preview, copy, and download functionalities.
+ * It fetches icon data, filters it based on user search input, and manages modal and toast notifications.
+ */
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons();
@@ -81,10 +85,9 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Cryptoicons Collection</h1>
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
@@ -101,7 +104,7 @@ export default function HomePage() {
 
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
-          <div className="mb-6" aria-live="polite">
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -129,7 +132,7 @@ export default function HomePage() {
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h2>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
             <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
