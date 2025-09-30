@@ -55,33 +55,33 @@ export default function HomePage() {
 
   if (loading) { // Displays a loading spinner while fetching icons - Edit 27
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Edit 28 */}
-        <div className="text-center"> {/* Edit 29 */}
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Edit 30 */}
-          <p className="text-gray-600 text-lg">Loading crypto icons...</p> {/* Edit 31 */}
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
   }
 
-  if (error) { // Displays an error message if icon data fails to load - Edit 32
+  if (error) { // Displays an error message if icon data fails to load
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Edit 33 */}
-        <div className="text-center max-w-md"> {/* Edit 34 */}
-          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Edit 35 */}
-            <span className="text-red-600 text-2xl">⚠️</span> {/* Edit 36 */}
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <span className="text-red-600 text-2xl">⚠️</span>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Edit 37 */}
-          <p className="text-gray-600">{error}</p> {/* Edit 38 */}
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
+          <p className="text-gray-600">{error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50"> {/* Edit 39 */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */} {/* Edit 40 */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
           <SearchBar // Component for searching icons
