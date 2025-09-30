@@ -1,0 +1,24 @@
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: -999;
+}
+
+.skip-link:focus {
+  left: 50%;
+  top: 10px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  text-decoration: none;
+  border: 2px solid #333;
+  transform: translateX(-50%);
+  z-index: 999;
+}
