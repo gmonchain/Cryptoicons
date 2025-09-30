@@ -26,9 +26,9 @@ export default function HomePage() {
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
     );
-  }, [icons, searchQuery]);
+  }, [icons, searchQuery]); // Edit 9
 
-  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
+  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard - Edit 10
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
