@@ -49,8 +49,8 @@ export default function HomePage() {
   };
 
   const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
-    setIsModalOpen(false);
-    setSelectedIcon(null);
+    setIsModalOpen(false); // Edit 25
+    setSelectedIcon(null); // Edit 26
   };
 
   if (loading) { // Displays a loading spinner while fetching icons
