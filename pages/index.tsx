@@ -145,7 +145,7 @@ export default function HomePage() {
 
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications */}
-      {/* Commit 1 */}
+      {/* Commit 2 */}
     </div>
   );
 }
