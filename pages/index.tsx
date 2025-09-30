@@ -64,7 +64,7 @@ export default function HomePage() {
     );
   }
 
-  if (error) { // Displays an error message if icon data fails to load - Edit 28
+  if (error) { // Displays an error message if icon data fails to load
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
@@ -78,20 +78,20 @@ export default function HomePage() {
     );
   }
 
-  return ( // Edit 29
+  return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */} {/* Edit 30 */}
-        {/* Search Bar */} {/* Edit 31 */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Edit 32 */}
-          <SearchBar // Component for searching icons {/* Edit 33 */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
+        {/* Search Bar */}
+        <div className="max-w-2xl mx-auto mb-8">
+          <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search crypto icons by name or symbol..."
+            placeholder="Search crypto icons by name or symbol..." // Edit 36
           />
         </div>
 
-        {/* Stats */}
+        {/* Stats */} {/* Edit 37 */}
         <Stats // Component for displaying icon statistics
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
