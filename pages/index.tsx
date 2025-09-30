@@ -13,11 +13,11 @@ export default function HomePage() {
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState(''); // Manages the user's input for searching icons.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon currently selected for detailed preview.
+  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
-  const filteredIcons = useMemo(() => { // Optimizes icon filtering, re-calculating only when necessary.
+  const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
