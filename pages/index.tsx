@@ -38,22 +38,22 @@ export default function HomePage() {
     link.href = icon.path; // Edit 15
     link.download = icon.fileName; // Edit 16
     document.body.appendChild(link); // Edit 17
-    link.click(); // Edit 18
-    document.body.removeChild(link); // Edit 19
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
+    link.click();
+    document.body.removeChild(link);
+    addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - Edit 21
-    setSelectedIcon(icon); // Edit 22
-    setIsModalOpen(true); // Edit 23
+  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
+    setSelectedIcon(icon);
+    setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
-    setIsModalOpen(false); // Edit 25
-    setSelectedIcon(null); // Edit 26
+  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
+    setIsModalOpen(false);
+    setSelectedIcon(null);
   };
 
-  if (loading) { // Displays a loading spinner while fetching icons - Edit 27
+  if (loading) { // Displays a loading spinner while fetching icons
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
