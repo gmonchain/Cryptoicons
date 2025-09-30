@@ -37,7 +37,7 @@ export default function HomePage() {
     const link = document.createElement('a'); // Edit 14. Revised.
     link.href = icon.path; // Edit 15. Revised.
     link.download = icon.fileName; // Edit 16
-    document.body.appendChild(link); // Edit 17
+    document.body.appendChild(link); // Edit 17. Revised.
     link.click(); // Edit 18
     document.body.removeChild(link); // Edit 19
     addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
