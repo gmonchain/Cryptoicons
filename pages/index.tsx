@@ -10,7 +10,7 @@ import { CryptoIcon } from '../types'; // Type definition for cryptocurrency ico
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  // This is the main page component for displaying crypto icons. - Initial Load
+  // This is the main page component for displaying crypto icons. - Initial Load - Commit 2
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
