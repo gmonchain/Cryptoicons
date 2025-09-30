@@ -10,32 +10,24 @@ import { CryptoIcon } from '../types'; // Type definition for cryptocurrency ico
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  // New Edit 1
   // This is the main page component for displaying crypto icons. - Edit 1
   const { icons, loading, error } = useCryptoIcons(); // Edit 2
-  // New Edit 2
   const { toasts, addToast, removeToast } = useToast(); // Edit 3
-  // New Edit 3
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query - Edit 4
-  // New Edit 4
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview - Edit 5
-  // New Edit 5
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal - Edit 6
-  // New Edit 6
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query - Edit 7
-  // New Edit 7
     if (!searchQuery.trim()) return icons;
-    // New Edit 8
     
     const query = searchQuery.toLowerCase(); // Edit 8
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
-    ); // New Edit 9
+    );
   }, [icons, searchQuery]); // Edit 9
-  // New Edit 10
+
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard - Edit 10
       await navigator.clipboard.writeText(content); // Edit 11
       addToast(`${name} SVG copied to clipboard!`, 'success'); // Edit 12
@@ -43,7 +35,7 @@ export default function HomePage() {
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file - Edit 13
     const link = document.createElement('a'); // Edit 14
-    link.href = icon.path; // Edit 15
+    link.href = icon.path; // Edit 15a
     link.download = icon.fileName; // Edit 16
     document.body.appendChild(link); // Edit 17
     link.click(); // Edit 18
