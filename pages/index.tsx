@@ -49,10 +49,12 @@ export default function HomePage() {
   const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - Edit 21
     setSelectedIcon(icon); 
     // This is Edit 22
-    setIsModalOpen(true); // Edit 23
+    setIsModalOpen(true); 
+    // This is Edit 23
   };
 
-  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
+  // This is Edit 24
+  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
     setIsModalOpen(false); // Edit 25
     setSelectedIcon(null); // Edit 26
   };
