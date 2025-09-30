@@ -36,77 +36,55 @@ export default function HomePage() {
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file - Edit 13
     const link = document.createElement('a'); // Edit 14
     link.href = icon.path; // Edit 15
-    link.download = icon.fileName; 
-    // This is Edit 16
-    document.body.appendChild(link); 
-    // This is Edit 17
+    link.download = icon.fileName; // Edit 16
+    document.body.appendChild(link); // Edit 17
     link.click(); // Edit 18
-    document.body.removeChild(link); 
-    // This is Edit 19
+    document.body.removeChild(link); // Edit 19
     addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - Edit 21
-    setSelectedIcon(icon); 
-    // This is Edit 22
-    setIsModalOpen(true); 
-    // This is Edit 23
+    setSelectedIcon(icon); // Edit 22
+    setIsModalOpen(true); // Edit 23
   };
 
-  // This is Edit 24
-  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
-    setIsModalOpen(false); 
-    // This is Edit 25
-    setSelectedIcon(null); 
-    // This is Edit 26
+  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state - Edit 24
+    setIsModalOpen(false); // Edit 25
+    setSelectedIcon(null); // Edit 26
   };
 
-  // This is Edit 27
-  if (loading) { // Displays a loading spinner while fetching icons
+  if (loading) { // Displays a loading spinner while fetching icons - Edit 27
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
-        </div> 
-        // This is Edit 28
-      </div>
-      // This is Edit 29
-    );
-  }
-
-  // This is Edit 30
-  if (error) { // Displays an error message if icon data fails to load
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
-        <div className="text-center max-w-md"> 
-        // This is Edit 31
-          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> 
-          // This is Edit 32
-            <span className="text-red-600 text-2xl">⚠️</span> 
-            // This is Edit 33
-          </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> 
-          // This is Edit 34
-          <p className="text-gray-600">{error}</p>
-          // This is Edit 35
         </div>
       </div>
     );
   }
 
-  // This is Edit 36
+  if (error) { // Displays an error message if icon data fails to load
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <span className="text-red-600 text-2xl">⚠️</span>
+          </div>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */} 
-      // This is Edit 37
-        {/* Search Bar */} 
-        // This is Edit 38
-        <div className="max-w-2xl mx-auto mb-8"> 
-        // This is Edit 39
-          <SearchBar // Component for searching icons 
-          // This is Edit 40
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
+        {/* Search Bar */}
+        <div className="max-w-2xl mx-auto mb-8">
+          <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
