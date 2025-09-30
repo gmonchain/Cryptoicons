@@ -58,13 +58,13 @@ export default function HomePage() {
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center"> {/* Edit 29 */}
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Edit 30 */}
-          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p> {/* Edit 31 */}
         </div>
       </div>
     );
   }
 
-  if (error) { // Displays an error message if icon data fails to load
+  if (error) { // Displays an error message if icon data fails to load - Edit 32
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
