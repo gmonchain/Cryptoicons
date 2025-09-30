@@ -40,10 +40,10 @@ export default function HomePage() {
     document.body.appendChild(link); // New Edit 17
     link.click(); // New Edit 18
     document.body.removeChild(link); // New Edit 19
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Edit 20
+    addToast(`${icon.displayName} downloaded!`, 'success'); // New Edit 20
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - Edit 21
+  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon - New Edit 21
     setSelectedIcon(icon); // Edit 22
     setIsModalOpen(true); // Edit 23
   };
