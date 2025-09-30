@@ -84,6 +84,7 @@ export default function HomePage() {
       <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
+          <h1 className="text-4xl font-extrabold text-gray-900 text-center mb-8">Cryptoicons Collection</h1>
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
