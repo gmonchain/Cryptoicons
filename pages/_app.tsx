@@ -8,6 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="description" content="Browse and download a comprehensive collection of cryptocurrency icons." />
         <title>Cryptoicons - Free Cryptocurrency Icons</title>
+        <link rel="canonical" href="https://www.cryptoicons.app/" />
       </Head>
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <Component {...pageProps} />
