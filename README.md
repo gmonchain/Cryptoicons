@@ -18,8 +18,7 @@ This project is built using a modern web development stack, focusing on performa
 *   **TypeScript**: A superset of JavaScript that adds static typing, enhancing code quality, readability, and maintainability. It helps catch errors early in the development cycle.
 *   **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs. It enables fast styling with a highly customizable and efficient approach. Tailwind CSS allows for rapid UI development.
 *   **Lucide React**: A collection of beautiful and customizable open-source icons for React applications, used for action buttons and UI elements. These icons enhance the user interface significantly.
-*   **Supabase**: (Mentioned in `package.json`, but its specific usage wasn't apparent from the scanned files. Assuming it's for future enhancements or data storage not directly related to icon fetching.) A platform that provides a PostgreSQL database, authentication, instant APIs, and real-time subscriptions, often used as a backend-as-a-service.
-
+  
 ## Features
 
 This application comes packed with a variety of features to enhance the user experience.
