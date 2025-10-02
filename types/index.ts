@@ -7,7 +7,6 @@ export interface CryptoIcon {
   path: string;
   displayName: string;
   symbol?: string;
-  description?: string;
 }
 
 
