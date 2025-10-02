@@ -19,5 +19,3 @@ export interface ToastMessage {
   message: string;
   type: 'success' | 'error' | 'info';
 }
-
-// Temporary comment for commit count
