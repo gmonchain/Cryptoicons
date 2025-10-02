@@ -3,8 +3,8 @@ import React from 'react';
 const HomePage: React.FC = () => {
   return (
     <div>
-      <h1>Welcome to Cryptoicons! Modification 24</h1>
-      <p>This is the initial content of the home page. Modification 25</p>
+      <h1>Welcome to Cryptoicons! Modification 26</h1>
+      <p>This is the initial content of the home page. Modification 27</p>
     </div>
   );
 };
