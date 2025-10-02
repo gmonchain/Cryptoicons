@@ -19,3 +19,7 @@ export interface ToastMessage {
   message: string;
   type: 'success' | 'error' | 'info';
 }
+
+export interface TestInterface {
+  test: string;
+}
