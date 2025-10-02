@@ -7,6 +7,7 @@ export interface CryptoIcon {
   path: string;
   displayName: string;
   symbol?: string;
+  // TEMP_BLANK_LINE_MARKER
 }
 
 // This is a placeholder comment for a commit.
