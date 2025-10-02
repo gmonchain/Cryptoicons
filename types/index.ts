@@ -11,6 +11,9 @@ export interface CryptoIcon {
 
 // This is a placeholder comment for a commit.
 
+/**
+ * Represents a toast message with its properties.
+ */
 export interface ToastMessage {
   id: string;
   message: string;
