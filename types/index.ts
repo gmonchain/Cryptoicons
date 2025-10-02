@@ -8,7 +8,6 @@ export interface CryptoIcon {
   displayName: string;
   symbol?: string;
 }
-
 /**
  * Represents a toast message with its properties.
  */
