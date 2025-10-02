@@ -19,3 +19,5 @@ export interface ToastMessage {
   message: string;
   type: 'success' | 'error' | 'info';
 }
+
+// Add a new line for commit.
