@@ -7,9 +7,9 @@ export interface CryptoIcon {
   path: string;
   displayName: string;
   symbol?: string;
+  description?: string;
 }
 
-// This is a placeholder comment for a commit.
 
 /**
  * Represents a toast message with its properties.
