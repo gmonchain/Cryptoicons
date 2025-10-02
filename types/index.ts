@@ -1,5 +1,3 @@
-// This is the 19th commit.
-
 /**
  * Represents a cryptocurrency icon with its metadata.
  */
