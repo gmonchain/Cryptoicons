@@ -1,5 +1,3 @@
-// This is a test comment for commit history.
-
 /**
  * Represents a cryptocurrency icon with its metadata.
  */
