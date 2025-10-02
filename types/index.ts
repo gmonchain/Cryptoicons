@@ -1,4 +1,3 @@
-// Represents a cryptocurrency icon.
 /**
  * Represents a cryptocurrency icon with its metadata.
  */
