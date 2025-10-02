@@ -9,6 +9,8 @@ export interface CryptoIcon {
   symbol?: string;
 }
 
+// This is a placeholder comment for a commit.
+
 export interface ToastMessage {
   id: string;
   message: string;
