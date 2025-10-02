@@ -16,5 +16,4 @@ export interface ToastMessage {
   id: string;
   message: string;
   type: 'success' | 'error' | 'info';
-  severity?: 'low' | 'medium' | 'high';
 }
