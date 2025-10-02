@@ -7,7 +7,6 @@ export interface CryptoIcon {
   path: string;
   displayName: string;
   symbol?: string;
-  updatedAt?: string;
 }
 
 // This is a placeholder comment for a commit.
