@@ -15,5 +15,5 @@ export interface CryptoIcon {
 export interface ToastMessage {
   id: string;
   message: string;
-  type: "success" | "error" | "info";
+  type: 'success' | 'error' | 'info';
 }
