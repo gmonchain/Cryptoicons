@@ -1,3 +1,4 @@
+// Temporary comment for commit.
 /**
  * Represents a cryptocurrency icon with its metadata.
  */
