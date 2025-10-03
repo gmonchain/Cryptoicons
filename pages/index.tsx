@@ -92,11 +92,13 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <Stats // Component for displaying icon statistics
-          totalIcons={icons.length}
-          filteredIcons={filteredIcons.length}
-          isFiltered={!!searchQuery.trim()}
-        />
+        <div className="mb-8"> {/* Container for the statistics component */}
+          <Stats // Component for displaying icon statistics
+            totalIcons={icons.length}
+            filteredIcons={filteredIcons.length}
+            isFiltered={!!searchQuery.trim()}
+          />
+        </div>
 
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
