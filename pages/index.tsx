@@ -18,7 +18,7 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the icon preview modal
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
-    if (!searchQuery.trim()) return icons;
+    if (!searchQuery.trim()) return icons; // Returns all icons if search query is empty
     
     const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
