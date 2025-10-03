@@ -24,7 +24,7 @@ export default function HomePage() {
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) || // Match by display name
       icon.name.toLowerCase().includes(query) || // Match by internal name
-      icon.symbol?.toLowerCase().includes(query)
+      icon.symbol?.toLowerCase().includes(query) // Match by symbol (if available)
     );
   }, [icons, searchQuery]);
 
