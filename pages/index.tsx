@@ -10,13 +10,14 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
+  // Main component for displaying and managing crypto icons
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to hold the icon currently selected for preview
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredIcons = useMemo(() => { // Memoized computation for filtering icons based on search query
+  const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
@@ -27,12 +28,12 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => { // Function to handle copying icon SVG to clipboard
+  const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => { // Function to handle downloading an icon as an SVG file
+  const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -42,7 +43,7 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Function to handle displaying an icon in the preview modal
+  const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
