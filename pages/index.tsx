@@ -9,7 +9,7 @@ import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
-export default function HomePage() {
+export default function HomePage() { // Exports the main home page component
   // This is the main component for the home page
   const { icons, loading, error } = useCryptoIcons(); // Fetch cryptocurrency icons and their loading/error states
   const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications
