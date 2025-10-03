@@ -116,7 +116,7 @@ export default function HomePage() {
             {filteredIcons.map((icon) => (
               <IconCard // Individual icon card component
                 key={icon.name} // Unique key for list rendering
-                icon={icon}
+                icon={icon} // The cryptocurrency icon object to display
                 onCopy={handleCopy}
                 onDownload={handleDownload}
                 onPreview={handlePreview}
