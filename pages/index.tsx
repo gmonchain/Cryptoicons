@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react'; // React hooks for state and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats'; // Component for displaying statistics
+import { useMemo, useState } from 'react';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
@@ -10,17 +10,12 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  // This is the main component for the home page.
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  // State to store the user's search query.
   const [searchQuery, setSearchQuery] = useState('');
-  // State to store the currently selected icon for preview.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
-  // State to control the visibility of the preview modal.
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Memoized filtered icons based on search query.
   const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
@@ -32,13 +27,11 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  // Handles copying SVG content to clipboard.
   const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  // Handles downloading an icon as an SVG file.
   const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
@@ -49,19 +42,16 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  // Handles opening the preview modal for a selected icon.
   const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  // Handles closing the preview modal and resetting the selected icon.
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  // Displays a loading spinner while icons are being fetched.
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -73,7 +63,6 @@ export default function HomePage() {
     );
   }
 
-  // Displays an error message if icon data fails to load.
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
@@ -92,7 +81,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Search Bar Component */}
+        {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
           <SearchBar
             value={searchQuery}
@@ -101,14 +90,14 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Statistics Component */}
+        {/* Stats */}
         <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
 
-        {/* Displays information about the search results. */}
+        {/* Results Info */}
         {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
@@ -120,7 +109,7 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Grid display of filtered icons. */}
+        {/* Icons Grid */}
         {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
@@ -144,7 +133,7 @@ export default function HomePage() {
         ) : null}
       </main>
 
-      {/* Icon Preview Modal Component */}
+      {/* Preview Modal */}
       <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
@@ -153,7 +142,7 @@ export default function HomePage() {
         onDownload={handleDownload}
       />
 
-      {/* Toast Notifications Container */}
+      {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
