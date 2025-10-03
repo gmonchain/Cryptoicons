@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // Importing necessary React hooks
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
