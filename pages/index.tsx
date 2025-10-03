@@ -35,7 +35,7 @@ export default function HomePage() {
       addToast(`${name} SVG copied to clipboard!`, 'success');
   }, [addToast]);
 
-  const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
+  const handleDownload = useCallback((icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -43,7 +43,7 @@ export default function HomePage() {
     link.click();
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
-  };
+  }, [addToast]);
 
   const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
     setSelectedIcon(icon);
