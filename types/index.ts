@@ -4,7 +4,7 @@
 export interface CryptoIcon {
   name: string;
   fileName: string;
-  path: string; // This is a path to the icon file.
+  path: string;
   displayName: string;
   symbol?: string;
 }
