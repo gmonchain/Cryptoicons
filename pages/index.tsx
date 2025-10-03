@@ -72,7 +72,7 @@ export default function HomePage() {
             <span className="text-red-600 text-2xl">⚠️</span> {/* Error emoji icon */}
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Error title */}
-          <p className="text-gray-600">{error}</p>
+          <p className="text-gray-600">{error}</p> {/* Displays the actual error message */}
         </div>
       </div>
     );
