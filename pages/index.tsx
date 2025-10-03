@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react';
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons(); // Fetches and manages the state of crypto icons
-  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback
+  const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
@@ -20,7 +20,7 @@ export default function HomePage() {
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Converts search query to lowercase for case-insensitive matching
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
@@ -29,7 +29,7 @@ export default function HomePage() {
   }, [icons, searchQuery]);
 
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
-      await navigator.clipboard.writeText(content); // Writes the provided content to the clipboard
+      await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
