@@ -69,7 +69,7 @@ export default function HomePage() {
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md"> {/* Centered container for displaying the error message and icon */}
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the warning icon background and shape */}
-            <span className="text-red-600 text-2xl">⚠️</span>
+            <span className="text-red-600 text-2xl">⚠️</span> {/* The warning emoji icon itself */}
           </div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
           <p className="text-gray-600">{error}</p>
