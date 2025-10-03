@@ -6,7 +6,7 @@ import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
-import { CryptoIcon } from '../types';
+import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icon data
 import { Loader2 } from 'lucide-react'; // Spinner icon for loading states
 
 export default function HomePage() {
