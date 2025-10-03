@@ -39,7 +39,7 @@ export default function HomePage() {
     link.download = icon.fileName; // Sets the filename for the downloaded SVG
     document.body.appendChild(link); // Appends the link to the document body to enable click
     link.click(); // Programmatically clicks the link to trigger download
-    document.body.removeChild(link);
+    document.body.removeChild(link); // Removes the temporary link from the document
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
