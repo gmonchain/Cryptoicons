@@ -21,6 +21,7 @@ import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 // This is a new comment for edit number 3.
+// Another comment before the component.
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
