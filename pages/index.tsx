@@ -110,6 +110,7 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
+        {/* Information about filtered results */}
         {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
