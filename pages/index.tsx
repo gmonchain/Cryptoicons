@@ -5,37 +5,37 @@ import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for a cryptocurrency icon
-import { Loader2 } from 'lucide-react'; // Icon component for displaying loading states
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react'; // Spinner icon for loading states
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
-  const { icons, loading, error } = useCryptoIcons(); // Fetches and manages crypto icon data
-  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
-    if (!searchQuery.trim()) return icons; // If search query is empty, return all icons
+    if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Convert search query to lowercase for case-insensitive matching
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
-      icon.displayName.toLowerCase().includes(query) || // Match by display name
-      icon.name.toLowerCase().includes(query) || // Match by internal name
-      icon.symbol?.toLowerCase().includes(query) // Match by symbol (if available)
+      icon.displayName.toLowerCase().includes(query) ||
+      icon.name.toLowerCase().includes(query) ||
+      icon.symbol?.toLowerCase().includes(query)
     );
   }, [icons, searchQuery]);
 
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
-      await navigator.clipboard.writeText(content); // Writes the provided content to the clipboard
-      addToast(`${name} SVG copied to clipboard!`, 'success'); // Displays a success toast notification
+      await navigator.clipboard.writeText(content);
+      addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
-    const link = document.createElement('a'); // Creates a temporary anchor element
-    link.href = icon.path; // Sets the download link to the icon's SVG path
+    const link = document.createElement('a');
+    link.href = icon.path;
     link.download = icon.fileName;
     document.body.appendChild(link);
     link.click();
