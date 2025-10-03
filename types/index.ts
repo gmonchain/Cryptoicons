@@ -19,3 +19,4 @@ export interface ToastMessage {
   message: string;
   type: 'success' | 'error' | 'info';
 }
+// End of file comment for commit purposes.
