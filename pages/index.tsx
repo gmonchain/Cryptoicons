@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // React hooks for state and memoization
 import { SearchBar } from '../components/SearchBar';
 // Core components and hooks for the application
 import { Stats } from '../components/Stats';
