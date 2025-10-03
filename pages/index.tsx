@@ -44,7 +44,7 @@ export default function HomePage() {
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
-    setSelectedIcon(icon);
+    setSelectedIcon(icon); // Sets the icon to be displayed in the modal
     setIsModalOpen(true);
   };
 
