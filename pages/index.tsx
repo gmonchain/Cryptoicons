@@ -10,13 +10,14 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  const { icons, loading, error } = useCryptoIcons();
-  const { toasts, addToast, removeToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // This is the main page component for displaying crypto icons.
+  const { icons, loading, error } = useCryptoIcons(); // Fetches and manages the state of crypto icons
+  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications
+  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
-  const filteredIcons = useMemo(() => {
+  const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
@@ -27,12 +28,12 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => {
-    await navigator.clipboard.writeText(content);
-    addToast(`${name} SVG copied to clipboard!`, 'success');
+  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
+      await navigator.clipboard.writeText(content);
+      addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => {
+  const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -42,17 +43,17 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => {
+  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  if (loading) {
+  if (loading) { // Displays a loading spinner while fetching icons
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
@@ -80,10 +81,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
-          <SearchBar
+          <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
@@ -91,14 +92,14 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <Stats
+        <Stats // Component for displaying icon statistics
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( // Displays search results count if a query is active
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
@@ -110,7 +111,7 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? (
+        {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
               <IconCard // Individual icon card component
