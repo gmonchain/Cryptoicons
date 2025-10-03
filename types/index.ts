@@ -11,8 +11,6 @@ export interface CryptoIcon {
 
 // This is a placeholder comment for a commit.
 
-export type IconId = string;
-
 /**
  * Represents a toast message with its properties.
  */
