@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
+// Core components and hooks for the application
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
@@ -10,14 +11,13 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
+  const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
@@ -28,12 +28,12 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
+  const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
+  const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -43,17 +43,17 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
+  const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
+  const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  if (loading) { // Displays a loading spinner while fetching icons
+  if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
@@ -64,7 +64,7 @@ export default function HomePage() {
     );
   }
 
-  if (error) { // Displays an error message if icon data fails to load
+  if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
@@ -79,12 +79,12 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50"> {/* Main application container with a subtle gradient background */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar, centered with bottom margin */}
-          <SearchBar // Component for searching icons
+        <div className="max-w-2xl mx-auto mb-8">
+          <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
@@ -92,14 +92,14 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <Stats // Component for displaying icon statistics
-          totalIcons={icons.length} // Total number of icons available
-          filteredIcons={filteredIcons.length} // Number of icons after applying the search filter
-          isFiltered={!!searchQuery.trim()} // Boolean indicating if a search filter is active
+        <Stats
+          totalIcons={icons.length}
+          filteredIcons={filteredIcons.length}
+          isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Displays search results count if a query is active
+        {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
@@ -111,10 +111,10 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
+        {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Individual icon card component
+              <IconCard
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
@@ -135,7 +135,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal for displaying a larger preview of the selected icon
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -144,7 +144,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
