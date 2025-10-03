@@ -1,5 +1,5 @@
 // This is the main page for browsing and searching cryptocurrency icons.
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // React hooks for managing state and memoizing values
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
