@@ -4,7 +4,7 @@ import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal'; // Imports the PreviewModal component for icon details
 import { ToastContainer } from '../components/Toast'; // Imports the ToastContainer component for notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Imports the custom hook for fetching crypto icons
 import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
