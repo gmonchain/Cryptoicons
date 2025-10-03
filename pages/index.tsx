@@ -102,5 +102,37 @@ export default function HomePage() {
         {searchQuery.trim() && ( // Displays search results count if a query is active
           <div className="mb-6"> {/* Container for the search results information */}
             <p className="text-gray-600"> {/* Displaying count of filtered icons */}
-              {filteredIcons.length > 0 
-                ? `
+              {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 py-2"> 
+                  {filteredIcons.map((icon) => (
+                    <IconCard
+                      key={icon.name}
+                      icon={icon}
+                      onCopy={handleCopy}
+                      onDownload={handleDownload}
+                      onPreview={handlePreview}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-600 text-center">No icons found for your query.</p>
+              )}
+            </p>
+          </div>
+        )}
+
+        {/* Preview Modal */}
+        {selectedIcon && (
+          <PreviewModal
+            icon={selectedIcon}
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+          />
+        )}
+
+        {/* Toast Container */}
+        <ToastContainer toasts={toasts} onRemove={removeToast} />
+      </main>
+    </div>
+  );
+}
