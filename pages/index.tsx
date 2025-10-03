@@ -115,7 +115,7 @@ export default function HomePage() {
         {/* Icons Grid - Displays the filtered cryptocurrency icons. */}
         {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-            {filteredIcons.map((icon) => (
+            {filteredIcons.map((icon) => ( // Renders each icon as an interactive card.
               <IconCard
                 key={icon.name}
                 icon={icon}
