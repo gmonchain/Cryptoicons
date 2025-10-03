@@ -136,7 +136,7 @@ export default function HomePage() {
         ) : null}
       </main>
 
-      {/* Preview Modal */}
+      {/* Preview Modal - Displays a larger preview of the selected icon. */}
       <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
