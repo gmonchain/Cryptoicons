@@ -16,7 +16,7 @@ export default function HomePage() {
   // Manages toast notifications for user feedback.
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query input by the user.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to store the icon currently selected for preview.
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredIcons = useMemo(() => {
