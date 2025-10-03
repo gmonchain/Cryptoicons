@@ -5,9 +5,9 @@ import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
-import { Loader2 } from 'lucide-react'; // Icon component for loading indicator
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
@@ -17,10 +17,10 @@ export default function HomePage() {
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
-  const filteredIcons = useMemo(() => { // Memoized and filtered list of crypto icons based on search query
+  const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Lowercase search query for case-insensitive matching
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
@@ -55,7 +55,7 @@ export default function HomePage() {
 
   if (loading) { // Displays a loading spinner while fetching icons
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Loading state container with full screen height and center alignment */}
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
@@ -79,11 +79,11 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50"> {/* Main container for the application, setting minimum height and background gradient */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar component */}
+        <div className="max-w-2xl mx-auto mb-8">
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
@@ -102,37 +102,49 @@ export default function HomePage() {
         {searchQuery.trim() && ( // Displays search results count if a query is active
           <div className="mb-6">
             <p className="text-gray-600">
-              {/* Conditional rendering of search result message */}
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
-                : `No icons found matching "${searchQuery}"`}
+                : `No icons found matching "${searchQuery}"`
+              }
             </p>
           </div>
         )}
 
-        {/* Icon Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredIcons.map(icon => (
-            <IconCard
-              key={icon.id}
-              icon={icon}
-              onCopy={handleCopy}
-              onDownload={handleDownload}
-              onPreview={handlePreview}
-            />
-          ))}
-        </div>
+        {/* Icons Grid */}
+        {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            {filteredIcons.map((icon) => (
+              <IconCard // Individual icon card component
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
+              />
+            ))}
+          </div>
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-gray-400 text-2xl">🔍</span>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
+          </div>
+        ) : null}
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal
-          icon={selectedIcon}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
+      <PreviewModal // Modal for displaying a larger preview of the selected icon
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
+      />
 
-      {/* Toast Container */}
-      <ToastContainer toasts={toasts} onRemove={removeToast} />
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications */}
     </div>
   );
 }
