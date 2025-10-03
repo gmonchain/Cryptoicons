@@ -34,8 +34,8 @@ export default function HomePage() {
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
-    const link = document.createElement('a');
-    link.href = icon.path;
+    const link = document.createElement('a'); // Creates a temporary anchor element for downloading
+    link.href = icon.path; // Sets the download link's URL to the icon's path
     link.download = icon.fileName;
     document.body.appendChild(link);
     link.click();
