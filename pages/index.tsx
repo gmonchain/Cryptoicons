@@ -42,7 +42,7 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => {
+  const handlePreview = (icon: CryptoIcon) => { // Function to handle displaying an icon in the preview modal
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
