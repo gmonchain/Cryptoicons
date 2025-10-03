@@ -18,4 +18,5 @@ export interface ToastMessage {
   id: string;
   message: string;
   type: 'success' | 'error' | 'info';
+  // This is a new comment for the ToastMessage interface.
 }
