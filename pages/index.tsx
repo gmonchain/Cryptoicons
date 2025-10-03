@@ -97,7 +97,6 @@ export default function HomePage() {
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
-        </div> {/* Closing div for SearchBar - just added for edit separation */}
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
           <div className="mb-6">
