@@ -163,3 +163,4 @@ export default function HomePage() {
     </div>
   );
 }
+// End of HomePage component.
