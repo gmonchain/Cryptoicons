@@ -50,10 +50,10 @@ export default function HomePage() {
     setIsModalOpen(true);
   }, []);
 
-  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
+  const handleCloseModal = useCallback(() => { // Handles closing the preview modal and resetting selected icon state
     setIsModalOpen(false);
     setSelectedIcon(null);
-  };
+  }, []);
 
   if (loading) { // Displays a loading spinner while fetching icons
     return (
