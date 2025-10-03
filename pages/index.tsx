@@ -93,7 +93,7 @@ export default function HomePage() {
 
         {/* Stats */}
         <Stats // Component for displaying icon statistics
-          totalIcons={icons.length}
+          totalIcons={icons.length} // Total number of available icons
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
