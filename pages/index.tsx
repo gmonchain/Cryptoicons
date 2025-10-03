@@ -131,6 +131,7 @@ export default function HomePage() {
             </div>
             {/* Title for no icons found message */}
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            {/* Suggestion for no icons found */}
             <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
