@@ -45,10 +45,10 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   }, [addToast]);
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
+  const handlePreview = useCallback((icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
     setSelectedIcon(icon);
     setIsModalOpen(true);
-  };
+  }, []);
 
   const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
     setIsModalOpen(false);
