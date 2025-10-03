@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'; // React hooks for state and memoization
 import { SearchBar } from '../components/SearchBar'; // Component for search input
 // Core components and hooks for the application
-import { Stats } from '../components/Stats';
+import { Stats } from '../components/Stats'; // Component to display icon statistics
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
