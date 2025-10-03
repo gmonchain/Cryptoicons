@@ -1,9 +1,9 @@
-import { useState, useMemo } from 'react'; // React hook for state management, and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for user search input
-import { Stats } from '../components/Stats'; // Component to display icon statistics
-import { IconCard } from '../components/IconCard'; // Component for displaying individual crypto icons
-import { PreviewModal } from '../components/PreviewModal'; // Modal for displaying detailed icon previews
-import { ToastContainer } from '../components/Toast'; // Container for displaying toast notifications
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
@@ -57,7 +57,7 @@ export default function HomePage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Spinning loader icon */}
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
