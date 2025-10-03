@@ -14,15 +14,15 @@ export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Manages the icon currently selected for detailed view
-  const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the icon preview modal
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
-    if (!searchQuery.trim()) return icons; // Returns all icons if search query is empty
+    if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Converts search query to lowercase for case-insensitive matching
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
-      icon.displayName.toLowerCase().includes(query) || // Checks if display name includes the query
+      icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
     );
@@ -57,7 +57,7 @@ export default function HomePage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Loading spinner icon from Lucide React */}
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
