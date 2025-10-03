@@ -101,7 +101,7 @@ export default function HomePage() {
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
           <div className="mb-6"> {/* Container for the search results information */}
-            <p className="text-gray-600 py-1"> {/* Displaying count of filtered icons */}
+            <p className="text-gray-600 py-1 px-1"> {/* Displaying count of filtered icons */}
               {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 py-2"> 
                   {filteredIcons.map((icon) => (
