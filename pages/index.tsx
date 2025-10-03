@@ -94,6 +94,7 @@ export default function HomePage() {
 
         {/* Stats */}
         <Stats // Component for displaying icon statistics
+          {/* Stats component props */}
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
