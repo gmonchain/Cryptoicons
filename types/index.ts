@@ -9,6 +9,8 @@ export interface CryptoIcon {
   symbol?: string;
 }
 
+// This is an additional comment for the CryptoIcon interface.
+
 // This is a placeholder comment for a commit.
 
 /**
