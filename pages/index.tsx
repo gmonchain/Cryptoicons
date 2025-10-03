@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react'; // Icon component for displaying loading
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons(); // Fetches and manages crypto icon data
-  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications
+  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
