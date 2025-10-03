@@ -32,7 +32,7 @@ export default function HomePage() {
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => {
+  const handleDownload = (icon: CryptoIcon) => { // Function to handle downloading an icon as an SVG file
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
