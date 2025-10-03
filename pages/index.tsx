@@ -1,18 +1,18 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // React hooks for state and memoization
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
-import { PreviewModal } from '../components/PreviewModal'; // Imports the PreviewModal component for icon details
-import { ToastContainer } from '../components/Toast'; // Imports the ToastContainer component for notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Imports the custom hook for fetching crypto icons
-import { useToast } from '../hooks/useToast'; // Imports the custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Imports the type definition for CryptoIcon
-import { Loader2 } from 'lucide-react'; // Imports the Loader2 icon from Lucide React
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
-  const { icons, loading, error } = useCryptoIcons(); // Destructures icon data, loading state, and error from the hook
-  const { toasts, addToast, removeToast } = useToast(); // Destructures toast state and functions from the hook
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
@@ -20,7 +20,7 @@ export default function HomePage() {
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Converts search query to lowercase for case-insensitive matching
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
@@ -35,16 +35,16 @@ export default function HomePage() {
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
-    link.href = icon.path; // Sets the download link to the icon's SVG path
-    link.download = icon.fileName; // Sets the filename for the downloaded SVG
-    document.body.appendChild(link); // Appends the link to the document body to enable click
-    link.click(); // Programmatically clicks the link to trigger download
-    document.body.removeChild(link); // Removes the temporary link from the document
+    link.href = icon.path;
+    link.download = icon.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
-    setSelectedIcon(icon); // Sets the icon to be displayed in the modal
+    setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
