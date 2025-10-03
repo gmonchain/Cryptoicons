@@ -19,3 +19,5 @@ export interface ToastMessage {
   message: string;
   type: 'success' | 'error' | 'info';
 }
+
+// Added a new line at the end of the file.
