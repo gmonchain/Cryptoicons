@@ -25,6 +25,7 @@ import { Loader2 } from 'lucide-react';
 // This is the HomePage component.
 // Destructuring custom hooks.
 // Custom hooks provide data and functionality.
+// State variables for managing UI.
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
