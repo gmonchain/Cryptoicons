@@ -1,18 +1,18 @@
-import { useState, useMemo } from 'react'; // React hooks for state and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats'; // Component for displaying statistics
-import { IconCard } from '../components/IconCard'; // Component for displaying individual icons
-import { PreviewModal } from '../components/PreviewModal'; // Component for displaying icon preview modal
-import { ToastContainer } from '../components/Toast'; // Component for displaying toast notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icons
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icon objects
-import { Loader2 } from 'lucide-react'; // Icon component for loading indicator
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
-  const { icons, loading, error } = useCryptoIcons(); // Fetching cryptocurrency icons and their loading/error states
-  const { toasts, addToast, removeToast } = useToast(); // Managing toast notifications for user feedback
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
@@ -28,9 +28,9 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
-      await navigator.clipboard.writeText(content);
-      addToast(`${name} SVG copied to clipboard!`, 'success');
+  const handleCopy = async (content: string, name: string) => {
+    await navigator.clipboard.writeText(content);
+    addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
@@ -79,11 +79,11 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50"> {/* Main application container with gradient background */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar component */}
+        <div className="max-w-2xl mx-auto mb-8">
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
