@@ -130,7 +130,7 @@ export default function HomePage() {
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No {appName} icons found</h3>
             <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
