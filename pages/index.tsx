@@ -83,7 +83,7 @@ export default function HomePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8 bg-gray-50"> {/* Container for the search bar, centered and with bottom margin */}
+        <div className="max-w-2xl mx-auto mb-8 bg-gray-50 rounded-lg"> {/* Container for the search bar, centered and with bottom margin */}
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
