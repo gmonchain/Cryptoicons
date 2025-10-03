@@ -60,6 +60,7 @@ export default function HomePage() {
   };
 
   if (loading) {
+    // Display loading state
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
