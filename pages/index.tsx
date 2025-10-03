@@ -19,6 +19,7 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredIcons = useMemo(() => {
+    // Filtering icons based on search query
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
