@@ -64,7 +64,7 @@ export default function HomePage() {
     );
   }
 
-  if (error) {
+  if (error) { // Displays an error message if icons fail to load
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
