@@ -101,7 +101,7 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Stats */}
+        {/* Statistics Component */}
         <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
