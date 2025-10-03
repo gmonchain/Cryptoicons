@@ -145,7 +145,7 @@ export default function HomePage() {
         onDownload={handleDownload}
       />
 
-      {/* Toast Notifications */}
+      {/* Toast Notifications - Displays transient messages to the user. */}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
