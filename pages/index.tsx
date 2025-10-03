@@ -13,7 +13,7 @@ export default function HomePage() {
   console.log('HomePage component rendered'); // Log component render
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons();
-  const { toasts, addToast, removeToast } = useToast();
+  const { toasts, addToast: showToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(""); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
@@ -33,7 +33,7 @@ export default function HomePage() {
   const handleCopy = useCallback(async (content: string, name: string) => { // Handles copying SVG content to clipboard
       await navigator.clipboard.writeText(content);
       showToast(`${name} SVG copied to clipboard!`, 'success');
-  }, [addToast]);
+  }, [showToast]);
 
   const handleDownload = useCallback((icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
@@ -42,8 +42,8 @@ export default function HomePage() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    addToast(`${icon.displayName} downloaded!`, 'success');
-  }, [addToast]);
+    showToast(`${icon.displayName} downloaded!`, 'success');
+  }, [showToast]);
 
   const handlePreview = useCallback((icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
     setSelectedIcon(icon);
