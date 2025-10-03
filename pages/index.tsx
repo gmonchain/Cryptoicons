@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react'; // React hooks for managing state and
 import { SearchBar } from '../components/SearchBar'; // Component for searching icons
 import { Stats } from '../components/Stats'; // Component to display icon statistics
 import { IconCard } from '../components/IconCard'; // Component to display individual icons
-import { PreviewModal } from '../components/PreviewModal';
+import { PreviewModal } from '../components/PreviewModal'; // Component for displaying icon details in a modal
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
