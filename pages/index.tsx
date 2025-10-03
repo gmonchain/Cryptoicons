@@ -153,7 +153,7 @@ export default function HomePage() {
         onDownload={handleDownload}
       />
 
-      {/* Toast Notifications */}
+      {/* Toast Notifications Container */}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
