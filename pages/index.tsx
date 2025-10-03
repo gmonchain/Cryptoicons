@@ -10,7 +10,7 @@ import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
-
+// This is a new comment for edit number 3.
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
