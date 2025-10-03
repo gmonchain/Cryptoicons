@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // React hooks for state and memoization
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
@@ -11,16 +11,16 @@ import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
-  const { icons, loading, error } = useCryptoIcons(); // Fetches and manages the list of cryptocurrency icons
-  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
-    if (!searchQuery.trim()) return icons; // If search query is empty, return all icons
+    if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Convert search query to lowercase for case-insensitive matching
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
@@ -29,17 +29,17 @@ export default function HomePage() {
   }, [icons, searchQuery]);
 
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
-      await navigator.clipboard.writeText(content); // Writes the provided content to the clipboard asynchronously
-      addToast(`${name} SVG copied to clipboard!`, 'success'); // Displays a success toast notification
+      await navigator.clipboard.writeText(content);
+      addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
-    const link = document.createElement('a'); // Creates a temporary anchor element for downloading
-    link.href = icon.path; // Sets the download link's URL to the icon's path
-    link.download = icon.fileName; // Sets the suggested filename for the downloaded file
-    document.body.appendChild(link); // Appends the link to the document body (necessary for Firefox)
-    link.click(); // Programmatically clicks the link to initiate download
-    document.body.removeChild(link); // Removes the temporary link from the document body
+    const link = document.createElement('a');
+    link.href = icon.path;
+    link.download = icon.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
