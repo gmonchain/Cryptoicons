@@ -1,3 +1,4 @@
+/** This is a test comment for the CryptoIcon interface. */
 /**
  * Represents a cryptocurrency icon with its metadata.
  */
