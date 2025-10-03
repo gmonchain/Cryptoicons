@@ -13,7 +13,7 @@ import { Loader2 } from 'lucide-react'; // Icon for loading spinner
 export default function HomePage() { // Main component for the home page
   const { icons, loading, error } = useCryptoIcons(); // Fetch crypto icons and their loading/error states
   const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications for user feedback
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // State for storing the user's search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
