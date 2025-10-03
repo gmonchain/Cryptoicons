@@ -11,7 +11,7 @@ import { CryptoIcon } from '../types'; // Type definition for a cryptocurrency i
 import { Loader2 } from 'lucide-react'; // Icon for loading spinner
 
 export default function HomePage() { // Main component for the home page
-  const { icons, loading, error } = useCryptoIcons();
+  const { icons, loading, error } = useCryptoIcons(); // Fetch crypto icons and their loading/error states
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
