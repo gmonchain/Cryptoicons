@@ -67,7 +67,7 @@ export default function HomePage() {
   if (error) { // Displays an error message if icon data fails to load
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Full-screen container for error state */}
-        <div className="text-center max-w-md">
+        <div className="text-center max-w-md"> {/* Centered content for error message with max width */}
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <span className="text-red-600 text-2xl">⚠️</span>
           </div>
