@@ -37,6 +37,7 @@ export default function HomePage() {
   };
 
   const handleDownload = (icon: CryptoIcon) => {
+    // Initiate icon download
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
