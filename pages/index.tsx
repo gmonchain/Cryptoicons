@@ -129,7 +129,7 @@ export default function HomePage() {
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* User guidance for no results */}
           </div>
         ) : null}
       </main>
