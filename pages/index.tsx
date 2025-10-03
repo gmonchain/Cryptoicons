@@ -48,6 +48,7 @@ export default function HomePage() {
   };
 
   const handlePreview = (icon: CryptoIcon) => {
+    // Open preview modal for selected icon
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
