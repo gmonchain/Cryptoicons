@@ -158,6 +158,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
+      {/* Container for toast notifications */}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
