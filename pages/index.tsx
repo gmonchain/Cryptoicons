@@ -118,7 +118,7 @@ export default function HomePage() {
                 key={icon.name} // Unique key for list rendering
                 icon={icon} // The cryptocurrency icon object to display
                 onCopy={handleCopy} // Callback function for copying icon SVG
-                onDownload={handleDownload}
+                onDownload={handleDownload} // Callback function for downloading icon file
                 onPreview={handlePreview}
               />
             ))}
