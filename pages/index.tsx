@@ -1,6 +1,6 @@
 // This file is continuously updated by the AI assistant.
 // Edit number 2.
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
