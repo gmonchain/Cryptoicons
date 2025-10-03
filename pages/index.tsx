@@ -18,9 +18,9 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
-    if (!searchQuery.trim()) return icons;
+    if (!searchQuery.trim()) return icons; // If search query is empty, return all icons
     
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase(); // Convert search query to lowercase for case-insensitive matching
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
