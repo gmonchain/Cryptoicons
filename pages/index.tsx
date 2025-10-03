@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo } from 'react'; // React hooks for state and memoization
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
@@ -10,14 +10,12 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  console.log('HomePage component rendered'); // Log component render
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons();
-  const { toasts, addToast: showToast, removeToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState(""); // State to hold the current search query
+  const { toasts, addToast, removeToast } = useToast();
+  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
-  const appName = "Cryptoicons App"; // Application name constant
 
   const filteredIcons = useMemo(() => { // Memoized filtering of icons based on search query
     if (!searchQuery.trim()) return icons;
@@ -30,37 +28,37 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = useCallback(async (content: string, name: string) => { // Handles copying SVG content to clipboard
+  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
       await navigator.clipboard.writeText(content);
-      showToast(`${name} SVG copied to clipboard!`, 'success');
-  }, [showToast]);
+      addToast(`${name} SVG copied to clipboard!`, 'success');
+  };
 
-  const handleDownload = useCallback((icon: CryptoIcon) => { // Handles downloading the SVG icon file
+  const handleDownload = (icon: CryptoIcon) => { // Handles downloading the SVG icon file
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    showToast(`${icon.displayName} downloaded!`, 'success');
-  }, [showToast]);
+    addToast(`${icon.displayName} downloaded!`, 'success');
+  };
 
-  const handlePreview = useCallback((icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
+  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
     setSelectedIcon(icon);
     setIsModalOpen(true);
-  }, []);
+  };
 
-  const handleCloseModal = useCallback(() => { // Handles closing the preview modal and resetting selected icon state
+  const handleCloseModal = () => { // Handles closing the preview modal and resetting selected icon state
     setIsModalOpen(false);
     setSelectedIcon(null);
-  }, []);
+  };
 
   if (loading) { // Displays a loading spinner while fetching icons
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 flex items-center justify-center"> {/* Updated gradient background */}
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">Loading icons...</p>
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
@@ -73,7 +71,7 @@ export default function HomePage() {
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <span className="text-red-600 text-2xl">⚠️</span>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error loading icons</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
           <p className="text-gray-600">{error}</p>
         </div>
       </div>
@@ -81,16 +79,15 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 shadow-inner"> {/* Main container with gradient background and subtle shadow */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
-        {/* Main section of the application */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder={`Search ${appName} icons by name or symbol...`}
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
@@ -126,12 +123,12 @@ export default function HomePage() {
               />
             ))}
           </div>
-        ) : !filteredIcons.length && searchQuery.trim() ? (
+        ) : searchQuery.trim() ? (
           <div className="text-center py-12">
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No matching icons found</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
             <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
