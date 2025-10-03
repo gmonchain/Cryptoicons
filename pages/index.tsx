@@ -8,7 +8,7 @@ import { ToastContainer } from '../components/Toast'; // Container for toast not
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook to fetch crypto icons
 import { useToast } from '../hooks/useToast'; // Custom hook for toast notifications
 import { CryptoIcon } from '../types'; // Type definition for a crypto icon
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react'; // Loading icon from Lucide React
 
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
