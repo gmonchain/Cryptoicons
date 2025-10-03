@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
-import { Stats } from '../components/Stats';
+import { Stats } from '../components/Stats'; // Component for displaying statistics about icons
 import { IconCard } from '../components/IconCard'; // Component to display individual crypto icons
 import { PreviewModal } from '../components/PreviewModal'; // Modal component for icon preview
 import { ToastContainer } from '../components/Toast'; // Component for displaying transient messages
