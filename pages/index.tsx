@@ -146,7 +146,9 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications - Displays transient messages to the user. */}
-      <ToastContainer toasts={toasts} onClose={removeToast} />
+      <div>
+        <ToastContainer toasts={toasts} onClose={removeToast} />
+      </div>
     </div>
   );
 }
