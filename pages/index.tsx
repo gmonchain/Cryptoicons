@@ -6,7 +6,7 @@ import { PreviewModal } from '../components/PreviewModal'; // Imports the Previe
 import { ToastContainer } from '../components/Toast'; // Imports the ToastContainer component for notifications
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Imports the custom hook for fetching crypto icons
 import { useToast } from '../hooks/useToast'; // Imports the custom hook for managing toast notifications
-import { CryptoIcon } from '../types';
+import { CryptoIcon } from '../types'; // Imports the type definition for CryptoIcon
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
