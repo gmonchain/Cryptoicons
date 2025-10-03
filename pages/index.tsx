@@ -85,6 +85,7 @@ export default function HomePage() {
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar, centered and with bottom margin */}
           <SearchBar // Component for searching icons
+            {/* SearchBar component props */}
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
