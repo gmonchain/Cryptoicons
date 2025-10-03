@@ -117,7 +117,7 @@ export default function HomePage() {
               <IconCard // Individual icon card component
                 key={icon.name} // Unique key for list rendering
                 icon={icon} // The cryptocurrency icon object to display
-                onCopy={handleCopy}
+                onCopy={handleCopy} // Callback function for copying icon SVG
                 onDownload={handleDownload}
                 onPreview={handlePreview}
               />
