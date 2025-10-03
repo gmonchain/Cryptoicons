@@ -48,7 +48,7 @@ export default function HomePage() {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = () => { // Handles closing the preview modal
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
