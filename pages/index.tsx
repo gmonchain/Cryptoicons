@@ -1,13 +1,13 @@
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
-import { Stats } from '../components/Stats'; // Component for displaying statistics about icons
-import { IconCard } from '../components/IconCard'; // Component to display individual crypto icons
-import { PreviewModal } from '../components/PreviewModal'; // Modal component for icon preview
-import { ToastContainer } from '../components/Toast'; // Component for displaying transient messages
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icon data
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icon data
-import { Loader2 } from 'lucide-react'; // Spinner icon for loading states
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
