@@ -92,7 +92,7 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <Stats
+        <Stats // Component displaying total and filtered icon counts
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
