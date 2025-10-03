@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'; // React hook for state management, and memoization
-import { SearchBar } from '../components/SearchBar';
+import { SearchBar } from '../components/SearchBar'; // Component for user search input
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
