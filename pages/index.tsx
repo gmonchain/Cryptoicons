@@ -23,7 +23,7 @@ export default function HomePage() {
     const query = searchQuery.toLowerCase(); // Convert search query to lowercase for case-insensitive matching
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) || // Match by display name
-      icon.name.toLowerCase().includes(query) ||
+      icon.name.toLowerCase().includes(query) || // Match by internal name
       icon.symbol?.toLowerCase().includes(query)
     );
   }, [icons, searchQuery]);
