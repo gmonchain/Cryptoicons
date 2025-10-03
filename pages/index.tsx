@@ -57,8 +57,8 @@ export default function HomePage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Spinner icon for loading state */}
-          <p className="text-gray-600 text-lg">Loading crypto icons...</p> {/* Loading message */}
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
@@ -67,23 +67,23 @@ export default function HomePage() {
   if (error) { // Displays an error message if icon data fails to load
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
-        <div className="text-center max-w-md"> {/* Centered container for error message */}
-          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the warning icon */}
+        <div className="text-center max-w-md">
+          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <span className="text-red-600 text-2xl">⚠️</span>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Error title */}
-          <p className="text-gray-600">{error}</p> {/* Dynamic error message content */}
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
+          <p className="text-gray-600">{error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50"> {/* Main container for the homepage, with a gradient background */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with max width and padding */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8 bg-gray-50 rounded-lg"> {/* Container for the search bar, centered and with bottom margin */}
+        <div className="max-w-2xl mx-auto mb-8">
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
@@ -100,39 +100,51 @@ export default function HomePage() {
 
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
-          <div className="mb-6"> {/* Container for the search results information */}
-            <p className="text-gray-600 py-1 px-1"> {/* Displaying count of filtered icons */}
-              {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 py-2"> 
-                  {filteredIcons.map((icon) => (
-                    <IconCard
-                      key={icon.name}
-                      icon={icon}
-                      onCopy={handleCopy}
-                      onDownload={handleDownload}
-                      onPreview={handlePreview}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-600 text-center">No icons found for your query.</p>
-              )}
+          <div className="mb-6">
+            <p className="text-gray-600">
+              {filteredIcons.length > 0 
+                ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
+                : `No icons found matching "${searchQuery}"`
+              }
             </p>
           </div>
         )}
 
-        {/* Preview Modal */}
-        {selectedIcon && (
-          <PreviewModal
-            icon={selectedIcon}
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-          />
-        )}
-
-        {/* Toast Container */}
-        <ToastContainer toasts={toasts} onRemove={removeToast} />
+        {/* Icons Grid */}
+        {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            {filteredIcons.map((icon) => (
+              <IconCard // Individual icon card component
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
+              />
+            ))}
+          </div>
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-gray-400 text-2xl">🔍</span>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
+          </div>
+        ) : null}
       </main>
+
+      {/* Preview Modal */}
+      <PreviewModal // Modal for displaying a larger preview of the selected icon
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
+      />
+
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications */}
     </div>
   );
 }
