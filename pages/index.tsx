@@ -101,7 +101,7 @@ export default function HomePage() {
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
           <div className="mb-6"> {/* Container for displaying the search results message */}
-            <p className="text-gray-600">
+            <p className="text-gray-600"> {/* Text displaying the number of matching icons found */}
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
                 : `No icons found matching "${searchQuery}"`
@@ -112,39 +112,33 @@ export default function HomePage() {
 
         {/* Icons Grid */}
         {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards */}
             {filteredIcons.map((icon) => (
-              <IconCard // Individual icon card component
-                key={icon.name}
-                icon={icon}
-                onCopy={handleCopy}
-                onDownload={handleDownload}
-                onPreview={handlePreview}
-              />
-            ))}
-          </div>
-        ) : searchQuery.trim() ? (
-          <div className="text-center py-12">
-            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-              <span className="text-gray-400 text-2xl">🔍</span>
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
-          </div>
-        ) : null}
+            <IconCard
+              key={icon.id}
+              icon={icon}
+              onCopy={handleCopy}
+              onDownload={handleDownload}
+              onPreview={handlePreview}
+            />
+          ))}
+        </div>
+        ) : (
+          <p className="text-center text-gray-600">No icons found matching your search.</p> {/* Message displayed when no icons match the search query */}
+        )}
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal for displaying a larger preview of the selected icon
-        icon={selectedIcon}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onCopy={handleCopy}
-        onDownload={handleDownload}
-      />
+      {selectedIcon && (
+        <PreviewModal
+          icon={selectedIcon}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
 
-      {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications */}
+      {/* Toast Container */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
     </div>
   );
 }
