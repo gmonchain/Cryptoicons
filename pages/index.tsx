@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react'; // React hooks for state and memoization
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
@@ -87,20 +87,20 @@ export default function HomePage() {
           <SearchBar // Component for searching icons
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search crypto icons by name or symbol..." // User-friendly search prompt
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
         {/* Stats */}
         <Stats // Component for displaying icon statistics
-          totalIcons={icons.length} // Total number of available icons
-          filteredIcons={filteredIcons.length} // Number of icons after applying search filter
-          isFiltered={!!searchQuery.trim()} // Boolean indicating if a search filter is active
+          totalIcons={icons.length}
+          filteredIcons={filteredIcons.length}
+          isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
         {searchQuery.trim() && ( // Displays search results count if a query is active
-          <div className="mb-6"> {/* Container for search result message */}
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -115,10 +115,10 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
               <IconCard // Individual icon card component
-                key={icon.name} // Unique key for list rendering
-                icon={icon} // The cryptocurrency icon object to display
-                onCopy={handleCopy} // Callback function for copying icon SVG
-                onDownload={handleDownload} // Callback function for downloading icon file
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
                 onPreview={handlePreview}
               />
             ))}
@@ -129,7 +129,7 @@ export default function HomePage() {
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* User guidance for no results */}
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
       </main>
