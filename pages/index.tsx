@@ -5,14 +5,14 @@ import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
-import { useToast } from '../hooks/useToast';
+import { useToast } from '../hooks/useToast'; // Manages toast notifications for user feedback
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   // This is the main page component for displaying crypto icons.
   const { icons, loading, error } = useCryptoIcons(); // Fetches and manages the state of crypto icons
-  const { toasts, addToast, removeToast } = useToast();
+  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
