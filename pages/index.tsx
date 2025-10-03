@@ -1,18 +1,18 @@
-import { useState, useMemo } from 'react'; // Importing React hooks for state management and memoization
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats'; // Component for displaying icon statistics
-import { IconCard } from '../components/IconCard'; // Component for displaying individual icons
-import { PreviewModal } from '../components/PreviewModal'; // Modal for displaying a larger icon preview
-import { ToastContainer } from '../components/Toast'; // Container for displaying toast notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icon data
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
-import { Loader2 } from 'lucide-react'; // Loading icon from Lucide React
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
