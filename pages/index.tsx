@@ -17,6 +17,7 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   // State to store the currently selected icon for preview.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  // State to control the visibility of the preview modal.
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredIcons = useMemo(() => {
