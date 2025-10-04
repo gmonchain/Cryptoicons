@@ -55,7 +55,7 @@ export default function HomePage() {
     setSelectedIcon(null);
   };
 
-  if (loading) {
+  if (loading) { // Displays a loading spinner and message while icons are being fetched.
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
