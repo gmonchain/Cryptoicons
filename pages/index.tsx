@@ -134,7 +134,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal
+      <PreviewModal // Modal component for displaying detailed icon previews.
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
