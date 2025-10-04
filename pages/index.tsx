@@ -117,7 +117,7 @@ export default function HomePage() {
                 key={icon.name} // Unique key for each icon card.
                 icon={icon} // The icon data passed to the card.
                 onCopy={handleCopy} // Callback function for copying icon SVG.
-                onDownload={handleDownload}
+                onDownload={handleDownload} // Callback function for downloading icon SVG.
                 onPreview={handlePreview}
               />
             ))}
