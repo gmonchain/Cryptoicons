@@ -124,11 +124,11 @@ export default function HomePage() { // Main component for the cryptocurrency ic
           </div>
         ) : searchQuery.trim() ? ( // Displays a message when no icons match the search query.
           <div className="text-center py-12">
-            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-              <span className="text-gray-400 text-2xl">🔍</span>
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the no-results icon container. */}
+              <span className="text-gray-400 text-2xl">🔍</span> {/* Search emoji for no results message. */}
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3> {/* Heading for the no-results message. */}
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* Guidance for no-results. */}
           </div>
         ) : null}
       </main>
