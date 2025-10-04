@@ -128,7 +128,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
               <span className="text-gray-400 text-2xl">🔍</span> {/* Search emoji for no results message, indicating nothing was found. */}
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3> {/* Informative heading for when no icons match the search query. */}
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* Guidance for no-results. */}
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* Provides user guidance for refining their search. */}
           </div>
         ) : null}
       </main>
