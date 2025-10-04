@@ -1,16 +1,16 @@
-import { useState, useMemo } from 'react'; // React hooks for state management and memoization.
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons.
-import { Stats } from '../components/Stats'; // Component to display icon statistics.
-import { IconCard } from '../components/IconCard'; // Component for displaying individual icon cards.
-import { PreviewModal } from '../components/PreviewModal'; // Component for displaying a larger icon preview.
-import { ToastContainer } from '../components/Toast'; // Component for displaying transient messages.
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icon data.
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications.
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons.
-import { Loader2 } from 'lucide-react'; // Icon component for loading states.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main component for the cryptocurrency icon library application.
-  const { icons, loading, error } = useCryptoIcons(); // Fetches and manages the list of crypto icons.
+export default function HomePage() {
+  const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback.
   const [searchQuery, setSearchQuery] = useState(''); // State for the search input value.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
@@ -19,8 +19,8 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Converts the search query to lowercase for case-insensitive matching.
-    return icons.filter(icon => // Filters the icons based on display name, name, or symbol matching the query.
+    const query = searchQuery.toLowerCase();
+    return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
@@ -33,17 +33,17 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the icon SVG file.
-    const link = document.createElement('a'); // Creates a temporary anchor element for downloading.
-    link.href = icon.path; // Sets the download link to the icon's SVG path.
-    link.download = icon.fileName; // Specifies the default filename for the downloaded file.
-    document.body.appendChild(link); // Temporarily adds the link to the document body to enable download.
-    link.click(); // Programmatically clicks the link to initiate the download.
-    document.body.removeChild(link); // Removes the temporary link element from the document body.
-    addToast(`${icon.displayName} downloaded!`, 'success'); // Displays a success toast notification upon successful download.
+    const link = document.createElement('a');
+    link.href = icon.path;
+    link.download = icon.fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
-    setSelectedIcon(icon); // Stores the icon to be displayed in the preview modal.
+    setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
@@ -56,8 +56,8 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Animated loading spinner icon, indicating data is being fetched. */}
-          <p className="text-gray-600 text-lg">Loading crypto icons...</p> {/* Informative message displayed while icons are loading. */}
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
@@ -67,11 +67,11 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
-          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Container for the error warning icon. */}
-            <span className="text-red-600 text-2xl">⚠️</span> {/* Warning emoji to indicate an error. */}
+          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <span className="text-red-600 text-2xl">⚠️</span>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Heading for the error message, providing context. */}
-          <p className="text-gray-600">{error}</p> {/* Displays the specific error message details from the error object. */}
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
+          <p className="text-gray-600">{error}</p>
         </div>
       </div>
     );
@@ -98,7 +98,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( // Conditionally displays search results information.
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
