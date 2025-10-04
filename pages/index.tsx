@@ -113,7 +113,7 @@ export default function HomePage() {
         {filteredIcons.length > 0 ? ( // Renders a grid of icons if there are results.
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard
+              <IconCard // Component representing an individual cryptocurrency icon.
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
