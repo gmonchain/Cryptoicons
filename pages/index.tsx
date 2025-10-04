@@ -37,7 +37,7 @@ export default function HomePage() { // Main page component for displaying crypt
     link.href = icon.path;
     link.download = icon.fileName;
     document.body.appendChild(link); // Appends the link to the document body to trigger download.
-    link.click();
+    link.click(); // Programmatically clicks the link to initiate the download.
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
