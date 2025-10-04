@@ -129,7 +129,7 @@ export default function HomePage() {
 
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} // Passes the list of active toast notifications.
-        onClose={removeToast} />
+        onClose={removeToast} /> {/* Callback function to remove a toast notification. */}
     </div>
   );
 }
