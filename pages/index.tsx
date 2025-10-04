@@ -143,7 +143,7 @@ export default function HomePage() {
 
       {/* Preview Modal */}
       <PreviewModal // Modal component for displaying a larger view of the selected icon.
-        icon={selectedIcon}
+        icon={selectedIcon} // Passes the currently selected icon to the modal.
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onCopy={handleCopy}
