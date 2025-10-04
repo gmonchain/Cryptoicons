@@ -83,23 +83,67 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar // Component for searching crypto icons.
-            value={searchQuery} // The current value of the search input.
-            onChange={setSearchQuery} // Callback function to update the search query.
-            placeholder="Search crypto icons by name or symbol..." // Placeholder text for the search input.
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
         {/* Stats */}
-        <Stats // Displays statistics about the total and filtered icons.
-          totalIcons={icons.length} // Total number of available icons.
-          filteredIcons={filteredIcons.length} // Number of icons after applying the search filter.
-          isFiltered={!!searchQuery.trim()} // Indicates if a search filter is currently active.
+        <Stats // Component displaying overall icon statistics and filtered results.
+          totalIcons={icons.length}
+          filteredIcons={filteredIcons.length}
+          isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Conditionally renders a message based on search results.
+        {searchQuery.trim() && (
           <div className="mb-6">
-            <p className="text-gray-600"> {/* Displays feedback about the search results. */}
+            <p className="text-gray-600">
               {filteredIcons.length > 0 
-                ? `
+                ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
+                : `No icons found matching "${searchQuery}"`
+              }
+            </p>
+          </div>
+        )}
+
+        {/* Icons Grid */}
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            {filteredIcons.map((icon) => (
+              <IconCard
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
+              />
+            ))}
+          </div>
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-gray-400 text-2xl">🔍</span>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
+          </div>
+        ) : null}
+      </main>
+
+      {/* Preview Modal */}
+      <PreviewModal
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
+      />
+
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
+    </div>
+  );
+}
