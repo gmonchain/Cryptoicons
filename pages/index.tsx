@@ -1,16 +1,16 @@
-import { useState, useMemo } from 'react'; // React hooks for managing state and memoizing values.
-import { SearchBar } from '../components/SearchBar'; // Component for searching crypto icons.
-import { Stats } from '../components/Stats'; // Component for displaying icon statistics.
-import { IconCard } from '../components/IconCard'; // Component for displaying individual crypto icon cards.
-import { PreviewModal } from '../components/PreviewModal'; // Component for displaying a detailed icon preview.
-import { ToastContainer } from '../components/Toast'; // Component for displaying toast notifications.
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icons.
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications.
-import { CryptoIcon } from '../types'; // Type definition for a cryptocurrency icon.
-import { Loader2 } from 'lucide-react'; // Icon component for displaying loading states.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main page component for displaying crypto icons.
-  const { icons, loading, error } = useCryptoIcons(); // Fetches and manages the state of crypto icons.
+export default function HomePage() {
+  const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback.
   const [searchQuery, setSearchQuery] = useState(''); // State for the search input value.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
@@ -19,7 +19,7 @@ export default function HomePage() { // Main page component for displaying crypt
   const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Converts the search query to lowercase for case-insensitive matching.
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
@@ -33,11 +33,11 @@ export default function HomePage() { // Main page component for displaying crypt
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the icon SVG file.
-    const link = document.createElement('a'); // Creates a temporary anchor element for downloading.
+    const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
-    document.body.appendChild(link); // Appends the link to the document body to trigger download.
-    link.click(); // Programmatically clicks the link to initiate the download.
+    document.body.appendChild(link);
+    link.click();
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
@@ -83,23 +83,23 @@ export default function HomePage() { // Main page component for displaying crypt
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar // Input component for filtering icons based on user search.
-            value={searchQuery} // Binds the search bar's value to the searchQuery state.
-            onChange={setSearchQuery} // Updates the searchQuery state as the user types.
-            placeholder="Search crypto icons by name or symbol..." // Provides a hint to the user about the search functionality.
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
         {/* Stats */}
         <Stats // Displays statistics about the total and filtered icons.
-          totalIcons={icons.length} // Passes the total number of available icons.
-          filteredIcons={filteredIcons.length} // Passes the number of icons currently displayed after filtering.
-          isFiltered={!!searchQuery.trim()} // Indicates whether a search filter is currently active.
+          totalIcons={icons.length} // The total number of available cryptocurrency icons.
+          filteredIcons={filteredIcons.length}
+          isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( /* Conditionally displays search results information if a search query is active. */
-          <div className="mb-6"> {/* Container for the search results message. */}
+        {searchQuery.trim() && (
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -110,10 +110,10 @@ export default function HomePage() { // Main page component for displaying crypt
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( /* Displays the grid of icons if there are any to show based on filtering. */
+        {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Renders each icon as a card with copy, download, and preview actions.
+              <IconCard
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
@@ -122,8 +122,8 @@ export default function HomePage() { // Main page component for displaying crypt
               />
             ))}
           </div>
-        ) : searchQuery.trim() ? ( /* Displays a message if no icons are found matching the search query. */
-          <div className="text-center py-12"> {/* Container for the no icons found message. */}
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
