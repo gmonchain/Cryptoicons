@@ -143,7 +143,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Container for displaying toast notifications. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Manages and displays transient notifications to the user. */}
     </div>
   );
 }
