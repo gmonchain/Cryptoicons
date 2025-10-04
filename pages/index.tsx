@@ -33,7 +33,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the icon SVG file.
-    const link = document.createElement('a');
+    const link = document.createElement('a'); // Creates a temporary anchor element for downloading.
     link.href = icon.path;
     link.download = icon.fileName;
     document.body.appendChild(link);
