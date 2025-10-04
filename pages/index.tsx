@@ -10,31 +10,30 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
-  // This is the main component for the crypto icons application.
-  const { icons, loading, error } = useCryptoIcons(); // Fetch crypto icons and their loading/error states.
-  const { toasts, addToast, removeToast } = useToast(); // Manage toast notifications for user feedback.
-  const [searchQuery, setSearchQuery] = useState(''); // State to hold the user's search input.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to store the icon selected for preview.
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal.
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback.
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredIcons = useMemo(() => { // Memoized computation for filtering icons based on search query.
-    if (!searchQuery.trim()) return icons; // If search query is empty, return all icons.
+  const filteredIcons = useMemo(() => {
+    if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Normalize the search query to lowercase.
-    return icons.filter(icon => // Filter icons based on display name, name, or symbol.
+    const query = searchQuery.toLowerCase();
+    return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard.
-      await navigator.clipboard.writeText(content); // Writes the SVG content to the clipboard.
-      addToast(`${name} SVG copied to clipboard!`, 'success'); // Displays a success toast notification.
+  const handleCopy = async (content: string, name: string) => {
+      await navigator.clipboard.writeText(content);
+      addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => { // Handles downloading an SVG icon file.
-    const link = document.createElement('a'); // Creates a temporary anchor element to facilitate download.
+  const handleDownload = (icon: CryptoIcon) => {
+    const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
     document.body.appendChild(link);
@@ -43,17 +42,17 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
+  const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => { // Closes the preview modal and resets the selected icon.
+  const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  if (loading) { // Displays a loading spinner when icons are being fetched.
+  if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
@@ -64,7 +63,7 @@ export default function HomePage() {
     );
   }
 
-  if (error) { // Displays an error message if icon data fails to load.
+  if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
@@ -81,10 +80,10 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area of the page. */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8">
-          <SearchBar // Component for searching icons.
+          <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
@@ -92,14 +91,14 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <Stats // Component to display icon statistics.
+        <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Displays search result count if a query is active.
+        {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
@@ -111,10 +110,10 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Renders the grid of icon cards or a no-results message.
+        {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Component for displaying individual crypto icons.
+              <IconCard
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
@@ -135,7 +134,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal for displaying a larger preview of a selected icon.
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -144,7 +143,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> // Container for displaying toast notifications.
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
