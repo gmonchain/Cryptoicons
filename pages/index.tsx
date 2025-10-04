@@ -16,7 +16,7 @@ export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons(); // Fetches all crypto icon data, along with loading and error states.
   const { toasts, addToast, removeToast } = useToast(); // State and functions for managing toast notifications.
   const [searchQuery, setSearchQuery] = useState(''); // State for the search input value.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State for the currently selected icon for preview.
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredIcons = useMemo(() => {
