@@ -98,7 +98,7 @@ export default function HomePage() { // Main page component for displaying and m
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( // Conditionally displays search results information to the user.
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
