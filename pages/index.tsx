@@ -11,7 +11,7 @@ import { Loader2 } from 'lucide-react'; // Importing the Loader2 icon for loadin
 
 export default function HomePage() { // Main component for the cryptocurrency icon gallery
   const { icons, loading, error } = useCryptoIcons(); // Fetching icons, loading state, and error from the custom hook
-  const { toasts, addToast, removeToast } = useToast();
+  const { toasts, addToast, removeToast } = useToast(); // Managing toast notifications with a custom hook
   const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to hold the icon currently selected for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
