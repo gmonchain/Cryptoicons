@@ -122,7 +122,7 @@ export default function HomePage() {
               />
             ))}
           </div>
-        ) : searchQuery.trim() ? ( // Message displayed when no icons match the search query.
+        ) : searchQuery.trim() ? ( // Displays a message when no icons are found matching the search.
           <div className="text-center py-12">
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
