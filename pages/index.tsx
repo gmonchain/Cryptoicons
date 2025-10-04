@@ -93,7 +93,7 @@ export default function HomePage() { // Main page component for displaying crypt
         {/* Stats */}
         <Stats // Displays statistics about the total and filtered icons.
           totalIcons={icons.length} // Passes the total number of available icons.
-          filteredIcons={filteredIcons.length}
+          filteredIcons={filteredIcons.length} // Passes the number of icons currently displayed after filtering.
           isFiltered={!!searchQuery.trim()}
         />
 
