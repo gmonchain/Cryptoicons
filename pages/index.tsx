@@ -54,7 +54,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
 
   if (loading) { // Display a loading spinner while icons are being fetched
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Centered container for loading state */}
         <div className="text-center">
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
