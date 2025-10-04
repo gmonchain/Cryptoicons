@@ -139,7 +139,7 @@ export default function HomePage() {
         isOpen={isModalOpen} // Controls the visibility of the modal.
         onClose={handleCloseModal} // Callback function to close the modal.
         onCopy={handleCopy} // Callback function for copying icon SVG from the modal.
-        onDownload={handleDownload}
+        onDownload={handleDownload} // Callback function for downloading icon SVG from the modal.
       />
 
       {/* Toast Notifications */}
