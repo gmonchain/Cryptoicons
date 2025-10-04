@@ -100,7 +100,7 @@ export default function HomePage() {
         {/* Results Info */}
         {searchQuery.trim() && ( // Conditionally renders search results information.
           <div className="mb-6">
-            <p className="text-gray-600">
+            <p className="text-gray-600"> {/* Displays feedback about the search results. */}
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
                 : `No icons found matching "${searchQuery}"`
@@ -109,41 +109,31 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Icons Grid */}
-        {filteredIcons.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-            {filteredIcons.map((icon) => (
-              <IconCard
-                key={icon.name}
-                icon={icon}
-                onCopy={handleCopy}
-                onDownload={handleDownload}
-                onPreview={handlePreview}
-              />
-            ))}
-          </div>
-        ) : searchQuery.trim() ? (
-          <div className="text-center py-12">
-            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-              <span className="text-gray-400 text-2xl">🔍</span>
-            </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
-          </div>
-        ) : null}
+        {/* Icon Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredIcons.map(icon => (
+            <IconCard
+              key={icon.id}
+              icon={icon}
+              onCopy={handleCopy}
+              onDownload={handleDownload}
+              onPreview={handlePreview}
+            />
+          ))}
+        </div>
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal
-        icon={selectedIcon}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onCopy={handleCopy}
-        onDownload={handleDownload}
-      />
+      {selectedIcon && (
+        <PreviewModal
+          icon={selectedIcon}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      )}
 
-      {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} />
+      {/* Toast Container */}
+      <ToastContainer toasts={toasts} onRemove={removeToast} />
     </div>
   );
 }
