@@ -83,24 +83,24 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar
+          <SearchBar // Component for searching crypto icons.
             value={searchQuery}
             onChange={setSearchQuery}
-            placeholder="Search crypto icons by name or symbol..." // Placeholder text for the search input.
+            placeholder="Search crypto icons by name or symbol..."
           />
         </div>
 
         {/* Stats */}
         <Stats // Displays statistics about the total and filtered icons.
-          totalIcons={icons.length} // Total number of available icons.
-          filteredIcons={filteredIcons.length} // Number of icons after applying the search filter.
-          isFiltered={!!searchQuery.trim()} // Indicates if a search filter is currently active.
+          totalIcons={icons.length}
+          filteredIcons={filteredIcons.length}
+          isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Conditionally renders a message based on search results.
+        {searchQuery.trim() && (
           <div className="mb-6">
-            <p className="text-gray-600"> {/* Displays feedback about the search results. */}
+            <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
                 : `No icons found matching "${searchQuery}"`
@@ -110,31 +110,31 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Renders the grid of icons if there are results.
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Component to display individual icon details and actions.
-                key={icon.name} // Unique key for each icon card.
-                icon={icon} // The icon data passed to the card.
-                onCopy={handleCopy} // Callback function for copying icon SVG.
-                onDownload={handleDownload} // Callback function for downloading icon SVG.
-                onPreview={handlePreview} // Callback function for previewing the icon.
+              <IconCard
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
               />
             ))}
           </div>
-        ) : searchQuery.trim() ? ( // Displays a message when no icons are found matching the search.
+        ) : searchQuery.trim() ? (
           <div className="text-center py-12">
-            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the magnifying glass icon container. */}
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3> {/* Heading for the no icons found message. */}
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
             <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Displays a detailed view of the selected icon.
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -143,7 +143,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Displays temporary notifications to the user. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
