@@ -132,8 +132,8 @@ export default function HomePage() { // Main page component for displaying and m
         />
       )}
 
-      {/* Toast Container */}
-      <ToastContainer toasts={toasts} onRemove={removeToast} /> {/* Displays temporary notifications to the user. */}
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Displays temporary notifications to the user. */}
     </div>
   );
 }
