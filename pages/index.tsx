@@ -63,7 +63,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     );
   }
 
-  if (error) {
+  if (error) { // Display an error message if icon fetching fails
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
