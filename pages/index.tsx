@@ -144,7 +144,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} />
+      <ToastContainer toasts={toasts} onClose={removeToast} /> // Container for displaying toast notifications.
     </div>
   );
 }
