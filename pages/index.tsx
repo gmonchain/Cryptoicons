@@ -125,7 +125,7 @@ export default function HomePage() { // Main page component for displaying and m
 
       {/* Preview Modal */}
       {selectedIcon && ( // Conditionally renders the preview modal if an icon is selected.
-        <PreviewModal
+        <PreviewModal // Displays a detailed view of the selected icon.
           icon={selectedIcon}
           isOpen={isModalOpen}
           onClose={handleCloseModal}
