@@ -3,7 +3,7 @@ import { SearchBar } from '../components/SearchBar'; // Component for searching 
 import { Stats } from '../components/Stats'; // Component for displaying icon statistics.
 import { IconCard } from '../components/IconCard'; // Component for displaying individual crypto icons.
 import { PreviewModal } from '../components/PreviewModal'; // Modal for displaying a larger view of a selected icon.
-import { ToastContainer } from '../components/Toast';
+import { ToastContainer } from '../components/Toast'; // Container for displaying toast notifications.
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
 import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
