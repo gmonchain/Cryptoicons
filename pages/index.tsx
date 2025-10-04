@@ -42,7 +42,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => {
+  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
