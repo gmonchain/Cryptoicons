@@ -94,7 +94,7 @@ export default function HomePage() {
         <Stats // Displays statistics about the total and filtered icons.
           totalIcons={icons.length} // The total number of available cryptocurrency icons.
           filteredIcons={filteredIcons.length} // The number of icons currently displayed after applying filters.
-          isFiltered={!!searchQuery.trim()}
+          isFiltered={!!searchQuery.trim()} // Indicates whether a search filter is currently active.
         />
 
         {/* Results Info */}
