@@ -70,8 +70,8 @@ export default function HomePage() { // Main component for the cryptocurrency ic
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Container for the error warning icon. */}
             <span className="text-red-600 text-2xl">⚠️</span> {/* Warning emoji to indicate an error. */}
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
-          <p className="text-gray-600">{error}</p>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Heading for the error message, providing context. */}
+          <p className="text-gray-600">{error}</p> {/* Displays the specific error message details from the error object. */}
         </div>
       </div>
     );
