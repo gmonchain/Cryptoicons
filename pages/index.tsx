@@ -94,7 +94,7 @@ export default function HomePage() {
         <Stats // Displays statistics about the total and filtered icons.
           totalIcons={icons.length} // Total number of available icons.
           filteredIcons={filteredIcons.length} // Number of icons after applying the search filter.
-          isFiltered={!!searchQuery.trim()}
+          isFiltered={!!searchQuery.trim()} // Indicates if a search filter is currently active.
         />
 
         {/* Results Info */}
