@@ -36,7 +36,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     const link = document.createElement('a'); // Creates a temporary anchor element for downloading.
     link.href = icon.path; // Sets the download link to the icon's SVG path.
     link.download = icon.fileName; // Specifies the default filename for the downloaded file.
-    document.body.appendChild(link);
+    document.body.appendChild(link); // Temporarily adds the link to the document body to enable download.
     link.click();
     document.body.removeChild(link);
     addToast(`${icon.displayName} downloaded!`, 'success');
