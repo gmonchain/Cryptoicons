@@ -9,11 +9,11 @@ import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main component for the cryptocurrency icon application.
-  const { icons, loading, error } = useCryptoIcons(); // `icons` holds the fetched cryptocurrency icon data. `loading` indicates if icons are currently being fetched. `error` stores any error messages during fetching.
-  const { toasts, addToast, removeToast } = useToast(); // `toasts` is an array of active toast notifications. `addToast` is a function to display a new toast. `removeToast` is a function to dismiss a toast.
-  const [searchQuery, setSearchQuery] = useState(''); // `searchQuery` stores the current value of the search input field. `setSearchQuery` updates the search query.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // `selectedIcon` stores the full details of the currently selected icon for preview.
+export default function HomePage() {
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback.
+  const [searchQuery, setSearchQuery] = useState(''); // State for the search input value.
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
   const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the preview modal.
 
   const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
@@ -98,7 +98,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( // Conditionally renders search results information.
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
