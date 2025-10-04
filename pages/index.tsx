@@ -6,7 +6,7 @@ import { PreviewModal } from '../components/PreviewModal'; // Modal window for d
 import { ToastContainer } from '../components/Toast'; // Container for displaying transient notifications.
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching and managing crypto icon data.
 import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications.
-import { CryptoIcon } from '../types';
+import { CryptoIcon } from '../types'; // Type definition for a cryptocurrency icon.
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
