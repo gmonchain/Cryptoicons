@@ -1,22 +1,23 @@
-import { useState, useMemo } from 'react'; // Importing necessary React hooks for state management and memoization
-import { SearchBar } from '../components/SearchBar'; // Importing the SearchBar component for icon searching
-import { Stats } from '../components/Stats'; // Importing the Stats component to display icon statistics
-import { IconCard } from '../components/IconCard'; // Importing the IconCard component to render individual icon cards
-import { PreviewModal } from '../components/PreviewModal'; // Importing the PreviewModal component for icon details
-import { ToastContainer } from '../components/Toast'; // Importing the ToastContainer for displaying notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching cryptocurrency icons
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Importing the CryptoIcon type definition
-import { Loader2 } from 'lucide-react'; // Importing the Loader2 icon for loading indicators
+// This file contains the main page component for the Cryptoicons application.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main component for the cryptocurrency icon gallery
-  const { icons, loading, error } = useCryptoIcons(); // Fetching icons, loading state, and error from the custom hook
-  const { toasts, addToast, removeToast } = useToast(); // Managing toast notifications with a custom hook
-  const [searchQuery, setSearchQuery] = useState(''); // State to hold the current search query
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to hold the icon currently selected for preview
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
+export default function HomePage() {
+  const { icons, loading, error } = useCryptoIcons();
+  const { toasts, addToast, removeToast } = useToast();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredIcons = useMemo(() => { // Memoized list of icons based on the search query
+  const filteredIcons = useMemo(() => {
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
@@ -27,12 +28,12 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard
+  const handleCopy = async (content: string, name: string) => {
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => { // Handles downloading an SVG icon file
+  const handleDownload = (icon: CryptoIcon) => {
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -42,30 +43,30 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => { // Handles opening the preview modal for a selected icon
+  const handlePreview = (icon: CryptoIcon) => {
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => { // Handles closing the preview modal
+  const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
-  if (loading) { // Display a loading spinner while icons are being fetched
+  if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Centered container for loading state */}
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Loading spinner icon */}
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
   }
 
-  if (error) { // Display an error message if icon fetching fails
+  if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center"> {/* Centered container for error message */}
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
           <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <span className="text-red-600 text-2xl">⚠️</span>
@@ -78,11 +79,11 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50"> {/* Main container for the entire page layout */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area of the page */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the SearchBar component */}
+        <div className="max-w-2xl mx-auto mb-8">
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
@@ -90,14 +91,14 @@ export default function HomePage() { // Main component for the cryptocurrency ic
           />
         </div>
 
-        {/* Stats */} {/* Displays statistics about the icons */}
+        {/* Stats */}
         <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()}
         />
 
-        {/* Results Info */} {/* Displays information about the search results */}
+        {/* Results Info */}
         {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
@@ -109,10 +110,10 @@ export default function HomePage() { // Main component for the cryptocurrency ic
           </div>
         )}
 
-        {/* Icons Grid */} {/* Container for displaying the cryptocurrency icons in a grid layout */}
+        {/* Icons Grid */}
         {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-            {filteredIcons.map((icon) => ( // Maps through filtered icons and renders an IconCard for each
+            {filteredIcons.map((icon) => (
               <IconCard
                 key={icon.name}
                 icon={icon}
@@ -122,7 +123,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
               />
             ))}
           </div>
-        ) : searchQuery.trim() ? ( // Display a message if no icons are found for the current search query
+        ) : searchQuery.trim() ? (
           <div className="text-center py-12">
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
@@ -133,7 +134,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         ) : null}
       </main>
 
-      {/* Preview Modal */} {/* Modal for displaying a larger preview of a selected icon */}
+      {/* Preview Modal */}
       <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
@@ -141,7 +142,8 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         onCopy={handleCopy}
         onDownload={handleDownload}
       />
-      {/* Toast Notifications */} {/* Container for displaying toast notifications */}
+
+      {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
