@@ -99,7 +99,7 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( // Displays search result count if a query is active.
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
