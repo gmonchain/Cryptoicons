@@ -10,7 +10,7 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() { // Main component for the cryptocurrency icon application.
-  const { icons, loading, error } = useCryptoIcons(); // `icons` holds the fetched cryptocurrency icon data.
+  const { icons, loading, error } = useCryptoIcons(); // `icons` holds the fetched cryptocurrency icon data. `loading` indicates if icons are currently being fetched.
   const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback.
   const [searchQuery, setSearchQuery] = useState(''); // State for the search input value.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
