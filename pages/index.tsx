@@ -116,7 +116,7 @@ export default function HomePage() {
               <IconCard // Renders each icon as a card with copy, download, and preview actions.
                 key={icon.name} // Unique key for React list rendering.
                 icon={icon} // Passes the icon data to the IconCard component.
-                onCopy={handleCopy}
+                onCopy={handleCopy} // Callback function for copying the icon SVG.
                 onDownload={handleDownload}
                 onPreview={handlePreview}
               />
