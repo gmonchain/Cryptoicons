@@ -19,7 +19,7 @@ export default function HomePage() { // Main page component for displaying and m
   const filteredIcons = useMemo(() => { // Filters the list of icons based on the search query, memoized for performance.
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase(); // Converts search query to lowercase for case-insensitive matching.
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
