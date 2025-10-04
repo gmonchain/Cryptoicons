@@ -116,7 +116,7 @@ export default function HomePage() {
               <IconCard // Component to display individual icon details and actions.
                 key={icon.name} // Unique key for each icon card.
                 icon={icon} // The icon data passed to the card.
-                onCopy={handleCopy}
+                onCopy={handleCopy} // Callback function for copying icon SVG.
                 onDownload={handleDownload}
                 onPreview={handlePreview}
               />
