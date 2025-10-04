@@ -98,8 +98,8 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Conditionally displays search results information.
-          <div className="mb-6"> {/* Container for the search results message. */}
+        {searchQuery.trim() && ( /* Conditionally displays search results information if a search query is active. */
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -110,10 +110,10 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Displays the grid of icons if there are any to show.
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Renders each icon as a card with copy, download, and preview actions.
+              <IconCard
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
@@ -134,7 +134,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal component for displaying a larger view of the selected icon.
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -143,7 +143,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Displays temporary notifications to the user. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
