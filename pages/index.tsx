@@ -4,7 +4,7 @@ import { useState, // Manages component-specific state
  } from 'react';
 import { SearchBar } from '../components/SearchBar'; // Component for searching icons
 import { Stats } from '../components/Stats'; // Displays icon statistics
-import { IconCard } from '../components/IconCard';
+import { IconCard } from '../components/IconCard'; // Individual icon display component
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
