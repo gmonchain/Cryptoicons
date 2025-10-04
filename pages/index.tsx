@@ -107,23 +107,8 @@ export default function HomePage() {
               }
             </p>
           </div>
-        )}
-
-        {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( /* Displays the grid of icons if there are any to show based on filtering. */
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid container for displaying icon cards. */}
-            {filteredIcons.map((icon) => (
-              <IconCard // Renders each icon as a card with copy, download, and preview actions.
-                key={icon.name} // Unique key for React list rendering.
-                icon={icon} // Passes the icon data to the IconCard component.
-                onCopy={handleCopy} // Callback function for copying the icon SVG.
-                onDownload={handleDownload} // Callback function for downloading the icon SVG.
-                onPreview={handlePreview} // Callback function for previewing the icon in a modal.
-              />
-            ))}
-          </div>
-        ) : searchQuery.trim() ? (
-          <div className="text-center py-12">
+        ) : searchQuery.trim() ? ( /* Displays a message if no icons are found matching the search query. */
+          <div className="text-center py-12"> {/* Container for the no icons found message. */}
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
