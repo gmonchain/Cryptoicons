@@ -1,18 +1,16 @@
-// This file contains the main page component for the Cryptoicons application.
-import { useState, // Manages component-specific state
-  useMemo, // Optimizes performance by memoizing values
- } from 'react';
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats'; // Displays icon statistics
-import { IconCard } from '../components/IconCard'; // Individual icon display component
-import { PreviewModal } from '../components/PreviewModal'; // Modal for icon preview
-import { ToastContainer } from '../components/Toast'; // Container for toast notifications
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Hook for fetching crypto icons
-import { useToast } from '../hooks/useToast'; // Hook for managing toast notifications
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
-import { Loader2 } from 'lucide-react'; // Icon for loading indicator
+// Initial comment for continuous edits
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
-export default function HomePage() { // Main component for the home page
+export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
