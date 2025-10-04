@@ -111,7 +111,7 @@ export default function HomePage() {
         {/* Icons Grid */}
         {filteredIcons.length > 0 ? ( // Conditionally renders the grid of icons or a 'no icons found' message.
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
-            {filteredIcons.map(icon => (
+            {filteredIcons.map(icon => ( // Maps through the filtered icons and renders an IconCard for each.
               <IconCard
                 key={icon.id}
                 icon={icon}
