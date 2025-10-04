@@ -1,6 +1,7 @@
 // This file contains the main page component for the Cryptoicons application.
 import { useState, // Manages component-specific state
-  useMemo } from 'react';
+  useMemo, // Optimizes performance by memoizing values
+ } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
