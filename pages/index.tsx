@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'; // React hook for managing state in functional components.
+import { useState, useMemo } from 'react'; // `useState` for state management, `useMemo` for performance optimization.
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
