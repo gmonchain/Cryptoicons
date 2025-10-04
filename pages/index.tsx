@@ -8,7 +8,7 @@ import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icon data.
 import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications.
-import { CryptoIcon } from '../types';
+import { CryptoIcon } from '../types'; // Type definition for a cryptocurrency icon.
 import { Loader2 } from 'lucide-react';
 
 // Main component for the homepage, displaying crypto icons and search functionality.
