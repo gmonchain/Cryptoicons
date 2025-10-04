@@ -114,7 +114,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
             {filteredIcons.map((icon) => (
               <IconCard // Component to display individual icon details and actions.
-                key={icon.name}
+                key={icon.name} // Unique key for each icon card.
                 icon={icon}
                 onCopy={handleCopy}
                 onDownload={handleDownload}
