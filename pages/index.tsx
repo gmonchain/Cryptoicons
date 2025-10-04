@@ -9,7 +9,7 @@ import { PreviewModal } from '../components/PreviewModal'; // Modal for icon pre
 import { ToastContainer } from '../components/Toast'; // Container for toast notifications
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Hook for fetching crypto icons
 import { useToast } from '../hooks/useToast'; // Hook for managing toast notifications
-import { CryptoIcon } from '../types';
+import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
