@@ -134,7 +134,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal component for displaying a larger view of the selected icon.
+      <PreviewModal // Modal component for displaying a larger view of the selected icon, including copy and download options.
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
