@@ -47,7 +47,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = () => { // Handles closing the preview modal
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
