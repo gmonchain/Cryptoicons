@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'; // React hooks for managing state and memoizing values.
+import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
@@ -16,7 +16,8 @@ export default function HomePage() {
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
   const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the preview modal.
 
-  const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
+  const filteredIcons = useMemo(() => {
+    // This memoized function filters the icons based on the search query.
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
@@ -94,12 +95,12 @@ export default function HomePage() {
         <Stats // Displays statistics about the total and filtered icons.
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
-          isFiltered={!!searchQuery.trim()} // Indicates whether a search filter is currently active.
+          isFiltered={!!searchQuery.trim()}
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( /* Conditionally displays search results information if a search query is active. */
-          <div className="mb-6"> {/* Container for the search results message. */}
+        {searchQuery.trim() && (
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -107,29 +108,43 @@ export default function HomePage() {
               }
             </p>
           </div>
-        ) : searchQuery.trim() ? ( /* Displays a message if no icons are found matching the search query. */
-          <div className="text-center py-12"> {/* Container for the no icons found message. */}
-            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the magnifying glass icon container. */}
+        )}
+
+        {/* Icons Grid */}
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            {filteredIcons.map((icon) => (
+              <IconCard
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
+              />
+            ))}
+          </div>
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3> {/* Heading for the no icons found message. */}
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* Suggestion for refining the search. */}
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal component for displaying a larger view of the selected icon.
-        icon={selectedIcon} // Passes the currently selected icon to the modal.
-        isOpen={isModalOpen} // Controls the visibility of the modal.
-        onClose={handleCloseModal} // Callback function to close the modal.
-        onCopy={handleCopy} // Callback function for copying icon SVG from the modal.
-        onDownload={handleDownload} // Callback function for downloading icon SVG from the modal.
+      <PreviewModal
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} // Passes the list of active toast notifications.
-        onClose={removeToast} /> {/* Callback function to remove a toast notification. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
