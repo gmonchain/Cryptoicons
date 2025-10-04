@@ -43,8 +43,8 @@ export default function HomePage() { // Main component for the Cryptoicons appli
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
-    setSelectedIcon(icon);
-    setIsModalOpen(true);
+    setSelectedIcon(icon); // Stores the icon object to be displayed in the modal.
+    setIsModalOpen(true); // Opens the preview modal.
   };
 
   const handleCloseModal = () => { // Closes the preview modal and clears the selected icon.
