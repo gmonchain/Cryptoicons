@@ -106,6 +106,8 @@ export default function HomePage() {
                 : `No icons found matching "${searchQuery}"`}
             </p>
           </div>
+        ) : ( // Displays a message when no icons are found based on the search query.
+          <p className="text-center text-gray-600">No icons found matching your search.</p>
         )}
 
         {/* Icons Grid */}
