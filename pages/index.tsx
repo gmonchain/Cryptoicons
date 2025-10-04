@@ -20,7 +20,7 @@ export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal.
 
   const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
-    if (!searchQuery.trim()) return icons;
+    if (!searchQuery.trim()) return icons; // If search query is empty, return all icons.
     
     const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
