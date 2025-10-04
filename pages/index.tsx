@@ -118,7 +118,7 @@ export default function HomePage() {
                 icon={icon} // The icon data passed to the card.
                 onCopy={handleCopy} // Callback function for copying icon SVG.
                 onDownload={handleDownload} // Callback function for downloading icon SVG.
-                onPreview={handlePreview}
+                onPreview={handlePreview} // Callback function for previewing the icon.
               />
             ))}
           </div>
