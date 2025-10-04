@@ -139,7 +139,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal
+      <PreviewModal // Modal component for displaying a larger view of the selected icon.
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
