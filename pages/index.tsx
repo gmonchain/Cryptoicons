@@ -22,7 +22,7 @@ export default function HomePage() {
   const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
     if (!searchQuery.trim()) return icons; // If search query is empty, return all icons.
     
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase(); // Converts the search query to lowercase for case-insensitive matching.
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
