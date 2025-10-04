@@ -123,7 +123,7 @@ export default function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
+          <div className="text-center py-12"> {/* Message displayed when no icons match the search query. */}
             <p className="text-gray-600">No icons found matching your search.</p>
           </div>
         )}
