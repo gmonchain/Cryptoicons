@@ -16,11 +16,10 @@ export default function HomePage() {
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
   const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the preview modal.
 
-  const filteredIcons = useMemo(() => {
-    // This memoized function filters the icons based on the search query.
+  const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
     if (!searchQuery.trim()) return icons;
     
-    const query = searchQuery.toLowerCase(); // Converts the search query to lowercase for case-insensitive matching.
+    const query = searchQuery.toLowerCase();
     return icons.filter(icon =>
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
@@ -28,14 +27,12 @@ export default function HomePage() {
     );
   }, [icons, searchQuery]);
 
-  const handleCopy = async (content: string, name: string) => {
-      // Copies the provided content (SVG) to the clipboard.
+  const handleCopy = async (content: string, name: string) => { // Handles copying icon SVG to clipboard.
       await navigator.clipboard.writeText(content);
       addToast(`${name} SVG copied to clipboard!`, 'success');
   };
 
-  const handleDownload = (icon: CryptoIcon) => {
-    // Initiates the download of an icon's SVG file.
+  const handleDownload = (icon: CryptoIcon) => { // Handles downloading the icon SVG file.
     const link = document.createElement('a');
     link.href = icon.path;
     link.download = icon.fileName;
@@ -45,38 +42,36 @@ export default function HomePage() {
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
-  const handlePreview = (icon: CryptoIcon) => {
-    // Sets the selected icon and opens the preview modal.
+  const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
     setSelectedIcon(icon);
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    // Closes the modal and resets the selected icon.
+  const handleCloseModal = () => { // Closes the preview modal and clears the selected icon.
     setIsModalOpen(false);
     setSelectedIcon(null);
   };
 
   if (loading) { // Displays a loading spinner while fetching icons.
-    return ( // Render a loading state UI.
+    return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" /> {/* Loading spinner icon. */}
-          <p className="text-gray-600 text-lg">Loading crypto icons...</p> {/* Loading message. */}
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 text-lg">Loading crypto icons...</p>
         </div>
       </div>
     );
   }
 
   if (error) { // Displays an error message if icon fetching fails.
-    return ( // Render an error state UI.
+    return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center max-w-md">
-          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the error icon container. */}
-            <span className="text-red-600 text-2xl">⚠️</span> {/* Warning emoji. */}
+          <div className="bg-red-100 rounded-full p-3 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <span className="text-red-600 text-2xl">⚠️</span>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2> {/* Error message heading. */}
-          <p className="text-gray-600">{error}</p> {/* Displays the specific error message. */}
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Icons</h2>
+          <p className="text-gray-600">{error}</p>
         </div>
       </div>
     );
@@ -88,7 +83,7 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar // Search input component.
+          <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
@@ -115,10 +110,10 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Conditionally renders the grid of icons or a no-results message.
+        {filteredIcons.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Renders an individual icon card.
+              <IconCard
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
@@ -127,19 +122,19 @@ export default function HomePage() {
               />
             ))}
           </div>
-        ) : searchQuery.trim() ? ( // Displays a message if no icons are found matching the search query.
-          <div className="text-center py-12"> {/* Container for the no icons found message. */}
-            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the magnifying glass icon container. */}
-              <span className="text-gray-400 text-2xl">🔍</span> {/* Magnifying glass emoji for no results. */}
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-gray-400 text-2xl">🔍</span>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3> {/* Heading for the no icons found message. */}
-            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p> {/* Suggestion for refining the search. */}
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
         ) : null}
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal component for displaying a larger view of the selected icon.
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -148,8 +143,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} // Displays toast notifications to the user.
-        onClose={removeToast} />
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
