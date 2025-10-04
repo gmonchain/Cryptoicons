@@ -97,7 +97,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
           isFiltered={!!searchQuery.trim()}
         />
 
-        {/* Results Info */}
+        {/* Results Info */} {/* Displays information about the search results */}
         {searchQuery.trim() && (
           <div className="mb-6">
             <p className="text-gray-600">
