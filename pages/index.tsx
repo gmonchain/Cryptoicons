@@ -97,7 +97,7 @@ export default function HomePage() {
           isFiltered={!!searchQuery.trim()}
         />
 
-        {/* Results Info */}
+        {/* Results Info - Displays search feedback */}
         {searchQuery.trim() && ( // Conditionally displays search results information.
           <div className="mb-6">
             <p className="text-gray-600"> {/* Dynamically displays a message based on the search results. */}
