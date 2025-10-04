@@ -115,7 +115,7 @@ export default function HomePage() {
             {filteredIcons.map((icon) => (
               <IconCard // Renders each icon as a card with copy, download, and preview actions.
                 key={icon.name} // Unique key for React list rendering.
-                icon={icon}
+                icon={icon} // Passes the icon data to the IconCard component.
                 onCopy={handleCopy}
                 onDownload={handleDownload}
                 onPreview={handlePreview}
