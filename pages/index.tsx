@@ -133,7 +133,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         ) : null}
       </main>
 
-      {/* Preview Modal */}
+      {/* Preview Modal */} {/* Modal for displaying a larger preview of a selected icon */}
       <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
