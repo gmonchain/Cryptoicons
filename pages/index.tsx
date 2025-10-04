@@ -98,24 +98,23 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Conditionally displays search results information.
+        {searchQuery.trim() && (
           <div className="mb-6">
-            <p className="text-gray-600"> {/* Dynamically displays a message based on the search results. */}
+            <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
-                : `No icons found matching "${searchQuery}"`}
+                : `No icons found matching "${searchQuery}"`
+              }
             </p>
           </div>
-        ) : ( // Displays a message when no icons are found based on the search query.
-          <p className="text-center text-gray-600">No icons found matching your search.</p>
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Conditionally renders the grid of icons or a 'no icons found' message.
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
-            {filteredIcons.map(icon => ( // Maps through the filtered icons and renders an IconCard for each.
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+            {filteredIcons.map((icon) => (
               <IconCard
-                key={icon.id}
+                key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
                 onDownload={handleDownload}
@@ -123,22 +122,28 @@ export default function HomePage() {
               />
             ))}
           </div>
-        ) : (
-          <p className="text-center text-gray-600">No icons found matching your search.</p>
-        )}
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-gray-400 text-2xl">🔍</span>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
+          </div>
+        ) : null}
       </main>
 
       {/* Preview Modal */}
-      {selectedIcon && ( // Conditionally renders the PreviewModal if an icon is selected.
-        <PreviewModal
-          icon={selectedIcon}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
-      )}
+      <PreviewModal
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
+      />
 
-      {/* Toast Container */}
-      <ToastContainer toasts={toasts} onRemove={removeToast} />
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
