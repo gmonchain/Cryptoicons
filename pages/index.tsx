@@ -98,7 +98,7 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( /* Conditionally displays search results information if a search query is active. */
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
