@@ -6,7 +6,7 @@ import { PreviewModal } from '../components/PreviewModal'; // Importing the Prev
 import { ToastContainer } from '../components/Toast'; // Importing the ToastContainer for displaying notifications
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching cryptocurrency icons
 import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications
-import { CryptoIcon } from '../types';
+import { CryptoIcon } from '../types'; // Importing the CryptoIcon type definition
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() { // Main component for the cryptocurrency icon gallery
