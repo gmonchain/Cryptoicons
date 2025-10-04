@@ -1,13 +1,13 @@
-import { useState, useMemo } from 'react'; // React hooks for managing state and memoizing values.
-import { SearchBar } from '../components/SearchBar'; // Component for searching crypto icons.
-import { Stats } from '../components/Stats'; // Component for displaying icon statistics.
-import { IconCard } from '../components/IconCard'; // Component for displaying individual crypto icons.
-import { PreviewModal } from '../components/PreviewModal'; // Modal for displaying a larger view of a selected icon.
-import { ToastContainer } from '../components/Toast'; // Container for displaying toast notifications.
-import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching and managing crypto icon data.
-import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications.
-import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons.
-import { Loader2 } from 'lucide-react'; // Icon component used for loading indicators.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
+import { IconCard } from '../components/IconCard';
+import { PreviewModal } from '../components/PreviewModal';
+import { ToastContainer } from '../components/Toast';
+import { useCryptoIcons } from '../hooks/useCryptoIcons';
+import { useToast } from '../hooks/useToast';
+import { CryptoIcon } from '../types';
+import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
@@ -83,7 +83,7 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar // Component for entering search queries.
+          <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..." // Placeholder text for the search input.
@@ -112,9 +112,9 @@ export default function HomePage() {
         {/* Icons Grid */}
         {filteredIcons.length > 0 ? ( // Conditionally renders the grid of icons or a 'no results' message.
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
-            {filteredIcons.map(icon => (
+            {filteredIcons.map((icon) => (
               <IconCard // Renders an individual icon card with copy, download, and preview functionality.
-                key={icon.id}
+                key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
                 onDownload={handleDownload}
@@ -122,24 +122,28 @@ export default function HomePage() {
               />
             ))}
           </div>
-        ) : (
-          <div className="text-center py-12"> {/* Message displayed when no icons match the search query. */}
-            <p className="text-gray-600">No icons found matching your search.</p>
+        ) : searchQuery.trim() ? ( // Message displayed when no icons match the search query.
+          <div className="text-center py-12">
+            <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+              <span className="text-gray-400 text-2xl">🔍</span>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
+            <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
           </div>
-        )}
+        ) : null}
       </main>
 
       {/* Preview Modal */}
-      {selectedIcon && ( // Conditionally renders the preview modal if an icon is selected.
-        <PreviewModal // Displays a detailed view of the selected icon.
-          icon={selectedIcon}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
-      )}
+      <PreviewModal // Displays a detailed view of the selected icon.
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
+      />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onRemove={removeToast} /> {/* Displays temporary notifications to the user. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Displays temporary notifications to the user. */}
     </div>
   );
 }
