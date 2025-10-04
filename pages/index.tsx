@@ -11,6 +11,7 @@ import { useToast } from '../hooks/useToast';
 import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
+// Main component for the homepage, displaying crypto icons and search functionality.
 export default function HomePage() {
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
