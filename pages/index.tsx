@@ -39,7 +39,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     document.body.appendChild(link); // Temporarily adds the link to the document body to enable download.
     link.click(); // Programmatically clicks the link to initiate the download.
     document.body.removeChild(link); // Removes the temporary link element from the document body.
-    addToast(`${icon.displayName} downloaded!`, 'success');
+    addToast(`${icon.displayName} downloaded!`, 'success'); // Displays a success toast notification upon successful download.
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
