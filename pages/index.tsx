@@ -43,7 +43,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
-    setSelectedIcon(icon);
+    setSelectedIcon(icon); // Stores the icon to be displayed in the preview modal.
     setIsModalOpen(true);
   };
 
