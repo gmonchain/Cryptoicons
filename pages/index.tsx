@@ -32,7 +32,7 @@ export default function HomePage() {
 
   const handleCopy = async (content: string, name: string) => { // Handles copying SVG content to clipboard.
       await navigator.clipboard.writeText(content); // Writes the provided SVG content to the clipboard.
-      addToast(`${name} SVG copied to clipboard!`, 'success');
+      addToast(`${name} SVG copied to clipboard!`, 'success'); // Displays a success toast notification.
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the icon SVG file.
