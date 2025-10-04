@@ -1,4 +1,5 @@
 // Initial comment for continuous edits
+// Second comment for continuous edits
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
