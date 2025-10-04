@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'; // `useState` for state management, `useMemo` for performance optimization.
 import { SearchBar } from '../components/SearchBar'; // Component for user input to filter icons.
-import { Stats } from '../components/Stats';
+import { Stats } from '../components/Stats'; // Component to display icon count statistics.
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
