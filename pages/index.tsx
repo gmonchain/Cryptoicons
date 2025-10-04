@@ -85,7 +85,7 @@ export default function HomePage() { // Main page component for displaying crypt
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
           <SearchBar // Input component for filtering icons based on user search.
             value={searchQuery} // Binds the search bar's value to the searchQuery state.
-            onChange={setSearchQuery}
+            onChange={setSearchQuery} // Updates the searchQuery state as the user types.
             placeholder="Search crypto icons by name or symbol..."
           />
         </div>
