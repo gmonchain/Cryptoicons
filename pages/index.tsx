@@ -86,7 +86,7 @@ export default function HomePage() {
           <SearchBar // Component for searching crypto icons.
             value={searchQuery} // The current value of the search input.
             onChange={setSearchQuery} // Callback function to update the search query.
-            placeholder="Search crypto icons by name or symbol..."
+            placeholder="Search crypto icons by name or symbol..." // Placeholder text for the search input.
           />
         </div>
 
