@@ -98,7 +98,7 @@ export default function HomePage() {
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && (
+        {searchQuery.trim() && ( // Displays information about the search results.
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
