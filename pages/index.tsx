@@ -123,7 +123,7 @@ export default function HomePage() {
         icon={selectedIcon} // Passes the currently selected icon to the modal.
         isOpen={isModalOpen} // Controls the visibility of the modal.
         onClose={handleCloseModal} // Callback function to close the modal.
-        onCopy={handleCopy}
+        onCopy={handleCopy} // Callback function for copying icon SVG from the modal.
         onDownload={handleDownload}
       />
 
