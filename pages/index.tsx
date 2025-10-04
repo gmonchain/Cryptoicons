@@ -36,9 +36,9 @@ export default function HomePage() { // Main component for the Cryptoicons appli
     const link = document.createElement('a'); // Creates a temporary anchor element to trigger the download.
     link.href = icon.path; // Sets the download link to the icon's SVG path.
     link.download = icon.fileName; // Sets the suggested filename for the downloaded file.
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    document.body.appendChild(link); // Appends the temporary link to the document body to enable the click event.
+    link.click(); // Programmatically clicks the hidden link to initiate the download.
+    document.body.removeChild(link); // Removes the temporary link from the document body.
     addToast(`${icon.displayName} downloaded!`, 'success');
   };
 
