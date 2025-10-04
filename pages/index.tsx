@@ -20,7 +20,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase(); // Converts the search query to lowercase for case-insensitive matching.
-    return icons.filter(icon =>
+    return icons.filter(icon => // Filters the icons based on display name, name, or symbol matching the query.
       icon.displayName.toLowerCase().includes(query) ||
       icon.name.toLowerCase().includes(query) ||
       icon.symbol?.toLowerCase().includes(query)
