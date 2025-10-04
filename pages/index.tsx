@@ -98,7 +98,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( // Conditionally renders search results information.
+        {searchQuery.trim() && ( // Conditionally displays search results information based on query.
           <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
