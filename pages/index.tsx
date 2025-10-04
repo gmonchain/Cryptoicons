@@ -48,8 +48,8 @@ export default function HomePage() { // Main component for the Cryptoicons appli
   };
 
   const handleCloseModal = () => { // Closes the preview modal and clears the selected icon.
-    setIsModalOpen(false);
-    setSelectedIcon(null);
+    setIsModalOpen(false); // Sets the modal visibility state to false.
+    setSelectedIcon(null); // Clears the currently selected icon from state.
   };
 
   if (loading) { // Displays a loading spinner while fetching icons.
