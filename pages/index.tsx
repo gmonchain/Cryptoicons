@@ -16,7 +16,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // State to hold the icon currently selected for preview
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the visibility of the preview modal
 
-  const filteredIcons = useMemo(() => {
+  const filteredIcons = useMemo(() => { // Memoized list of icons based on the search query
     if (!searchQuery.trim()) return icons;
     
     const query = searchQuery.toLowerCase();
