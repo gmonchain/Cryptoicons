@@ -109,18 +109,24 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Icon Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredIcons.map(icon => (
-            <IconCard
-              key={icon.id}
-              icon={icon}
-              onCopy={handleCopy}
-              onDownload={handleDownload}
-              onPreview={handlePreview}
-            />
-          ))}
-        </div>
+        {/* Icons Grid */}
+        {filteredIcons.length > 0 ? ( // Conditionally renders the grid of icons or a 'no results' message.
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
+            {filteredIcons.map(icon => (
+              <IconCard
+                key={icon.id}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-600">No icons found matching your search.</p>
+          </div>
+        )}
       </main>
 
       {/* Preview Modal */}
