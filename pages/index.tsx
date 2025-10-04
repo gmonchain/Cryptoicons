@@ -1,4 +1,4 @@
-// This is the main page of the Cryptoicons application
+// This is the main page of the Cryptoicons application, displaying a list of cryptocurrency icons.
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
 
