@@ -13,7 +13,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
   const { icons, loading, error } = useCryptoIcons(); // `icons` holds the fetched cryptocurrency icon data. `loading` indicates if icons are currently being fetched. `error` stores any error messages during fetching.
   const { toasts, addToast, removeToast } = useToast(); // `toasts` is an array of active toast notifications. `addToast` is a function to display a new toast. `removeToast` is a function to dismiss a toast.
   const [searchQuery, setSearchQuery] = useState(''); // `searchQuery` stores the current value of the search input field. `setSearchQuery` updates the search query.
-  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
+  const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // `selectedIcon` stores the full details of the currently selected icon for preview.
   const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the preview modal.
 
   const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
