@@ -28,8 +28,8 @@ export default function HomePage() { // Main component for the Cryptoicons appli
   }, [icons, searchQuery]);
 
   const handleCopy = async (content: string, name: string) => { // Handles copying icon SVG to clipboard.
-      await navigator.clipboard.writeText(content);
-      addToast(`${name} SVG copied to clipboard!`, 'success');
+      await navigator.clipboard.writeText(content); // Writes the provided content to the clipboard asynchronously.
+      addToast(`${name} SVG copied to clipboard!`, 'success'); // Displays a success toast notification after copying.
   };
 
   const handleDownload = (icon: CryptoIcon) => { // Handles downloading the icon SVG file.
