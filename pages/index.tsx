@@ -141,8 +141,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         onCopy={handleCopy}
         onDownload={handleDownload}
       />
-
-      {/* Toast Notifications */}
+      {/* Toast Notifications */} {/* Container for displaying toast notifications */}
       <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
