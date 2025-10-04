@@ -39,7 +39,7 @@ export default function HomePage() { // Main component for the Cryptoicons appli
     document.body.appendChild(link); // Appends the temporary link to the document body to enable the click event.
     link.click(); // Programmatically clicks the hidden link to initiate the download.
     document.body.removeChild(link); // Removes the temporary link from the document body.
-    addToast(`${icon.displayName} downloaded!`, 'success');
+    addToast(`${icon.displayName} downloaded!`, 'success'); // Displays a success toast notification upon successful download.
   };
 
   const handlePreview = (icon: CryptoIcon) => { // Sets the selected icon and opens the preview modal.
