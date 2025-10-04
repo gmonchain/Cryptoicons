@@ -129,7 +129,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      {selectedIcon && (
+      {selectedIcon && ( // Conditionally renders the PreviewModal if an icon is selected.
         <PreviewModal
           icon={selectedIcon}
           isOpen={isModalOpen}
