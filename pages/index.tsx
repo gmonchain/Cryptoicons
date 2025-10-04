@@ -90,7 +90,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
           />
         </div>
 
-        {/* Stats */}
+        {/* Stats */} {/* Displays statistics about the icons */}
         <Stats
           totalIcons={icons.length}
           filteredIcons={filteredIcons.length}
