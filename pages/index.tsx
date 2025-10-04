@@ -100,7 +100,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
         {/* Results Info */}
         {searchQuery.trim() && ( // Conditionally displays search results information based on query.
           <div className="mb-6">
-            <p className="text-gray-600">
+            <p className="text-gray-600"> {/* Displays the count of matching icons or a no-results message. */}
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
                 : `No icons found matching "${searchQuery}"`
