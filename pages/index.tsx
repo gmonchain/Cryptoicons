@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'; // Importing necessary React hooks for state management and memoization
 import { SearchBar } from '../components/SearchBar'; // Importing the SearchBar component for icon searching
 import { Stats } from '../components/Stats'; // Importing the Stats component to display icon statistics
-import { IconCard } from '../components/IconCard';
+import { IconCard } from '../components/IconCard'; // Importing the IconCard component to render individual icon cards
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
 import { useCryptoIcons } from '../hooks/useCryptoIcons';
