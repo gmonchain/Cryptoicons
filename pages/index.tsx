@@ -1,6 +1,7 @@
 // This is the main page of the Cryptoicons application
 import { useState, useMemo } from 'react';
 import { SearchBar } from '../components/SearchBar';
+
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
