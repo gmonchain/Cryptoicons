@@ -99,7 +99,7 @@ export default function HomePage() {
 
         {/* Results Info */}
         {searchQuery.trim() && ( /* Conditionally displays search results information if a search query is active. */
-          <div className="mb-6">
+          <div className="mb-6"> {/* Container for the search results message. */}
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
