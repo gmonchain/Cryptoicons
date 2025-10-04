@@ -130,7 +130,7 @@ export default function HomePage() {
         ) : searchQuery.trim() ? ( // Displays a message if no icons are found matching the search query.
           <div className="text-center py-12"> {/* Container for the no icons found message. */}
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center"> {/* Styling for the magnifying glass icon container. */}
-              <span className="text-gray-400 text-2xl">🔍</span>
+              <span className="text-gray-400 text-2xl">🔍</span> {/* Magnifying glass emoji for no results. */}
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No icons found</h3>
             <p className="text-gray-600">Try searching with different keywords or check the spelling.</p>
