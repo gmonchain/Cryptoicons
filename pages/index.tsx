@@ -110,7 +110,7 @@ export default function HomePage() { // Main page component for displaying and m
         )}
 
         {/* Icon Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
           {filteredIcons.map(icon => (
             <IconCard
               key={icon.id}
