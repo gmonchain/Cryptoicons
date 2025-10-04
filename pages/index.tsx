@@ -118,7 +118,7 @@ export default function HomePage() {
                 icon={icon} // Passes the icon data to the IconCard component.
                 onCopy={handleCopy} // Callback function for copying the icon SVG.
                 onDownload={handleDownload} // Callback function for downloading the icon SVG.
-                onPreview={handlePreview}
+                onPreview={handlePreview} // Callback function for previewing the icon in a modal.
               />
             ))}
           </div>
