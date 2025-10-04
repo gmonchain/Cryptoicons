@@ -114,7 +114,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid container for displaying icon cards. */}
             {filteredIcons.map((icon) => (
               <IconCard // Renders each icon as a card with copy, download, and preview actions.
-                key={icon.name}
+                key={icon.name} // Unique key for React list rendering.
                 icon={icon}
                 onCopy={handleCopy}
                 onDownload={handleDownload}
