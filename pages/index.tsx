@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'; // React hooks for managing component state and memoizing values.
-import { SearchBar } from '../components/SearchBar'; // Component for searching icons.
-import { Stats } from '../components/Stats'; // Component for displaying icon statistics.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
+import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
@@ -83,7 +83,7 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar // Component for searching crypto icons.
+          <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             placeholder="Search crypto icons by name or symbol..."
@@ -110,10 +110,10 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( // Displays the grid of icons if there are any to show.
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid layout for displaying crypto icon cards. */}
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Renders each icon as a card with copy, download, and preview actions.
+              <IconCard
                 key={icon.name}
                 icon={icon}
                 onCopy={handleCopy}
@@ -134,7 +134,7 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal component for displaying a larger view of the selected icon.
+      <PreviewModal
         icon={selectedIcon}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -143,7 +143,7 @@ export default function HomePage() {
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> {/* Displays temporary notifications to the user. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
