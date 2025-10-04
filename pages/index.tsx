@@ -3,7 +3,7 @@ import { useState, // Manages component-specific state
   useMemo, // Optimizes performance by memoizing values
  } from 'react';
 import { SearchBar } from '../components/SearchBar'; // Component for searching icons
-import { Stats } from '../components/Stats';
+import { Stats } from '../components/Stats'; // Displays icon statistics
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
 import { ToastContainer } from '../components/Toast';
