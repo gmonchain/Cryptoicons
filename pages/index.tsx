@@ -82,7 +82,7 @@ export default function HomePage() { // Main page component for displaying and m
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
+        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar, ensuring responsiveness. */}
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
