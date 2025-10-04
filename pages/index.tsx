@@ -1,6 +1,6 @@
 // This is the main page for the Cryptoicons application.
 import { useState, useMemo } from 'react'; // React hooks for state and memoization
-import { SearchBar } from '../components/SearchBar';
+import { SearchBar } from '../components/SearchBar'; // Component for searching icons
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
