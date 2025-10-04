@@ -12,6 +12,7 @@ import { CryptoIcon } from '../types';
 import { Loader2 } from 'lucide-react';
 
 export default function HomePage() {
+  // Starting the main logic of the HomePage component
   const { icons, loading, error } = useCryptoIcons();
   const { toasts, addToast, removeToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
