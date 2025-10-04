@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react'; // React hooks for managing state and memoizing values.
-import { SearchBar } from '../components/SearchBar'; // Component for searching crypto icons.
+import { useState, useMemo } from 'react';
+import { SearchBar } from '../components/SearchBar';
 import { Stats } from '../components/Stats';
 import { IconCard } from '../components/IconCard';
 import { PreviewModal } from '../components/PreviewModal';
@@ -92,14 +92,14 @@ export default function HomePage() {
 
         {/* Stats */}
         <Stats // Displays statistics about the total and filtered icons.
-          totalIcons={icons.length} // The total number of available cryptocurrency icons.
-          filteredIcons={filteredIcons.length} // The number of icons currently displayed after applying filters.
+          totalIcons={icons.length}
+          filteredIcons={filteredIcons.length}
           isFiltered={!!searchQuery.trim()} // Indicates whether a search filter is currently active.
         />
 
         {/* Results Info */}
-        {searchQuery.trim() && ( /* Conditionally displays search results information if a search query is active. */
-          <div className="mb-6"> {/* Container for the search results message. */}
+        {searchQuery.trim() && (
+          <div className="mb-6">
             <p className="text-gray-600">
               {filteredIcons.length > 0 
                 ? `Found ${filteredIcons.length} icon${filteredIcons.length === 1 ? '' : 's'} matching "${searchQuery}"`
@@ -110,20 +110,20 @@ export default function HomePage() {
         )}
 
         {/* Icons Grid */}
-        {filteredIcons.length > 0 ? ( /* Displays the grid of icons if there are any to show based on filtering. */
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6"> {/* Grid container for displaying icon cards. */}
+        {filteredIcons.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
             {filteredIcons.map((icon) => (
-              <IconCard // Renders each icon as a card with copy, download, and preview actions.
-                key={icon.name} // Unique key for React list rendering.
-                icon={icon} // Passes the icon data to the IconCard component.
-                onCopy={handleCopy} // Callback function for copying the icon SVG.
-                onDownload={handleDownload} // Callback function for downloading the icon SVG.
-                onPreview={handlePreview} // Callback function for previewing the icon in a modal.
+              <IconCard
+                key={icon.name}
+                icon={icon}
+                onCopy={handleCopy}
+                onDownload={handleDownload}
+                onPreview={handlePreview}
               />
             ))}
           </div>
-        ) : searchQuery.trim() ? ( /* Displays a message if no icons are found matching the search query. */
-          <div className="text-center py-12"> {/* Container for the no icons found message. */}
+        ) : searchQuery.trim() ? (
+          <div className="text-center py-12">
             <div className="bg-gray-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               <span className="text-gray-400 text-2xl">🔍</span>
             </div>
@@ -134,17 +134,16 @@ export default function HomePage() {
       </main>
 
       {/* Preview Modal */}
-      <PreviewModal // Modal component for displaying a larger view of the selected icon.
-        icon={selectedIcon} // Passes the currently selected icon to the modal.
-        isOpen={isModalOpen} // Controls the visibility of the modal.
-        onClose={handleCloseModal} // Callback function to close the modal.
-        onCopy={handleCopy} // Callback function for copying icon SVG from the modal.
-        onDownload={handleDownload} // Callback function for downloading icon SVG from the modal.
+      <PreviewModal
+        icon={selectedIcon}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onCopy={handleCopy}
+        onDownload={handleDownload}
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} // Passes the list of active toast notifications.
-        onClose={removeToast} /> {/* Callback function to remove a toast notification. */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
