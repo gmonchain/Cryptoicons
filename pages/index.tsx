@@ -115,7 +115,7 @@ export default function HomePage() {
         {/* Icons Grid */}
         {filteredIcons.length > 0 ? ( // Conditionally renders the grid of icons or a no-results message.
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
-            {filteredIcons.map((icon) => (
+            {filteredIcons.map((icon) => ( // Maps through filtered icons to display each as an IconCard.
               <IconCard
                 key={icon.name}
                 icon={icon}
