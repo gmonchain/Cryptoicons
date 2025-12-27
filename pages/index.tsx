@@ -82,12 +82,14 @@ export default function HomePage() { // Main component for the cryptocurrency ic
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Search crypto icons by name or symbol..."
-          />
+        <div className="sticky top-0 z-50 bg-gradient-to-br from-indigo-50 via-white to-purple-50 pb-8 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-8"> {/* Sticky container for the search bar. */}
+          <div className="max-w-2xl mx-auto">
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search crypto icons by name or symbol..."
+            />
+          </div>
         </div>
 
         {/* Stats */}
