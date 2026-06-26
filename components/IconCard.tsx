@@ -62,21 +62,21 @@ export const IconCard: React.FC<IconCardProps> = ({
         <div className="grid grid-cols-3 gap-2">
           <button
             onClick={() => onPreview(icon)}
-            className="flex items-center justify-center p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md"
+            className="flex items-center justify-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200 shadow-sm hover:shadow-md"
             title="Preview"
           >
             <Eye className="w-4 h-4" />
           </button>
           <button
             onClick={handleCopyClick}
-            className="flex items-center justify-center p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md"
+            className="flex items-center justify-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200 shadow-sm hover:shadow-md"
             title="Copy SVG"
           >
             <Copy className="w-4 h-4" />
           </button>
           <button
             onClick={() => onDownload(icon)}
-            className="flex items-center justify-center p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md"
+            className="flex items-center justify-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200 shadow-sm hover:shadow-md"
             title="Download"
           >
             <Download className="w-4 h-4" />

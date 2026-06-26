@@ -23,7 +23,10 @@ This project is built using a modern web development stack, focusing on performa
 
 This application comes packed with a variety of features to enhance the user experience.
 *   **Extensive Icon Library**: Browse a large collection of cryptocurrency icons in SVG format. This ensures a wide range of options for users.
-*   **Search Functionality**: Easily find icons by name or symbol using a responsive search bar. This greatly improves icon discovery.
+*   **Search Functionality**: Easily find icons by name or symbol using a responsive search bar with sticky positioning. This greatly improves icon discovery.
+*   **Smart Filtering**: Filter coins by market data:
+    *   **Top 100 Only**: Show only the top 100 cryptocurrencies by market cap
+    *   **Active Only**: Display only actively traded cryptocurrencies (verified via CoinMarketCap)
 *   **Icon Preview**: View a larger version of each icon for detailed inspection. This allows users to see the details before downloading.
 *   **Copy SVG Code**: Quickly copy the SVG code of any icon to your clipboard for direct use in projects. This streamlines the integration process.
 *   **Download Icons**: Download individual SVG icon files. This offers flexibility for offline use or custom modifications.
@@ -57,11 +60,47 @@ To run this project locally, follow these steps. These steps will guide you thro
 
     Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
+## CoinMarketCap API Configuration (Optional)
+
+The filtering features work out of the box with pre-generated data. However, if you want to update the active coins data yourself:
+
+1.  **Get a CoinMarketCap API key**: Sign up at [CoinMarketCap API](https://coinmarketcap.com/api/) (free tier available)
+
+2.  **Create a `.env.local` file** in the project root:
+
+    ```bash
+    COINMARKETCAP_API_KEY=your_api_key_here
+    CMC_CACHE_DURATION=86400000
+    ```
+
+3.  **Update active coins data** (optional, only when you want to refresh):
+
+    ```bash
+    npm run update-active-coins
+    ```
+
+    This script will:
+    *   Check all cryptocurrency symbols from the icon library
+    *   Query CoinMarketCap API to verify which coins are actively traded
+    *   Generate updated JSON files in `/public/data/`
+    *   Take approximately 5-10 minutes to complete (depending on library size)
+
+**Note**: The app works perfectly without an API key. Filter features will use the pre-generated static data files.
+
 ## Project Structure
 
-*   `components/`: Reusable React components (e.g., `IconCard`, `SearchBar`, `PreviewModal`).
-*   `hooks/`: Custom React hooks for logic encapsulation (e.g., `useCryptoIcons`, `useToast`).
+*   `components/`: Reusable React components (e.g., `IconCard`, `SearchBar`, `FilterBar`, `PreviewModal`).
+*   `hooks/`: Custom React hooks for logic encapsulation (e.g., `useCryptoIcons`, `useMarketData`, `useToast`).
 *   `pages/`: Next.js pages and API routes (e.g., `index.tsx` for the main page, `api/icons.ts` for serving icon data).
-*   `public/icons/`: Directory containing all the SVG cryptocurrency icon files.
+*   `pages/api/`: API routes for data fetching:
+    *   `coinmarketcap/top100.ts`: Fetches top 100 coins by market cap (with 24h cache)
+    *   `active-coins.ts`: Serves pre-generated active coins data
+*   `public/icons/`: Directory containing SVG cryptocurrency icon files.
+*   `public/data/`: Static JSON files for filtering:
+    *   `active-coins.json`: List of actively traded cryptocurrencies
+    *   `inactive-coins.json`: Inactive or unknown coins
+    *   `all-coins.json`: Complete list of all symbols from the icon library
+*   `scripts/`: Maintenance scripts:
+    *   `update-active-coins.cjs`: Updates active coins data from CoinMarketCap API
 *   `styles/`: Global styles and Tailwind CSS configuration.
 *   `types/`: TypeScript type definitions.

@@ -1,31 +1,57 @@
 import { useState, useMemo } from 'react'; // React hooks for managing state and memoizing values.
 import { SearchBar } from '../components/SearchBar'; // Component for searching icons.
+import { FilterBar } from '../components/FilterBar'; // Component for filtering icons by market data.
 import { Stats } from '../components/Stats'; // Component for displaying icon statistics.
 import { IconCard } from '../components/IconCard'; // Component for displaying individual icons.
 import { PreviewModal } from '../components/PreviewModal'; // Modal for icon preview.
 import { ToastContainer } from '../components/Toast'; // Container for toast notifications.
 import { useCryptoIcons } from '../hooks/useCryptoIcons'; // Custom hook for fetching crypto icon data.
+import { useMarketData } from '../hooks/useMarketData'; // Custom hook for fetching market cap data.
 import { useToast } from '../hooks/useToast'; // Custom hook for managing toast notifications.
 import { CryptoIcon } from '../types'; // Type definition for cryptocurrency icons.
 import { Loader2 } from 'lucide-react'; // Icon component for displaying loading animations.
 
 export default function HomePage() { // Main component for the cryptocurrency icon application.
   const { icons, loading, error } = useCryptoIcons();
+  const { marketData, loading: marketLoading, isTop100Coin, isActiveCoin, apiKeyConfigured, hasActiveData } = useMarketData();
   const { toasts, addToast, removeToast } = useToast(); // Manages toast notifications for user feedback.
   const [searchQuery, setSearchQuery] = useState(''); // State for the search input value.
   const [selectedIcon, setSelectedIcon] = useState<CryptoIcon | null>(null); // Stores the icon selected for preview.
   const [isModalOpen, setIsModalOpen] = useState(false); // Controls the visibility of the preview modal.
+  const [showTop100Only, setShowTop100Only] = useState(false); // Filter to show only top 100 coins by market cap.
+  const [showActiveOnly, setShowActiveOnly] = useState(true); // Filter to show only active coins (default: true).
 
-  const filteredIcons = useMemo(() => { // Memoized list of icons based on search query.
-    if (!searchQuery.trim()) return icons;
-    
-    const query = searchQuery.toLowerCase();
-    return icons.filter(icon =>
-      icon.displayName.toLowerCase().includes(query) ||
-      icon.name.toLowerCase().includes(query) ||
-      icon.symbol?.toLowerCase().includes(query)
-    );
-  }, [icons, searchQuery]);
+  const filteredIcons = useMemo(() => { // Memoized list of icons based on search query and filters.
+    let filtered = icons;
+
+    // Apply search query filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(icon =>
+        icon.displayName.toLowerCase().includes(query) ||
+        icon.name.toLowerCase().includes(query) ||
+        icon.symbol?.toLowerCase().includes(query)
+      );
+    }
+
+    // Apply Top 100 filter
+    if (showTop100Only && marketData) {
+      filtered = filtered.filter(icon => {
+        if (!icon.symbol) return false; // No symbol = can't verify if in top 100
+        return isTop100Coin(icon.symbol);
+      });
+    }
+
+    // Apply Active coins filter
+    if (showActiveOnly && marketData) {
+      filtered = filtered.filter(icon => {
+        if (!icon.symbol) return true; // No symbol = can't verify active status, so show it
+        return isActiveCoin(icon.symbol);
+      });
+    }
+
+    return filtered;
+  }, [icons, searchQuery, showTop100Only, showActiveOnly, marketData, isTop100Coin, isActiveCoin]);
 
   const handleCopy = async (content: string, name: string) => { // Handles copying icon SVG to clipboard.
       await navigator.clipboard.writeText(content);
@@ -82,13 +108,26 @@ export default function HomePage() { // Main component for the cryptocurrency ic
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> {/* Main content area with responsive padding and width. */}
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8"> {/* Container for the search bar. */}
-          <SearchBar
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Search crypto icons by name or symbol..."
-          />
+        <div className="sticky top-0 z-50 bg-gradient-to-br from-indigo-50 via-white to-purple-50 pb-8 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 mb-8"> {/* Sticky container for the search bar. */}
+          <div className="max-w-2xl mx-auto">
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search crypto icons by name or symbol..."
+            />
+          </div>
         </div>
+
+        {/* Filter Bar */}
+        <FilterBar
+          showTop100Only={showTop100Only}
+          onToggleTop100={() => setShowTop100Only(!showTop100Only)}
+          showActiveOnly={showActiveOnly}
+          onToggleActive={() => setShowActiveOnly(!showActiveOnly)}
+          isLoading={marketLoading}
+          apiKeyConfigured={apiKeyConfigured}
+          hasActiveData={hasActiveData}
+        />
 
         {/* Stats */}
         <Stats // Displays statistics about the total and filtered icons.
@@ -143,7 +182,7 @@ export default function HomePage() { // Main component for the cryptocurrency ic
       />
 
       {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} /> // Container for displaying toast notifications.
+      <ToastContainer toasts={toasts} onClose={removeToast} />
     </div>
   );
 }
